@@ -37,8 +37,18 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger text-white  {{ 'active2' if active_page == 'index' else '' }}"
+                            href="{{ url_for('login') }}" href="{{ url_for('login') }}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger text-white  {{ 'active2' if active_page == 'index' else '' }}"
+                            href="{{ url_for('signup') }}" href="{{ url_for('login') }}">Signup</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger text-white  {{ 'active2' if active_page == 'index' else '' }}"
                             href="{{ url_for('add_recipe') }}" href="{{ url_for('index') }}">Add Recipe</a>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger text-white  {{ 'active2' if active_page == 'index' else '' }}"
                             href="{{ url_for('stats') }}" href="{{ url_for('stats') }}">Statistics</a>

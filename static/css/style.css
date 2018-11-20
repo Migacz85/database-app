@@ -38,6 +38,13 @@ a {
   height: 137px;
 }
 
+
+#navbarResponsive > ul {
+  
+  background-color: hsla(0, 0%, 9%, 0.637);
+  padding: 10px;
+}
+
 body {
   background-color: rgb(46, 40, 41);
   /* overflow: hidden; */
@@ -66,3 +73,13 @@ footer {
   background-color: hsla(204, 79%, 19%, 0);
   color:white;
 }
+
+@media only screen and (max-width: 970px) {
+  
+  #navbarResponsive > ul {
+    width: 150px;
+    background-color: hsla(0, 0%, 9%, 0.637);
+    padding: 10px;
+  }
+
+ }
