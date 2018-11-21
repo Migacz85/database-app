@@ -3,23 +3,29 @@
 <div class="container">
     <div class="row justify-content-md-center">
         <div class="col-md-6">
-            <form class="form-signin">
+            <form class="form-signin"  method=POST action="{{ url_for('signup') }}">
                 <h2 class="form-signin-heading">Sign Up</h2>
                 <br>
                 <label for="inputUsername" class="sr-only">Username</label>
                 <br>
-                <input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+                <input name="username" type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
                 <br>
                 <label for="inputEmail" class="sr-only">Email address</label>
                 <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
                 <br>
                 <label for="inputPassword" class="sr-only">Password</label>
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
                 <br>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
             </form>
-
+            <br>
+            {% if msg!='' %}
+            <div class="alert alert-danger" role="alert">
+                <strong>{{msg}}</strong> 
+            </div>
+            {%endif%}
         </div>
+        b4
     </div>
 </div> <!-- /container -->
 {%endblock content%}

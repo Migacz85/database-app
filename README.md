@@ -8,6 +8,14 @@
 
 ## User Stories / Automated tests
 
+As a user:
+I want to log in to the site so I can have access to site
+Before I log in to the site I want to be informed that I am not logged in so I know in what state site is
+Before I log in to the site I want to have in options: Login, Signup, Home so I can do following things
+After I log in to the site I want to have options: Home, Add Recipe, Statistics, Logout - So I can perform this actions
+
+
+
 ## Technologies Used:
 
 ## Features 
@@ -82,6 +90,10 @@ Pictures used in this site was used from these links:
 
 https://www.pexels.com/photo/burger-and-vegetables-placed-on-brown-wood-surface-1565982/
 https://ubisafe.org/image/chef-vector-logos/1115933.html
+
+Resources helpful to build this site:
+
+https://github.com/PrettyPrinted/mongodb-user-login/blob/master/login_example.py
 
 ### Acknowledgements
 

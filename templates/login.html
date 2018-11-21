@@ -3,13 +3,14 @@
 <div class="container">
     <div class="row justify-content-md-center">
         <div class="col-md-6">
-            <form class="form-signin">
+            <form class="form-signin "  method=POST action="{{ url_for('login') }}">
                 <h2 class="form-signin-heading">Please sign in</h2>
-                <label for="inputUsername" class="sr-only">Username</label>
-                <input type="text" name="inputUsername" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+                <br>
+                <label  for="inputUsername" class="sr-only">Username</label>
+                <input name="username" type="text" name="inputUsername" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
                 </br>
-                <label for="inputPassword" class="sr-only">Password</label>
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                <label   for="inputPassword" class="sr-only">Password</label>
+                <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
                 <br>
                 <div class="checkbox">
 
@@ -20,6 +21,12 @@
                 <br>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
             </form>
+            <br>
+            {% if msg!='' %}
+            <div class="alert alert-danger" role="alert">
+                <strong>{{msg}}</strong> 
+            </div>
+            {%endif%}
         </div>
     </div>
 </div> <!-- /container -->

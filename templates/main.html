@@ -14,16 +14,24 @@
     <title>Document</title>
 </head>
 <body>
+    
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
         <div class="container">
+            
+
+
             <a href="{{url_for('index')}}"> 
             <img id="logo" src="/static/img/logo.png" alt="logo">
+            <div class="text-white">
+                    {{user }}
+                </div>
+    
             <a class="navbar-brand js-scroll-trigger text-white" href="{{ url_for('index') }}"><b> Recipify me</b> </a>
         </a> 
             
+                
             
-
             <button class="navbar-toggler navbar-toggler-right text-white" type="button" data-toggle="collapse"
                 data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
@@ -31,10 +39,16 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
+                    
+                    {% if user=="You are not logged" %}
+                     
                     <li class="nav-item">
+
                         <a class="nav-link js-scroll-trigger text-white  {{ 'active2' if active_page == 'index' else '' }}"
                             href="{{ url_for('index') }}" href="{{ url_for('index') }}">Home</a>
                     </li>
+
+
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger text-white  {{ 'active2' if active_page == 'index' else '' }}"
                             href="{{ url_for('login') }}" href="{{ url_for('login') }}">Login</a>
@@ -44,6 +58,13 @@
                             href="{{ url_for('signup') }}" href="{{ url_for('login') }}">Signup</a>
                     </li>
 
+                    {% else %}
+                    <li class="nav-item">
+
+                            <a class="nav-link js-scroll-trigger text-white  {{ 'active2' if active_page == 'index' else '' }}"
+                                href="{{ url_for('index') }}" href="{{ url_for('index') }}">Home</a>
+                        </li>
+    
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger text-white  {{ 'active2' if active_page == 'index' else '' }}"
                             href="{{ url_for('add_recipe') }}" href="{{ url_for('index') }}">Add Recipe</a>
@@ -54,6 +75,11 @@
                             href="{{ url_for('stats') }}" href="{{ url_for('stats') }}">Statistics</a>
                     </li>
                     
+                    <li class="nav-item">
+                            <a class="nav-link js-scroll-trigger text-white  {{ 'active2' if active_page == 'index' else '' }}"
+                                href="{{ url_for('logout') }}" href="{{ url_for('logout') }}">Logout</a>
+                    </li>
+                    {% endif %}
 
                 </ul>
             </div>
