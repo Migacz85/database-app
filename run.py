@@ -51,14 +51,20 @@ def signup():
     if request.method == 'POST':
         users = mongo.db.users
         existing_user = users.find_one({'name' : request.form['username']})
-        
+    
         if existing_user is None:
-            hashpass = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt())
-            users.insert({'name' : request.form['username'], 'password' : hashpass})
-            session['username'] = request.form['username']
-            return redirect(url_for('index'))
-        
-        msg='That username already exists!'  
+            if request.form['password_check']==request.form['password'] and request.form['password'] is not None:
+                if not len(request.form['password'])<5:
+                    hashpass = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt()) 
+                    users.insert({'name' : request.form['username'], 'password' : hashpass})
+                    session['username'] = request.form['username']
+                    return redirect(url_for('index'))            
+                else:
+                    msg='Password is to short try at least 5 chars'
+            else: 
+                msg = 'Passwords dose not match'
+        else: 
+            msg='That username already exists!'  
 
     return render_template('signup.html', user=user, msg=msg)
 
@@ -74,14 +80,17 @@ def add_recipe():
     user='You are not logged'
     if 'username' in session:
         user='Cheff: '+session['username']
+    return redirect(url_for('index'))  # Only for registerred users
 
-    return render_template("add.html", user=user)
+    return render_template("add.html", user=user) 
+    
 
 @app.route('/stats', methods=["GET", "POST"])
 def stats():
     user='You are not logged'
     if 'username' in session:
         user='Cheff: '+session['username']
+    return redirect(url_for('index')) # Only for registerred users
 
     return render_template("stats.html", user=user)
     

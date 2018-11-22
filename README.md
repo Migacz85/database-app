@@ -14,6 +14,9 @@ Before I log in to the site I want to be informed that I am not logged in so I k
 Before I log in to the site I want to have in options: Login, Signup, Home so I can do following things
 After I log in to the site I want to have options: Home, Add Recipe, Statistics, Logout - So I can perform this actions
 
+As a administrator:
+I want pages with adding recipe and stats to be available only for logged users so only user with account can create recipe
+
 
 
 ## Technologies Used:
