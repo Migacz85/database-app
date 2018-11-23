@@ -1,0 +1,198 @@
+{% extends 'main.html' %}
+{% block content %}
+<h3 class="text-uppercase">Add your recipe </h3>
+<hr />
+<form class="text-white">
+    <div class="row">
+        
+        <div class="form-group col-md-6">
+            <label for="recipe">Recipe Name</label>
+            <input id="recipe" name="recipe-name" type="text" class="form-control" name="recipe_name" placeholder="Recipe name">
+        </div>
+        
+
+        <div class="form-group col-md-6">
+                <label for="cooking-time">Cooking time </label>
+                <select id="cooking-time" name="cooking-time" type="text" class="form-control" name="recipe_name" placeholder="Recipe name">
+                        <option value="15">15 </option>
+                        <option value="30">30 </option>
+                        <option value="45">45 </option>
+                        <option value="60">1 hour </option>
+                        <option value="1 hour and 15 minutes">1 hour and 15 minutes </option>
+                        <option value="1 hour and 30 minutes">1 hour and 30 minutes  </option>
+                        <option value="2 hours ">2 hours </option>
+                    
+                </select>
+        </div>
+
+    
+    </div>
+
+    <div class="form-row">
+       
+        <div class="form-group col-md-6">
+            <label for="alergnens">Alergens (ctrl for multi select)</label>
+            <select id="alergens" name="alergens" class="form-control" class="multiselect-ui form-control" multiple="multiple">
+                
+                <option> dairy </option>
+                <option selected> eggs </option>
+                <option> crustacean </option>
+                <option selected> tree nuts </option>
+                <option> peanuts </option>
+                <option> wheat </option>
+                <option> soybeans </option>
+                <option> celery </option>
+                <option> mustard </option>
+                <option> sesame </option>
+                <option> lupin </option>
+                <option> molluscs </option>
+                <option> fish </option>
+                <option> sulphites </option>
+            </select>
+        </div>
+
+        <div class="form-group col-md-6">
+                <label for="cuisine">Cuisine (ctrl for multi select)</label>
+                <select id="cuisine" name="cuisine" class="form-control" class="multiselect-ui form-control" multiple="multiple">
+                    
+                        <option> Ainu </option>
+                        <option> Albanian </option>
+                        <option> Argentina </option>
+                        <option> Andhra </option>
+                        <option> Anglo-Indian </option>
+                        <option> Arab </option>
+                        <option> Armenian </option>
+                        <option> Assyrian </option>
+                        <option> Awadhi </option>
+                        <option> Azerbaijani </option>
+                        <option> Balochi </option>
+                        <option> Belarusian </option>
+                        <option> Bengali </option>
+                        <option> Berber </option>
+                        <option> Buddhist </option>
+                        <option> Bulgarian </option>
+                        <option> Cajun </option>
+                        <option> Chechen </option>
+                        <option> Chinese cuisine </option>
+                        <option> Chinese Islamic </option>
+                        <option> Circassian </option>
+                        <option> Crimean Tatar </option>
+                        <option> Danish </option>
+                        <option> Estonian </option>
+                        <option> French </option>
+                        <option> Filipino </option>
+                        <option> Georgian </option>
+                        <option> Goan </option>
+                        <option> Goan Catholic </option>
+                        <option> Greek </option>
+                        <option> Hyderabad </option>
+                        <option> Indian cuisine </option>
+                        <option> Indian Chinese </option>
+                        <option> Indian Singaporean cuisine </option>
+                        <option> Indonesian </option>
+                        <option> Inuit </option>
+                        <option> Italian American </option>
+                        <option> Italian cuisine </option>
+                        <option> Japanese </option>
+                        <option> Jewish </option>
+                        <option> Karnataka </option>
+                        <option> Kazakh </option>
+                        <option> Keralite </option>
+                        <option> Korean </option>
+                        <option> Kurdish </option>
+                        <option> Laotian </option>
+                        <option> Latvian </option>
+                        <option> Lithuanian </option>
+                        <option> Louisiana Creole </option>
+                        <option> Maharashtrian </option>
+                        <option> Mangalorean </option>
+                        <option> Malay </option>
+                        <option> Malaysian Chinese cuisine </option>
+                        <option> Malaysian Indian cuisine </option>
+                        <option> Mediterranean cuisine </option>
+                        <option> Mexican </option>
+                        <option> Mordovian </option>
+                        <option> Mughal </option>
+                        <option> Native American </option>
+                        <option> Nepalese </option>
+                        <option> New Mexican </option>
+                        <option> Odia </option>
+                        <option> Parsi </option>
+                        <option> Pashtun </option>
+                        <option> Polish </option>
+                        <option> Pennsylvania Dutch </option>
+                        <option> Pakistani </option>
+                        <option> Peranakan </option>
+                        <option> Persian </option>
+                        <option> Peruvian </option>
+                        <option> Portuguese </option>
+                        <option> Punjabi </option>
+                        <option> Rajasthani </option>
+                        <option> Romanian </option>
+                        <option> Russian </option>
+                        <option> Sami </option>
+                        <option> Serbian </option>
+                        <option> Sindhi </option>
+                        <option> Slovak </option>
+                        <option> Slovenian </option>
+                        <option> Somali </option>
+                        <option> South Indian </option>
+                        <option> Sri Lankan </option>
+                        <option> Tatar </option>
+                        <option> Thai </option>
+                        <option> Turkish </option>
+                        <option> Tamil </option>
+                        <option> Udupi </option>
+                        <option> Ukrainian </option>
+                        <option> Yamal </option>
+                        <option> Zanzibari </option>
+                        
+                </select>
+            </div>
+
+    </div>
+
+    <br>
+    
+    <hr />
+   
+    <div class="form-group">
+        <label for="ingredients">Ingredients</label>
+        <input type="text" class="form-control" id="ingredients" placeholder="Write your ingredients separated by comma">
+    </div>
+
+
+
+    <div class="form-group">
+        <label for="recipe-description">Recipe Description</label>
+        <textarea type="text" class="form-control" id="recipe-description" name="recipe-description" placeholder="Describe your recipe here" class="md-textarea form-control" rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="image-url">Image</label>
+        <input type="textarea" class="form-control" id="image-url" name="image-url" placeholder="http://your-url">
+        
+    </div>
+
+
+    
+    <hr />
+    
+    <button type="submit" class="btn btn-primary">Publish Recipe</button>
+</form>
+
+<script>
+<script type="text/javascript"> 
+
+function stopRKey(evt) { 
+  var evt = (evt) ? evt : ((event) ? event : null); 
+  var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null); 
+  if ((evt.keyCode == 13) && (node.type=="text"))  {return false;} 
+} 
+
+document.onkeypress = stopRKey; 
+
+</script>
+</script>
+
+{% endblock content %}

@@ -80,9 +80,13 @@ def add_recipe():
     user='You are not logged'
     if 'username' in session:
         user='Cheff: '+session['username']
-    return redirect(url_for('index'))  # Only for registerred users
+    else:
+        return redirect(url_for('index'))  # Only for registerred users
 
-    return render_template("add.html", user=user) 
+
+
+
+    return render_template("add_recipe.html", user=user) 
     
 
 @app.route('/stats', methods=["GET", "POST"])
@@ -90,7 +94,8 @@ def stats():
     user='You are not logged'
     if 'username' in session:
         user='Cheff: '+session['username']
-    return redirect(url_for('index')) # Only for registerred users
+    else:
+        return redirect(url_for('index')) # Only for registerred users
 
     return render_template("stats.html", user=user)
     
