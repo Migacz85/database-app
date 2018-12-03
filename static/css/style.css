@@ -1,9 +1,9 @@
-.masthead {
+body {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   min-height: 35rem;
-  padding: 10rem 0;
+  /* padding: 10rem 0; */
   background: linear-gradient(to bottom, rgba(22, 22, 22, 0.1) 0%, rgba(22, 22, 22, 0.5) 75%, #161616 100%), url('../img/photo.jpeg');
   background-position: center;
   background-repeat: no-repeat;
@@ -37,22 +37,13 @@ a {
  
   width: 100px;
   height: 137px;
+  margin-top:62px;
 }
 
 #recipe-description {
  height:100px;
 }
 
-#mainNav {
-  background-color:#0000008c;
-  border-radius:10px;
-}
-
-#navbarResponsive > ul {
-  
-  background-color: hsla(0, 0%, 9%, 0.637);
-  padding: 10px;
-}
 
 body {
   background-color: rgb(46, 40, 41);
@@ -73,25 +64,95 @@ p {
 }
 
 footer {
+  bottom: 0;
+  /* left: 40%; */
+  position: relative;
   margin: auto;
-  margin-top:20px;
-  padding:0px;
-  width:200px;
-  height:10%;
-  
+  margin-top: 20px;
+  padding: 0px;
+  width: 200px;
+  height: 10%;
   background-color: hsla(204, 79%, 19%, 0);
-  color:white;
+  color: white;
 }
 
-/* bootstrap */
+.page_name{
 
+margin-top:100px;
+text-align: center;
+}
+
+/* Bootstrap */
+
+#navbarResponsive {
+  margin-right:10%;
+}
+
+.navbar-collapse {
+  z-index: 1;
+  position: absolute;
+  top: 133px;
+  right: 35px;
+  -ms-flex-preferred-size: 100%;
+  flex-basis: 100%;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+
+body > a {
+  text-align: center;
+}
+
+#mainNav {
+  
+  border-radius:10px;
+}
+
+#navbarResponsive > ul {
+  background-color: hsla(0, 0%, 9%, 0.4);
+  border-radius:10px;
+  padding:10px;
+}
+
+#mainNav > div > a:nth-child(1) > div {
+  background-color: hsla(0, 0%, 9%, 0.4);
+  border-radius:10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding:10px;
+}
+
+#mainNav > div > a.navbar-brand.js-scroll-trigger.text-white > b {
+  margin: 40%;
+  background-color: hsla(0, 0%, 9%, 0.4);
+  border-radius:10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding:10px;
+  /* text-align:center; */
+}
+
+#mainNav > div > button {
+  background-color: hsla(0, 0%, 9%, 0.4);
+  border-radius:10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding:10px;
+  margin-top:115;
+}
+
+#navbarResponsive > ul {
+  
+  /* background-color: hsla(0, 0%, 9%, 0.637); */
+  padding: 10px;
+}
 
 
 @media only screen and (max-width: 970px) {
   
   #navbarResponsive > ul {
     width: 150px;
-    background-color: hsla(0, 0%, 9%, 0.637);
+    /* background-color: hsla(0, 0%, 9%, 0.637); */
     padding: 10px;
   }
 

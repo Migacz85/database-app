@@ -2,7 +2,7 @@
 {% block content %}
 <h3 class="text-uppercase">Add your recipe </h3>
 <hr />
-<form class="text-white">
+<form class="text-white" method="POST">
     <div class="row">
         
         <div class="form-group col-md-6">
@@ -35,9 +35,9 @@
             <select id="alergens" name="alergens" class="form-control" class="multiselect-ui form-control" multiple="multiple">
                 
                 <option> dairy </option>
-                <option selected> eggs </option>
+                <option> eggs </option>
                 <option> crustacean </option>
-                <option selected> tree nuts </option>
+                <option> tree nuts </option>
                 <option> peanuts </option>
                 <option> wheat </option>
                 <option> soybeans </option>
@@ -158,7 +158,7 @@
    
     <div class="form-group">
         <label for="ingredients">Ingredients</label>
-        <input type="text" class="form-control" id="ingredients" placeholder="Write your ingredients separated by comma">
+        <input type="text" class="form-control" id="ing" name="ing" placeholder="Write your ingredients separated by comma">
     </div>
 
 

@@ -15,78 +15,91 @@
 </head>
 <body>
     
+    
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-        <div class="container">
-            
+    <div class="containter">
 
-
-            <a href="{{url_for('index')}}"> 
-            <img id="logo" src="/static/img/logo.png" alt="logo">
-            <div class="text-white">
-                    {{user }}
-                </div>
-    
-            <a class="navbar-brand js-scroll-trigger text-white" href="{{ url_for('index') }}"><b> Recipify me</b> </a>
-        </a> 
-            
-                
-            
-            <button class="navbar-toggler navbar-toggler-right text-white" type="button" data-toggle="collapse"
-                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                Menu
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
+        <div class="row text-white mx-auto text-center">
+            <div class="col">     <a href="{{url_for('index')}}"> 
+                    <img id="logo" src="/static/img/logo.png" alt="logo">
+                    <div class="text-white">
+                        {{user }}
+                    </div>
                     
-                    {% if user=="You are not logged" %}
-                     
-                    <li class="nav-item">
-
-                        <a class="nav-link js-scroll-trigger text-white  {{ 'active2' if active_page == 'index' else '' }}"
-                            href="{{ url_for('index') }}" href="{{ url_for('index') }}">Home</a>
-                    </li>
-
-
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger text-white  {{ 'active2' if active_page == 'index' else '' }}"
-                            href="{{ url_for('login') }}" href="{{ url_for('login') }}">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger text-white  {{ 'active2' if active_page == 'index' else '' }}"
-                            href="{{ url_for('signup') }}" href="{{ url_for('login') }}">Signup</a>
-                    </li>
-
-                    {% else %}
-                    <li class="nav-item">
-
-                            <a class="nav-link js-scroll-trigger text-white  {{ 'active2' if active_page == 'index' else '' }}"
-                                href="{{ url_for('index') }}" href="{{ url_for('index') }}">Home</a>
-                        </li>
-    
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger text-white  {{ 'active2' if active_page == 'index' else '' }}"
-                            href="{{ url_for('add_recipe') }}" href="{{ url_for('index') }}">Add Recipe</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger text-white  {{ 'active2' if active_page == 'index' else '' }}"
-                            href="{{ url_for('stats') }}" href="{{ url_for('stats') }}">Statistics</a>
-                    </li>
                     
-                    <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger text-white  {{ 'active2' if active_page == 'index' else '' }}"
-                                href="{{ url_for('logout') }}" href="{{ url_for('logout') }}">Logout</a>
-                    </li>
-                    {% endif %}
+                </a>  </div>
+            <div class="col"> <h1 class="page_name" href="{{ url_for('index') }}"><b> Recipify me</b> </h1>  </div>
+            <div class="col">  
+                    <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+                            <div class="container">
+                                
+                                
+                               
+                                
+                                
+                                
+                                <button class="navbar-toggler navbar-toggler-right text-white" type="button" data-toggle="collapse"
+                                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                                    Menu
+                                    <i class="fas fa-bars"></i>
+                                </button>
+                                <div class="collapse navbar-collapse" id="navbarResponsive">
+                                    <ul class="navbar-nav ml-auto">
+                                        
+                                        {% if user=="You are not logged" %}
+                                        
+                                        <li class="nav-item">
+                                            
+                                            <a class="nav-link js-scroll-trigger text-white  {{ 'active2' if active_page == 'index' else '' }}"
+                                            href="{{ url_for('index') }}" href="{{ url_for('index') }}">Home</a>
+                                        </li>
+                    
+                                        
+                                        <li class="nav-item">
+                                            <a class="nav-link js-scroll-trigger text-white  {{ 'active2' if active_page == 'index' else '' }}"
+                                            href="{{ url_for('login') }}" href="{{ url_for('login') }}">Login</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link js-scroll-trigger text-white  {{ 'active2' if active_page == 'index' else '' }}"
+                                            href="{{ url_for('signup') }}" href="{{ url_for('login') }}">Signup</a>
+                                        </li>
+                                        
+                                        {% else %}
+                                        <li class="nav-item">
+                                            
+                                            <a class="nav-link js-scroll-trigger text-white  {{ 'active2' if active_page == 'index' else '' }}"
+                                            href="{{ url_for('index') }}" href="{{ url_for('index') }}">Home</a>
+                                        </li>
+                                        
+                                        <li class="nav-item">
+                                            <a class="nav-link js-scroll-trigger text-white  {{ 'active2' if active_page == 'index' else '' }}"
+                                                href="{{ url_for('add_recipe') }}" href="{{ url_for('index') }}">Add Recipe</a>
+                                            </li>
+                                            
+                                        <li class="nav-item">
+                                            <a class="nav-link js-scroll-trigger text-white  {{ 'active2' if active_page == 'index' else '' }}"
+                                            href="{{ url_for('stats') }}" href="{{ url_for('stats') }}">Statistics</a>
+                                        </li>
+                                        
+                                        <li class="nav-item">
+                                            <a class="nav-link js-scroll-trigger text-white  {{ 'active2' if active_page == 'index' else '' }}"
+                                            href="{{ url_for('logout') }}" href="{{ url_for('logout') }}">Logout</a>
+                                        </li>
+                                        {% endif %}
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
 
-                </ul>
             </div>
         </div>
-    </nav>
+    </div>
+        
+    
+    
     <div class="container-flex">
-
+        
         <div class="masthead">
             <div class="container">
                 <div class="mx-auto text-center">
@@ -98,11 +111,11 @@
 
                 </div>
             </div>
-           
-            </div>
-
-
+        
+        </div>
     </div>
+
+    <br>
     <footer >
         ⓒ Recipify me 2018
     </footer>

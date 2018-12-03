@@ -83,8 +83,30 @@ def add_recipe():
     else:
         return redirect(url_for('index'))  # Only for registerred users
 
-
-
+    if request.method == 'POST': 
+        recipes=mongo.db.recipes
+        recipes.insert({
+        'likes': 0,
+        'recipe-name' : request.form['recipe-name'] , 
+        'cooking-time': request.form['cooking-time'] ,
+        'cuisine': str(request.form.getlist('cuisine')) ,
+        'alergens': str(request.form.getlist('alergens')),
+        'recipe-description': request.form['recipe-description'],
+        'image-url' : request.form['image-url'],
+        'ingredients' : request.form['ing'],
+        'author': session['username']
+        })
+        
+        #form variables
+        # request.form['recipe-name']
+        # request.form['cooking-time']
+        # str(request.form.getlist('cuisine'))
+        # str(request.form.getlist('alergens'))
+        # request.form['recipe-description']
+        # request.form['image-url']
+        # request.form['ing']
+        # session['username']
+        
 
     return render_template("add_recipe.html", user=user) 
     
