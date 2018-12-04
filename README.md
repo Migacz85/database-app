@@ -8,14 +8,16 @@
 
 ## User Stories / Automated tests
 
-As a user:
-I want to log in to the site so I can have access to site
-Before I log in to the site I want to be informed that I am not logged in so I know in what state site is
-Before I log in to the site I want to have in options: Login, Signup, Home so I can do following things
-After I log in to the site I want to have options: Home, Add Recipe, Statistics, Logout - So I can perform this actions
+As a user: </br>
+- I want to log in to the site so I can have access to site </br>
+- Before I log in to the site I want to be informed that I am not logged in so I know in what state site is</br>
+- Before I log in to the site I want to have in options: Login, Signup, Home so I know what options i have</br>
+- After I log in to the site I want to have options: Home, Add Recipe, Statistics, Logout - So I can perform this actions</br>
+- When I'm visisting website (not logged) I want to see recipes others peoples so I can scroll and read them
+- When I'm visisting website (not logged) I want to have option to filter recipes by type
 
-As a administrator:
-I want pages with adding recipe and stats to be available only for logged users so only user with account can create recipe
+As a administrator:</br>
+- I want pages with adding recipe and stats to be available only for logged users so only user with account can create recipe</br>
 
 
 

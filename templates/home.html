@@ -1,4 +1,90 @@
 
 {% extends 'main.html' %}
 {% block content%}
+
+<!-- <h2> Our users recepies: </h2> -->
+ 
+
+<!-- DISPLAY RECIPES -->
+<br>
+
+
+{% for r in recipes %}
+
+<div class="card text-center">
+  <div class="card-header">
+      <div class="row">
+        <div class="col">  
+               
+                Cuisine:
+                <!-- Good r['cuisine'][0] -->
+                {%for element in r['cuisine']%}
+                <span class="badge badge-info"> {{element}} </span>
+                {%endfor%}
+        </div>
+        <div class="col">
+            Cooking time: <span class="badge badge-info"> {{r['cooking-time']}}</span>
+        </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{r['recipe-name']}}</h5>
+    
+    Ingredients: </br>
+    {% for ingriedient in r['ingredients'] %}
+    <i>{{ ingriedient}} </i> </br>
+    {% endfor%}
+    <br>
+    <br>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-6">        
+                <p class="card-text text-muted">{{r['recipe-description']}} </p>
+                <br>
+        </div>
+        <div class="col-sm-12 col-md-6">
+                <img class="card-img-top" src="{{r['image-url']}}" alt="Card image cap">
+        </div>
+        
+    </div>
+
+    
+  </div>
+  <div class="card-footer text-muted">
+        
+    <div class="row">
+        <div class="col">
+                <b>Allergens:            </b>
+                {%for element in r['alergens']%}
+                <span class="badge badge-warning"> {{element}} </span>
+                {%endfor%}
+        </div>
+        <div class="col">
+               <b> Author: </b>{{r['author']}}
+        </div>
+    </div>
+    
+        
+        
+ </div>
+</div>
+
+<br>
+
+<!-- Acces to all dynamicaly created variables -->
+<!-- 
+{{r['recipe-name']}} *
+{{r['cooking-time']}} *
+{{r['cuisine']}} *
+{{r['alergens']}} 
+{{r['recipe-description']}} *
+{{r['image-url']}} *
+{{r['ingredients']}} *
+{{r['author']}} -->
+
+
+{% endfor %}
+
+
+
 {% endblock content%}

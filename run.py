@@ -9,17 +9,51 @@ app.config['MONGO_DBNAME']='recipifydb'
 app.config['MONGO_URI']='mongodb://migacz:1migacz@ds113482.mlab.com:13482/recipifydb'
 
 mongo = PyMongo(app)
-user=''
 
+
+
+# Main page show all recipes from all users:
 
 @app.route('/')
 def index():
     user='You are not logged'
     if 'username' in session:
         user='Cheff: '+session['username']
+    dbrecipes = mongo.db.recipes
+    recipes  = dbrecipes.find()
+    all=[]
 
+    print("YOUR RESULTS: ", recipes)
+    for recipe in recipes:
+        all.append(recipe)
 
-    return render_template("home.html", user=user)
+    return render_template(
+        "home.html",
+        recipes=all, 
+        user=user)
+
+# Show only users recipes
+
+@app.route('/user_recipes')
+def user_recipes():
+    user='You are not logged'
+    if 'username' in session:
+        user='Cheff: '+session['username']
+
+    dbrecipes = mongo.db.recipes
+    recipes  = dbrecipes.find({"author": session['username']})
+
+    all=[]
+
+    print("YOUR RESULTS: ", recipes)
+    for recipe in recipes:
+        all.append(recipe)
+
+    return render_template(
+        "home.html",
+        recipes=all, 
+        user=user)
+
 
 @app.route('/login', methods=["POST", "GET"])
 def login():
@@ -56,7 +90,7 @@ def signup():
             if request.form['password_check']==request.form['password'] and request.form['password'] is not None:
                 if not len(request.form['password'])<5:
                     hashpass = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt()) 
-                    users.insert({'name' : request.form['username'], 'password' : hashpass})
+                    users.insert_one({'name' : request.form['username'], 'password' : hashpass})
                     session['username'] = request.form['username']
                     return redirect(url_for('index'))            
                 else:
@@ -89,11 +123,11 @@ def add_recipe():
         'likes': 0,
         'recipe-name' : request.form['recipe-name'] , 
         'cooking-time': request.form['cooking-time'] ,
-        'cuisine': str(request.form.getlist('cuisine')) ,
-        'alergens': str(request.form.getlist('alergens')),
+        'cuisine': request.form.getlist('cuisine') ,
+        'alergens': request.form.getlist('alergens'),
         'recipe-description': request.form['recipe-description'],
         'image-url' : request.form['image-url'],
-        'ingredients' : request.form['ing'],
+        'ingredients' : request.form['ing'].split(","), # Convert string to list where , is separator
         'author': session['username']
         })
         
@@ -110,7 +144,6 @@ def add_recipe():
 
     return render_template("add_recipe.html", user=user) 
     
-
 @app.route('/stats', methods=["GET", "POST"])
 def stats():
     user='You are not logged'

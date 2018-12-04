@@ -23,7 +23,7 @@
             <div class="col">     <a href="{{url_for('index')}}"> 
                     <img id="logo" src="/static/img/logo.png" alt="logo">
                     <div class="text-white">
-                        {{user }}
+                            <span class="badge badge-light"> {{user }} </span>
                     </div>
                     
                     
@@ -75,6 +75,12 @@
                                             <a class="nav-link js-scroll-trigger text-white  {{ 'active2' if active_page == 'index' else '' }}"
                                                 href="{{ url_for('add_recipe') }}" href="{{ url_for('index') }}">Add Recipe</a>
                                             </li>
+                                            <li class="nav-item">
+                                                    <a class="nav-link js-scroll-trigger text-white  {{ 'active2' if active_page == 'index' else '' }}"
+                                                        href="{{ url_for('user_recipes') }}" href="{{ url_for('user_recipes') }}">Your Recipes</a>
+                                                    </li>
+                                                      
+                                            
                                             
                                         <li class="nav-item">
                                             <a class="nav-link js-scroll-trigger text-white  {{ 'active2' if active_page == 'index' else '' }}"

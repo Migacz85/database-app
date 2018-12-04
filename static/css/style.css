@@ -78,7 +78,7 @@ footer {
 
 .page_name{
 
-margin-top:100px;
+margin-top:50px;
 text-align: center;
 }
 
@@ -112,7 +112,7 @@ body > a {
 }
 
 #navbarResponsive > ul {
-  background-color: hsla(0, 0%, 9%, 0.4);
+  background-color: hsla(0, 0%, 9%, 0.527);
   border-radius:10px;
   padding:10px;
 }
@@ -120,7 +120,7 @@ body > a {
 #mainNav > div > a:nth-child(1) > div {
   background-color: hsla(0, 0%, 9%, 0.4);
   border-radius:10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.616), 0 6px 20px 0 rgba(0, 0, 0, 0.411);
   padding:10px;
 }
 
@@ -128,17 +128,22 @@ body > a {
   margin: 40%;
   background-color: hsla(0, 0%, 9%, 0.4);
   border-radius:10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.61), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding:10px;
   /* text-align:center; */
 }
-
+/* hamburger */
 #mainNav > div > button {
-  background-color: hsla(0, 0%, 9%, 0.4);
+  z-index:1;
+  position:absolute;
+  top:20px;
+  right:50px;
+  background-color: hsla(0, 0%, 9%, 0.705);
   border-radius:10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.623), 0 6px 20px 0 rgba(0, 0, 0, 0.603);
   padding:10px;
   margin-top:115;
+  /* background-color: blue; */
 }
 
 #navbarResponsive > ul {
@@ -147,13 +152,50 @@ body > a {
   padding: 10px;
 }
 
+#navbarResponsive > ul {
+  top:0px;
+  right:0px;
+  position: absolute;
+  min-width:100px;
+  width: auto;
+  /* background-color: hsla(0, 0%, 9%, 0.637); */
+  padding: 10px;
+  /* background-color:#0e5e72; */
+}
 
+ 
 @media only screen and (max-width: 970px) {
+
+  /* hamburger */
+#mainNav > div > button {
+  z-index:1;
+  position:fixed;
+  top:20px;
+  right:50px;
   
-  #navbarResponsive > ul {
-    width: 150px;
-    /* background-color: hsla(0, 0%, 9%, 0.637); */
-    padding: 10px;
-  }
+  border-radius:10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding:20px;
+  margin-top:115;
+  /* background-color: blue; */
+}
+
+#navbarResponsive > ul {
+  
+  /* background-color: hsla(0, 0%, 9%, 0.637); */
+  padding: 10px;
+}
+
+#navbarResponsive > ul {
+  top:70px;
+  right:0px;
+  position: fixed;
+  min-width:100px;
+  width: auto;
+  /* background-color: hsla(0, 0%, 9%, 0.637); */
+  padding: 10px;
+  /* background-color:#0e5e72; */
+}
+  
 
  }
