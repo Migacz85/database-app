@@ -20,11 +20,11 @@ h3,h4{
   color:hsl(0, 0%, 95%);
 }
 a:hover {
-  color: #ffe69a;
+  color: #000000;
   text-decoration: none;
 }
 a {
-  color: #ffc107;
+  color: #000000;
   text-decoration: none;
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
@@ -83,7 +83,29 @@ text-align: center;
 }
 
 /* Bootstrap */
+body > div.container-flex > div > div > div > form > div.btn-group.show > ul > li  > a > label{
+  margin-left:10px;
+  margin-top:10px
+}
+.btn-group>.btn:first-child {
+  background-color: white;
+  border-radius:0;
+}
 
+body > div.container-flex > div > div > div > form > div.btn-group.show > ul > li> a > label {
+
+  width:127px;
+  height:25px;
+}
+
+body > div.container-flex > div > div > div > form > div.btn-group.show > ul {
+  border-radius:0;
+  border-color:#007bff;
+  padding:0;
+}
+body > div.container-flex > div > div > div > form > div.btn-group.show > ul > li:hover {
+background-color:#007bff; 
+}
 #navbarResponsive {
   margin-right:10%;
 }
@@ -164,7 +186,7 @@ body > a {
 }
 
  
-@media only screen and (max-width: 970px) {
+@media only screen and (max-width: 1000px) {
 
   /* hamburger */
 #mainNav > div > button {

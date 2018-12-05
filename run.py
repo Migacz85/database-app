@@ -9,23 +9,38 @@ app.config['MONGO_DBNAME']='recipifydb'
 app.config['MONGO_URI']='mongodb://migacz:1migacz@ds113482.mlab.com:13482/recipifydb'
 
 mongo = PyMongo(app)
-
-
-
+#{"alergens" :  { "$not": '^[diary]'  }}
 # Main page show all recipes from all users:
 
-@app.route('/')
+@app.route('/', methods=["POST", "GET"])
+
 def index():
     user='You are not logged'
+
     if 'username' in session:
         user='Cheff: '+session['username']
     dbrecipes = mongo.db.recipes
-    recipes  = dbrecipes.find()
     all=[]
-
-    print("YOUR RESULTS: ", recipes)
+    recipes  = dbrecipes.find()
     for recipe in recipes:
-        all.append(recipe)
+        all.append(recipe) 
+    if request.method == 'POST': 
+        all=[]
+        print(request.form.getlist('ingredients'))
+        cooktime=200
+        if request.form['cooking-time'] is not "0":
+            cooktime=request.form['cooking-time']
+        
+        recipes  = dbrecipes.find({"recipe-type": request.form['recipe-type'], "cooking-time": {"$lt":cooktime}    }   )
+        
+        for recipe in recipes:
+            all.append(recipe)
+        
+        if request.form['recipe-type']=="": # Type of recipe - all
+            all=[]
+            recipes  = dbrecipes.find( )
+            for recipe in recipes:
+                all.append(recipe)
 
     return render_template(
         "home.html",
@@ -42,9 +57,9 @@ def user_recipes():
 
     dbrecipes = mongo.db.recipes
     recipes  = dbrecipes.find({"author": session['username']})
-
+    
     all=[]
-
+ 
     print("YOUR RESULTS: ", recipes)
     for recipe in recipes:
         all.append(recipe)
@@ -122,6 +137,7 @@ def add_recipe():
         recipes.insert({
         'likes': 0,
         'recipe-name' : request.form['recipe-name'] , 
+        'recipe-type' : request.form['recipe-type'] , 
         'cooking-time': request.form['cooking-time'] ,
         'cuisine': request.form.getlist('cuisine') ,
         'alergens': request.form.getlist('alergens'),

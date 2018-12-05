@@ -5,22 +5,34 @@
 <form class="text-white" method="POST">
     <div class="row">
         
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
             <label for="recipe">Recipe Name</label>
-            <input id="recipe" name="recipe-name" type="text" class="form-control" name="recipe_name" placeholder="Recipe name">
+            <input id="recipe" name="recipe-name" type="text" class="form-control" placeholder="Recipe name">
         </div>
         
 
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
                 <label for="cooking-time">Cooking time </label>
-                <select id="cooking-time" name="cooking-time" type="text" class="form-control" name="recipe_name" placeholder="Recipe name">
-                        <option value="15 min">15 </option>
-                        <option value="30 min">30 </option>
-                        <option value="45 min">45 </option>
-                        <option value="1 hour">1 hour </option>
-                        <option value="1 hour and 15 minutes">1 hour and 15 minutes </option>
-                        <option value="1 hour and 30 minutes">1 hour and 30 minutes  </option>
-                        <option value="2 hours ">2 hours </option>
+                <select id="cooking-time" name="cooking-time" type="text" class="form-control"placeholder="Recipe name">
+                    <option value="15">15 min </option>
+                    <option value="30">30 min</option>
+                    <option value="45">45 min</option>
+                    <option value="60">1 hour </option>
+                    <option value="75">1 hour and 15 minutes </option>
+                    <option value="90">1 hour and 30 minutes  </option>
+                    <option value="120">2 hours </option>
+                    
+                </select>
+        </div>
+
+        <div class="form-group col-md-4">
+                <label for="cooking-time">Recipe Type</label>
+                <select id="recipe-type" name="recipe-type" type="text" class="form-control">
+                        
+                        <option value="Starter">Starters</option>
+                        <option value="Main course">Main courses</option>
+                        <option value="Desserts">Desserts</option>
+                        <option value="Juices">Juices</option>
                     
                 </select>
         </div>
@@ -181,7 +193,7 @@
     <button type="submit" class="btn btn-primary">Publish Recipe</button>
 </form>
 
-<script>
+<!-- 
 <script type="text/javascript"> 
 
 function stopRKey(evt) { 
@@ -192,7 +204,7 @@ function stopRKey(evt) {
 
 document.onkeypress = stopRKey; 
 
-</script>
-</script>
+</script> -->
+
 
 {% endblock content %}

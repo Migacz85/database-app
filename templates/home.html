@@ -3,7 +3,64 @@
 {% block content%}
 
 <!-- <h2> Our users recepies: </h2> -->
- 
+ <!-- FILTER FOR RECIPES -->
+<form class="input-group mb-3" method="POST">
+        <div class="input-group-prepend">
+            <button type="submit" class="btn btn-info" type="button">Search</button>
+        </div>
+        
+        
+        <select class="custom-select" id="inputGroupSelect01" name="recipe-type">
+          <option value="" >Type of recipe: (all)</option>
+          <option value="Starter">Starter</option>
+          <option value="Main course">Main course</option>
+          <option value="Desserts">Desserts</option>
+          <option value="Juices">Juices</option>
+        </select>
+        
+        <select class="custom-select" id="example-getting-started1" multiple="multiple" name="alergens">
+                <option >I am alergic on: (none)</option>
+                <option> dairy </option>
+                <option> eggs </option>
+                <option> crustacean </option>
+                <option> tree nuts </option>
+                <option> peanuts </option>
+                <option> wheat </option>
+                <option> soybeans </option>
+                <option> celery </option>
+                <option> mustard </option>
+                <option> sesame </option>
+                <option> lupin </option>
+                <option> molluscs </option>
+                <option> fish </option>
+                <option> sulphites </option>
+        </select>
+        
+        <select class="custom-select" id="inputGroupSelect01" name="cooking-time"  >
+                <option value="0">Cooking time less than: (all)</option>
+                <option value="15">15 min </option>
+                <option value="30">30 min</option>
+                <option value="45">45 min</option>
+                <option value="60">1 hour </option>
+                <option value="75">1 hour and 15 minutes </option>
+                <option value="90">1 hour and 30 minutes  </option>
+                <option value="120">2 hours </option>
+            
+        </select>
+
+
+        <select class="custom-select" id="example-getting-started" multiple="multiple" name="ingredients">
+                <option > Cheese</option>
+                <option >Tomatoes</option>
+                <option value="mozarella">Mozzarella</option>
+                <option value="mushrooms">Mushrooms</option>
+                <option value="pepperoni">Pepperoni</option>
+                <option value="onions">Onions</option>
+        </select>
+                
+      
+
+    </form>
 
 <!-- DISPLAY RECIPES -->
 <br>
@@ -21,6 +78,9 @@
                 {%for element in r['cuisine']%}
                 <span class="badge badge-info"> {{element}} </span>
                 {%endfor%}
+        </div>
+        <div class="col">
+                {{r['recipe-type']}}
         </div>
         <div class="col">
             Cooking time: <span class="badge badge-info"> {{r['cooking-time']}}</span>
