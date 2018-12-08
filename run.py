@@ -22,51 +22,43 @@ def index():
     dbrecipes = mongo.db.recipes
     dbresponse=[]
     recipes  = dbrecipes.find()
-    
+
     for recipe in recipes:
-        
         dbresponse.append(recipe) 
+    # Default settings for form     
+    option1=['']
+    option2=['']
+    option3=['900']
+
     if request.method == 'POST': 
 
         dbresponse=[]
         cooktime=200
-# coll.find( { "alergens": { $not: /^crustacean.*/ }   } )
         
-        print(request.form.getlist('recipe-type'))
-        print(request.form.getlist('cooking-time'))
-        print(request.form.getlist('alergens'))
+        # print(request.form.getlist('recipe-type'))
+        # print(request.form.getlist('cooking-time'))
+        # print(request.form.getlist('alergens'))
 
-        session['recipe-type'] = (request.form.getlist('recipe-type'))
-        session['cooking-time'] = (request.form.getlist('cooking-time'))
-        session['alergens'] = (request.form.getlist('alergens'))
+        option1 = (request.form.getlist('recipe-type'))
+        option2 = (request.form.getlist('cooking-time'))
+        option3 = (request.form.getlist('alergens'))
 
+        recipe_type =(request.form.getlist('recipe-type'))
+        if recipe_type == ['']:
+            recipe_type = ["Main course", "Starter", "Desserts", "Juices"]
+        print(recipe_type)
+        print(option2[0])
+        recipes  = dbrecipes.find({"$and": [{"alergens": {"$nin": option3 }}, {"recipe-type": {"$in": recipe_type }}, {"cooking-time": {"$lte": int(option2[0]) }}  ] })
 
-        # if request.form.getlist['cooking-time'][0] is not "0":
-        #     cooktime= int( request.form.getlist['cooking-time'] )
-       # ({"$and": [{"cooking-time": {'$lt': cooktime}},{"recipe-type": recipe_type }]}
-
-        recipe_type =(  request.form.getlist('recipe-type') )
-        
-        recipe_type= recipe_type[0]    
-
-        recipes  = dbrecipes.find({"recipe-type": recipe_type })
-
-        
         for recipe in recipes:
             dbresponse.append(recipe)
-        # Default all recipes:
-        if session['recipe-type']==[''] and session['cooking-time']==['0'] and session['alergens']==[]: # Type of recipe - all
-            dbresponse=[]
-            recipes  = dbrecipes.find( )
-            for recipe in recipes:
-                dbresponse.append(recipe)
 
     return render_template(
         "home.html",
         recipes=dbresponse,
-        option1=session['recipe-type'][0] ,
-        option2=session['cooking-time'][0], 
-        option3=session['alergens'], # Code this feature
+        option1=option1[0],   # option1,2,3 For filter to "remmember" settings
+        option2=option2[0], 
+        option3=option3, 
         user=user)
 
 # Show only users recipes
