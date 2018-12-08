@@ -47,17 +47,19 @@ def index():
 
         recipe_type =(  request.form.getlist('recipe-type') )
         
-        recipes  = dbrecipes.find({"recipe-type": recipe_type[0] })
+        recipe_type= recipe_type[0]    
+
+        recipes  = dbrecipes.find({"recipe-type": recipe_type })
 
         
         for recipe in recipes:
             dbresponse.append(recipe)
-        
-        # if request.form['recipe-type']=="": # Type of recipe - all
-        #     dbresponse=[]
-        #     recipes  = dbrecipes.find( )
-        #     for recipe in recipes:
-        #         dbresponse.append(recipe)
+        # Default all recipes:
+        if session['recipe-type']==[''] and session['cooking-time']==['0'] and session['alergens']==[]: # Type of recipe - all
+            dbresponse=[]
+            recipes  = dbrecipes.find( )
+            for recipe in recipes:
+                dbresponse.append(recipe)
 
     return render_template(
         "home.html",
