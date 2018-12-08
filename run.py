@@ -7,7 +7,6 @@ app = Flask(__name__)
 app.secret_key = 'mysecret'
 app.config['MONGO_DBNAME']='recipifydb'
 app.config['MONGO_URI']='mongodb://migacz:1migacz@ds113482.mlab.com:13482/recipifydb'
-
 mongo = PyMongo(app)
 #{"alergens" :  { "$not": '^[diary]'  }}
 # Main page show all recipes from all users:
@@ -19,32 +18,53 @@ def index():
 
     if 'username' in session:
         user='Cheff: '+session['username']
-    dbrecipes = mongo.db.recipes
-    all=[]
-    recipes  = dbrecipes.find()
-    for recipe in recipes:
-        all.append(recipe) 
-    if request.method == 'POST': 
-        all=[]
-        print(request.form.getlist('ingredients'))
-        cooktime=200
-        if request.form['cooking-time'] is not "0":
-            cooktime=request.form['cooking-time']
         
-        recipes  = dbrecipes.find({"recipe-type": request.form['recipe-type'], "cooking-time": {"$lt":cooktime}    }   )
+    dbrecipes = mongo.db.recipes
+    dbresponse=[]
+    recipes  = dbrecipes.find()
+    
+    for recipe in recipes:
+        
+        dbresponse.append(recipe) 
+    if request.method == 'POST': 
+
+        dbresponse=[]
+        cooktime=200
+# coll.find( { "alergens": { $not: /^crustacean.*/ }   } )
+        
+        print(request.form.getlist('recipe-type'))
+        print(request.form.getlist('cooking-time'))
+        print(request.form.getlist('alergens'))
+
+        session['recipe-type'] = (request.form.getlist('recipe-type'))
+        session['cooking-time'] = (request.form.getlist('cooking-time'))
+        session['alergens'] = (request.form.getlist('alergens'))
+
+
+        # if request.form.getlist['cooking-time'][0] is not "0":
+        #     cooktime= int( request.form.getlist['cooking-time'] )
+       # ({"$and": [{"cooking-time": {'$lt': cooktime}},{"recipe-type": recipe_type }]}
+
+        recipe_type =(  request.form.getlist('recipe-type') )
+        
+        recipes  = dbrecipes.find({"recipe-type": recipe_type[0] })
+
         
         for recipe in recipes:
-            all.append(recipe)
+            dbresponse.append(recipe)
         
-        if request.form['recipe-type']=="": # Type of recipe - all
-            all=[]
-            recipes  = dbrecipes.find( )
-            for recipe in recipes:
-                all.append(recipe)
+        # if request.form['recipe-type']=="": # Type of recipe - all
+        #     dbresponse=[]
+        #     recipes  = dbrecipes.find( )
+        #     for recipe in recipes:
+        #         dbresponse.append(recipe)
 
     return render_template(
         "home.html",
-        recipes=all, 
+        recipes=dbresponse,
+        option1=session['recipe-type'][0] ,
+        option2=session['cooking-time'][0], 
+        option3=session['alergens'], # Code this feature
         user=user)
 
 # Show only users recipes
@@ -58,15 +78,15 @@ def user_recipes():
     dbrecipes = mongo.db.recipes
     recipes  = dbrecipes.find({"author": session['username']})
     
-    all=[]
+    dbresponse=[]
  
     print("YOUR RESULTS: ", recipes)
     for recipe in recipes:
-        all.append(recipe)
+        dbresponse.append(recipe)
 
     return render_template(
         "home.html",
-        recipes=all, 
+        recipes=dbresponse, 
         user=user)
 
 
@@ -89,7 +109,6 @@ def login():
         msg='Invalid username/password combination' 
     
     return render_template('login.html', user=user, msg=msg)
-
 @app.route('/signup', methods=["POST", "GET"])
 def signup():
     user='You are not logged'
@@ -138,7 +157,7 @@ def add_recipe():
         'likes': 0,
         'recipe-name' : request.form['recipe-name'] , 
         'recipe-type' : request.form['recipe-type'] , 
-        'cooking-time': request.form['cooking-time'] ,
+        'cooking-time': int( request.form['cooking-time'] ) , # Always change to int if its need to be int ...
         'cuisine': request.form.getlist('cuisine') ,
         'alergens': request.form.getlist('alergens'),
         'recipe-description': request.form['recipe-description'],

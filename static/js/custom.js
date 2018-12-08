@@ -1,43 +1,63 @@
 // Uncoment if you want show selection in menubar
-$('#example-getting-started').multiselect({
+$('#multioption').multiselect({
     buttonText: function(options, select) {
                   if (options.length === 0) {
-                      return 'Ingredients:';
+                      return 'Ingredients';
                   } else {
                        var labels = [];
                        options.each(function() {
                            if ($(this).attr('label') !== undefined) {
-                               //labels.push($(this).attr('label'));
+                               labels.push($(this).attr('label'));
                                
                            }
                            else {
-                               //labels.push($(this).html());
+                               labels.push($(this).html());
                                
                            }
                        });
-                       //return labels.join(', ') + '';
+                       return labels.join(', ') + '';
                    }
               }
   });
-  
-  $('#example-getting-started1').multiselect({
+// allergens  
+$('#multioption1').multiselect({
     buttonText: function(options, select) {
                   if (options.length === 0) {
-                      return 'I am allergic on:';
+                      return 'I am not allergic';
                   } else {
                        var labels = [];
                        options.each(function() {
                            if ($(this).attr('label') !== undefined) {
-                               //labels.push($(this).attr('label'));
-                               
+                                    
+                            labels.push($(this).attr('label'));
                            }
                            else {
-                               //labels.push($(this).html());
-                               
+                               labels.push($(this).html());
                            }
                        });
-                       //return labels.join(', ') + '';
+                       return 'Alergic: ' + labels.join(', ') + '';
                    }
               }
   });
+$('body > div.container-flex > div > div > div > form > div:nth-child(4) > button > span').text("I'm not allergic")
+
   
+$('#multioption2').multiselect({
+    buttonText: function(options, select) {
+                  if (options.length === 0) {
+                      return 'Cooking time';
+                  } else {
+                       var labels = [];
+                       options.each(function() {
+                           if ($(this).attr('label') !== undefined) {
+                               labels.push($(this).attr('label'));
+                           }
+                           else {
+                               labels.push($(this).html());
+                           }
+                       });
+                       return "Cooking time: " + labels.join(', ') + ' max';
+                   }
+              }
+  });
+$('body > div.container-flex > div > div > div > form > div:nth-child(6) > button > span').text("Cooking Time: all")

@@ -8,55 +8,56 @@
         <div class="input-group-prepend">
             <button type="submit" class="btn btn-info" type="button">Search</button>
         </div>
-        
-        
-        <select class="custom-select" id="inputGroupSelect01" name="recipe-type">
-          <option value="" >Type of recipe: (all)</option>
-          <option value="Starter">Starter</option>
-          <option value="Main course">Main course</option>
-          <option value="Desserts">Desserts</option>
-          <option value="Juices">Juices</option>
+                <!-- { 'active2' if active_page == 'index' else '' } -->
+        <select class="custom-select" id="multioption" name="recipe-type">
+          <option {{ 'selected' if option1 == '' else '' }} value="" >Type of recipe: (all)</option>
+          <option {{ 'selected' if option1 == 'Starter' else '' }}  value="Starter">Starter</option>
+          <option {{ 'selected' if option1 == 'Main course' else '' }} value="Main course">Main course</option>
+          <option {{ 'selected' if option1 == 'Desserts' else '' }} value="Desserts">Desserts</option>
+          <option {{ 'selected' if option1 == 'Juices' else '' }} value="Juices">Juices</option>
         </select>
         
-        <select class="custom-select" id="example-getting-started1" multiple="multiple" name="alergens">
-                <option >I am alergic on: (none)</option>
-                <option> dairy </option>
-                <option> eggs </option>
-                <option> crustacean </option>
-                <option> tree nuts </option>
-                <option> peanuts </option>
-                <option> wheat </option>
-                <option> soybeans </option>
-                <option> celery </option>
-                <option> mustard </option>
-                <option> sesame </option>
-                <option> lupin </option>
-                <option> molluscs </option>
-                <option> fish </option>
-                <option> sulphites </option>
+        <select class="custom-select" id="multioption1" multiple="multiple" name="alergens">
+                
+                <option {% for item in option3 %}{{ 'selected' if item == 'dairy' else '' }}{% endfor %}> dairy </option>
+                <option {% for item in option3 %}{{ 'selected' if item == 'eggs' else '' }}{% endfor %}> eggs </option>
+                <option {% for item in option3 %}{{ 'selected' if item == 'crustacean' else '' }}{% endfor %}> crustacean </option>
+                <option {% for item in option3 %}{{ 'selected' if item == 'tree nuts' else '' }}{% endfor %}> tree nuts </option>
+                <option {% for item in option3 %}{{ 'selected' if item == 'peanuts' else '' }}{% endfor %}> peanuts </option>
+                <option {% for item in option3 %}{{ 'selected' if item == 'wheat' else '' }}{% endfor %}> wheat </option>
+                <option {% for item in option3 %}{{ 'selected' if item == 'soybeans' else '' }}{% endfor %}> soybeans </option>
+                <option {% for item in option3 %}{{ 'selected' if item == 'celery' else '' }}{% endfor %}> celery </option>
+                <option {% for item in option3 %}{{ 'selected' if item == 'mustard' else '' }}{% endfor %}> mustard </option>
+                <option {% for item in option3 %}{{ 'selected' if item == 'sesame' else '' }}{% endfor %}> sesame </option>
+                <option {% for item in option3 %}{{ 'selected' if item == 'lupin' else '' }}{% endfor %}> lupin </option>
+                <option {% for item in option3 %}{{ 'selected' if item == 'molluscs' else '' }}{% endfor %}> molluscs </option>
+                <option {% for item in option3 %}{{ 'selected' if item == 'fish' else '' }}{% endfor %}> fish </option>
+                <option {% for item in option3 %}{{ 'selected' if item == 'sulphites' else '' }}{% endfor %}> sulphites </option>
+                
         </select>
+
         
-        <select class="custom-select" id="inputGroupSelect01" name="cooking-time"  >
-                <option value="0">Cooking time less than: (all)</option>
-                <option value="15">15 min </option>
-                <option value="30">30 min</option>
-                <option value="45">45 min</option>
-                <option value="60">1 hour </option>
-                <option value="75">1 hour and 15 minutes </option>
-                <option value="90">1 hour and 30 minutes  </option>
-                <option value="120">2 hours </option>
+        <select class="custom-select"  id="multioption2" name="cooking-time" >
+                <option {{ 'selected' if option2 == '0' else '' }} selected value="0"> all</option>
+                <option {{ 'selected' if option2 == '15' else '' }} value="15">15 min </option>
+                <option {{ 'selected' if option2 == '30' else '' }} value="30">30 min</option>
+                <option {{ 'selected' if option2 == '45' else '' }} value="45">45 min</option>
+                <option {{ 'selected' if option2 == '60' else '' }} value="60">1 hour </option>
+                <option {{ 'selected' if option2 == '75' else '' }} value="75">1 h 15 m</option>
+                <option {{ 'selected' if option2 == '90' else '' }} value="90">1 h 30 m</option>
+                <option {{ 'selected' if option2 == '120' else '' }} value="120">2 hours </option>
             
         </select>
 
 
-        <select class="custom-select" id="example-getting-started" multiple="multiple" name="ingredients">
+        <!-- <select class="custom-select" id="multioption" multiple="multiple" name="ingredients">
                 <option > Cheese</option>
                 <option >Tomatoes</option>
                 <option value="mozarella">Mozzarella</option>
                 <option value="mushrooms">Mushrooms</option>
                 <option value="pepperoni">Pepperoni</option>
                 <option value="onions">Onions</option>
-        </select>
+        </select> -->
                 
       
 
@@ -66,13 +67,8 @@
 <br>
 
 
-{% for r in recipes %}
-
-<div class="card text-center">
-  <div class="card-header">
-      <div class="row">
-        <div class="col">  
-               
+{% for r in recipes %} <div class="card text-center"> <div class="card-header"> <div class="row"> <div class="col">  
+                       
                 Cuisine:
                 <!-- Good r['cuisine'][0] -->
                 {%for element in r['cuisine']%}

@@ -133,12 +133,6 @@ body > a {
   border-radius:10px;
 }
 
-#navbarResponsive > ul {
-  background-color: hsla(0, 0%, 9%, 0.527);
-  border-radius:10px;
-  padding:10px;
-}
-
 #mainNav > div > a:nth-child(1) > div {
   background-color: hsla(0, 0%, 9%, 0.4);
   border-radius:10px;
@@ -169,24 +163,18 @@ body > a {
 }
 
 #navbarResponsive > ul {
-  
-  /* background-color: hsla(0, 0%, 9%, 0.637); */
-  padding: 10px;
-}
-
-#navbarResponsive > ul {
   top:0px;
   right:0px;
   position: absolute;
   min-width:100px;
   width: auto;
-  /* background-color: hsla(0, 0%, 9%, 0.637); */
+  background-color: hsla(0, 0%, 9%, 0.637);
   padding: 10px;
   /* background-color:#0e5e72; */
 }
 
  
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 990px) {
 
   /* hamburger */
 #mainNav > div > button {
@@ -207,10 +195,10 @@ body > a {
   /* background-color: hsla(0, 0%, 9%, 0.637); */
   padding: 10px;
 }
-
+ /* moving navbar */
 #navbarResponsive > ul {
-  top:70px;
-  right:0px;
+  top:88px;
+  right:30px;
   position: fixed;
   min-width:100px;
   width: auto;
@@ -218,6 +206,12 @@ body > a {
   padding: 10px;
   /* background-color:#0e5e72; */
 }
-  
+.btn-group, .btn-group-vertical {
+  background-color: white;
+  width:100%;
+}
+.page_name {
+  margin-top:100px;
+}
 
  }

@@ -3,14 +3,12 @@
 <h3 class="text-uppercase">Add your recipe </h3>
 <hr />
 <form class="text-white" method="POST">
+
     <div class="row">
-        
         <div class="form-group col-md-4">
             <label for="recipe">Recipe Name</label>
             <input id="recipe" name="recipe-name" type="text" class="form-control" placeholder="Recipe name">
         </div>
-        
-
         <div class="form-group col-md-4">
                 <label for="cooking-time">Cooking time </label>
                 <select id="cooking-time" name="cooking-time" type="text" class="form-control"placeholder="Recipe name">
@@ -21,31 +19,23 @@
                     <option value="75">1 hour and 15 minutes </option>
                     <option value="90">1 hour and 30 minutes  </option>
                     <option value="120">2 hours </option>
-                    
                 </select>
         </div>
-
         <div class="form-group col-md-4">
                 <label for="cooking-time">Recipe Type</label>
                 <select id="recipe-type" name="recipe-type" type="text" class="form-control">
-                        
                         <option value="Starter">Starters</option>
                         <option value="Main course">Main courses</option>
                         <option value="Desserts">Desserts</option>
                         <option value="Juices">Juices</option>
-                    
                 </select>
         </div>
-
-    
     </div>
 
     <div class="form-row">
-       
         <div class="form-group col-md-6">
             <label for="alergnens">Alergens (ctrl for multi select)</label>
             <select id="alergens" name="alergens" class="form-control" class="multiselect-ui form-control" multiple="multiple">
-                
                 <option> dairy </option>
                 <option> eggs </option>
                 <option> crustacean </option>
@@ -66,7 +56,6 @@
         <div class="form-group col-md-6">
                 <label for="cuisine">Cuisine (ctrl for multi select)</label>
                 <select id="cuisine" name="cuisine" class="form-control" class="multiselect-ui form-control" multiple="multiple">
-                    
                         <option> Ainu </option>
                         <option> Albanian </option>
                         <option> Argentina </option>
@@ -158,38 +147,24 @@
                         <option> Ukrainian </option>
                         <option> Yamal </option>
                         <option> Zanzibari </option>
-                        
                 </select>
             </div>
-
     </div>
-
     <br>
-    
     <hr />
-   
     <div class="form-group">
         <label for="ingredients">Ingredients</label>
         <input type="text" class="form-control" id="ing" name="ing" placeholder="Write your ingredients separated by comma">
     </div>
-
-
-
     <div class="form-group">
         <label for="recipe-description">Recipe Description</label>
         <textarea type="text" class="form-control" id="recipe-description" name="recipe-description" placeholder="Describe your recipe here" class="md-textarea form-control" rows="3"></textarea>
     </div>
-
     <div class="form-group">
         <label for="image-url">Image</label>
         <input type="textarea" class="form-control" id="image-url" name="image-url" placeholder="http://your-url">
-        
     </div>
-
-
-    
     <hr />
-    
     <button type="submit" class="btn btn-primary">Publish Recipe</button>
 </form>
 
