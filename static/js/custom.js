@@ -61,3 +61,9 @@ $('#multioption2').multiselect({
               }
   });
 $('body > div.container-flex > div > div > div > form > div:nth-child(6) > button > span').text("Cooking Time: all")
+
+
+// Bootstrap
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })

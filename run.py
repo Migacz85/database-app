@@ -2,15 +2,16 @@ import os
 from flask import Flask, render_template, request, flash, json, session, redirect, url_for, redirect
 from flask_pymongo import PyMongo
 import bcrypt
+from bson.objectid import ObjectId
+# [i for i in dbm.neo_nodes.find({"_id": ObjectId(obj_id_to_find)})]
 
 app = Flask(__name__)
 app.secret_key = 'mysecret'
 app.config['MONGO_DBNAME']='recipifydb'
 app.config['MONGO_URI']='mongodb://migacz:1migacz@ds113482.mlab.com:13482/recipifydb'
 mongo = PyMongo(app)
-#{"alergens" :  { "$not": '^[diary]'  }}
-# Main page show all recipes from all users:
 
+# Main page show all recipes from all users:
 @app.route('/', methods=["POST", "GET"])
 
 def index():
@@ -25,29 +26,25 @@ def index():
 
     for recipe in recipes:
         dbresponse.append(recipe) 
-    # Default settings for form     
-    option1=['']
-    option2=['']
-    option3=['900']
+    # Default settings for form typ    
+    option1=[''] # All types
+    option2=['900']  # Cooking time 900 min /all
+    option3=[''] # Allergens none
 
     if request.method == 'POST': 
 
         dbresponse=[]
         cooktime=200
         
-        # print(request.form.getlist('recipe-type'))
-        # print(request.form.getlist('cooking-time'))
-        # print(request.form.getlist('alergens'))
-
         option1 = (request.form.getlist('recipe-type'))
         option2 = (request.form.getlist('cooking-time'))
         option3 = (request.form.getlist('alergens'))
 
         recipe_type =(request.form.getlist('recipe-type'))
+
         if recipe_type == ['']:
             recipe_type = ["Main course", "Starter", "Desserts", "Juices"]
-        print(recipe_type)
-        print(option2[0])
+
         recipes  = dbrecipes.find({"$and": [{"alergens": {"$nin": option3 }}, {"recipe-type": {"$in": recipe_type }}, {"cooking-time": {"$lte": int(option2[0]) }}  ] })
 
         for recipe in recipes:
@@ -63,7 +60,7 @@ def index():
 
 # Show only users recipes
 
-@app.route('/user_recipes')
+@app.route('/user_recipes', methods=["POST", "GET"])
 def user_recipes():
     user='You are not logged'
     if 'username' in session:
@@ -72,14 +69,19 @@ def user_recipes():
     dbrecipes = mongo.db.recipes
     recipes  = dbrecipes.find({"author": session['username']})
     
+    if request.method == 'POST':
+        print(request.form.getlist('delete'))
+    
+        dbrecipes.remove( {"_id": ObjectId(request.form.getlist('delete')[0])})
+    
     dbresponse=[]
- 
+
     print("YOUR RESULTS: ", recipes)
     for recipe in recipes:
         dbresponse.append(recipe)
 
     return render_template(
-        "home.html",
+        "user_recipes.html",
         recipes=dbresponse, 
         user=user)
 

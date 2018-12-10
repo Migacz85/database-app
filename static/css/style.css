@@ -31,10 +31,8 @@ a {
 }
 
 #logo {
-
   object-fit: cover;
   object-position: 100% 0;
- 
   width: 100px;
   height: 137px;
   margin-top:62px;
@@ -43,7 +41,6 @@ a {
 #recipe-description {
  height:100px;
 }
-
 
 body {
   background-color: rgb(46, 40, 41);
@@ -64,26 +61,93 @@ p {
 }
 
 footer {
+  
   bottom: 0;
-  /* left: 40%; */
-  position: relative;
-  margin: auto;
-  margin-top: 20px;
+  right:0;
+  position: fixed;
+  margin:0px;
+  
+  
   padding: 0px;
-  width: 200px;
-  height: 10%;
+  /* width: 200px; */
+  /* height: 10%; */
   background-color: hsla(204, 79%, 19%, 0);
   color: white;
 }
 
-.page_name{
 
+.masthead {
+  min-height:60vh;
+}
+#headingOne > h5
+
+.page_name{
 margin-top:50px;
 text-align: center;
 }
+/* For wrapping elements that's need to be edited on user-recipes site */
+.invisible-btn{
+    /* margin: 0; */
+    background-color: transparent;
+    border-color: transparent;
+    /* font-family: inherit; */
+    /* font-size: inherit; */
+    line-height: inherit
+}
+/*This two classes are used for items in Your recipes site*/
+#headingOne > h5 {
+  display:inline;
+  float: left;
+  color: black;
+}
+#headingOne > button {
+ float:right;
+ margin-right:4px;
+ padding:1px;
+}
 
+/* Wrap for buttons Edit and Delete  */
+.settings {
+  display:inline;
+  float:right;
+  margin-left: 10px;
+}
+
+/* Icons */
+.like {
+  margin-right: 5px;
+  float: right;
+  color:#278888;
+}
+.like:hover {
+  margin-right: 5px;
+  float: right;
+  color:hsl(276, 71%, 43%);
+}
+.heart {
+  float: right;
+color: #ff8c8c;
+margin-right: 5px;
+}
+.heart:hover {
+  color:red;
+}
 /* Bootstrap */
 
+/* Style for list of recipes */
+.cardtitle {
+  
+background-color: hsla(0, 0%, 100%, 0);
+color:white;
+
+}
+
+
+.card-body-color{
+  padding:10px;
+  background-color: transparent !important;
+}
+/*  */
 body > div.container-flex > div > div > div > form > div.btn-group.show > ul > li  > a  {
 padding:0px;
 }
