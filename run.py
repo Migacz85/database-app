@@ -70,13 +70,56 @@ def user_recipes():
     recipes  = dbrecipes.find({"author": session['username']})
     
     if request.method == 'POST':
-        print(request.form.getlist('delete'))
-    
-        dbrecipes.remove( {"_id": ObjectId(request.form.getlist('delete')[0])})
-    
+
+        ### Delete db querie:
+        if request.form.getlist('delete')!=[]:
+            dbrecipes.remove( {"_id": ObjectId(request.form.getlist('delete')[0])})
+        ### Update db queries:
+        # Cuisine 
+        idrecipe = request.form.getlist('cuisine')[-1:]
+        cuisinelist= request.form.getlist('cuisine')[0:len(request.form.getlist('cuisine'))-1]
+        if request.form.getlist('cuisine')!=[]:
+            dbrecipes.update( {"_id": ObjectId( idrecipe[0]) } ,{ "$set": {"cuisine": cuisinelist} }     )
+        # Alergens
+        idalergen = request.form.getlist('alergens')[-1:]
+        alergenlist= request.form.getlist('alergens')[0:len(request.form.getlist('alergens'))-1]
+        if request.form.getlist('alergens')!=[]:
+            dbrecipes.update( {"_id": ObjectId( idalergen[0]) } ,{ "$set": {"alergens": alergenlist} }     )
+        # Photo
+        if request.form.getlist('image-url')!=[]:
+            photo = request.form.getlist('image-url')[0]
+            idphoto= request.form.getlist('idphoto')[0]
+            dbrecipes.update( {"_id": ObjectId( idphoto) } ,{ "$set": {"image-url": photo} } )
+        # Type
+        if request.form.getlist('type')!=[]:
+            rtype = request.form.getlist('recipe-type')[0]
+            idtype= request.form.getlist('type')[0]
+            dbrecipes.update_one( {"_id": ObjectId( idtype) } ,{ "$set": {"recipe-type": rtype } } )            
+        # Time
+        if request.form.getlist('time')!=[]:
+            rtime = request.form.getlist('cooking-time')[0]
+            idtime= request.form.getlist('time')[0]
+            dbrecipes.update_one( {"_id": ObjectId( idtime) } ,{ "$set": {"cooking-time": rtime } } )
+        # Name
+        if request.form.getlist('name')!=[]:
+            rname = request.form.getlist('recipe-name')[0]
+            idname= request.form.getlist('name')[0]
+            dbrecipes.update_one( {"_id": ObjectId( idname) } ,{ "$set": {"recipe-name": rname } } )
+        # Ingredients
+        if request.form.getlist('ingredients')!=[]:
+            ring = request.form.getlist('ing')[0]
+            iding= request.form.getlist('ingredients')[0]
+            dbrecipes.update_one( {"_id": ObjectId( iding) } ,{ "$set": {"ingredients": ring.split(",") } } )
+        # Description
+        if request.form.getlist('description')!=[]:
+            desc = request.form.getlist('recipe-description')[0]
+            iddesc= request.form.getlist('description')[0]
+            dbrecipes.update_one( {"_id": ObjectId( iddesc) } ,{ "$set": {"recipe-description": desc } } )
+           # print(rname,idname)
+      
+
     dbresponse=[]
 
-    print("YOUR RESULTS: ", recipes)
     for recipe in recipes:
         dbresponse.append(recipe)
 
@@ -161,8 +204,10 @@ def add_recipe():
         'ingredients' : request.form['ing'].split(","), # Convert string to list where , is separator
         'author': session['username']
         })
-        
-        #form variables
+
+        return redirect(url_for('user_recipes'))
+    
+        # Here is a easy acces to all variables from form:
         # request.form['recipe-name']
         # request.form['cooking-time']
         # str(request.form.getlist('cuisine'))
@@ -171,8 +216,7 @@ def add_recipe():
         # request.form['image-url']
         # request.form['ing']
         # session['username']
-        
-
+    
     return render_template("add_recipe.html", user=user) 
     
 @app.route('/stats', methods=["GET", "POST"])

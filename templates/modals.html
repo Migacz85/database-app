@@ -1,351 +1,374 @@
-
 <!-- Modal Warning for delete-->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-                <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Delete recipe</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                        </button>
-                </div>
-                <div class="modal-body">
-                        Are you really sure you want to delete "{{r['recipe-name']}}" recipe?
-                        This action can not be undone.
-                </div>
-                <form method="POST">
-                <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-danger" name='delete' value='{{r._id  }}' >Yes, delete it</button>
-                </div>
-                </form>
-        </div>
-</div>
-</div>
 
-<!-- Modal Choose cuisine-->
-<div class="modal fade" id="cCuisine" tabindex="-1" role="dialog" aria-labelledby="cCuisine"
-aria-hidden="true">
-<div class="modal-dialog" role="document">
-        <div class="modal-content">
-                <div class="modal-header">
-                        <h5 class="modal-title" id="">Edit Cuisine</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                        </button>
-                </div>
-                <div class="modal-body">
-                       
-                               <div class="form-group col-md-6">
-                                               <label for="cuisine">Cuisine (ctrl for multi select)</label>
-                                               <select id="cuisine" name="cuisine" class="form-control" class="multiselect-ui form-control" multiple="multiple">
-                                                       <option> Ainu </option>
-                                                       <option> Albanian </option>
-                                                       <option> Argentina </option>
-                                                       <option> Andhra </option>
-                                                       <option> Anglo-Indian </option>
-                                                       <option> Arab </option>
-                                                       <option> Armenian </option>
-                                                       <option> Assyrian </option>
-                                                       <option> Awadhi </option>
-                                                       <option> Azerbaijani </option>
-                                                       <option> Balochi </option>
-                                                       <option> Belarusian </option>
-                                                       <option> Bengali </option>
-                                                       <option> Berber </option>
-                                                       <option> Buddhist </option>
-                                                       <option> Bulgarian </option>
-                                                       <option> Cajun </option>
-                                                       <option> Chechen </option>
-                                                       <option> Chinese cuisine </option>
-                                                       <option> Chinese Islamic </option>
-                                                       <option> Circassian </option>
-                                                       <option> Crimean Tatar </option>
-                                                       <option> Danish </option>
-                                                       <option> Estonian </option>
-                                                       <option> French </option>
-                                                       <option> Filipino </option>
-                                                       <option> Georgian </option>
-                                                       <option> Goan </option>
-                                                       <option> Goan Catholic </option>
-                                                       <option> Greek </option>
-                                                       <option> Hyderabad </option>
-                                                       <option> Indian cuisine </option>
-                                                       <option> Indian Chinese </option>
-                                                       <option> Indian Singaporean cuisine </option>
-                                                       <option> Indonesian </option>
-                                                       <option> Inuit </option>
-                                                       <option> Italian American </option>
-                                                       <option> Italian cuisine </option>
-                                                       <option> Japanese </option>
-                                                       <option> Jewish </option>
-                                                       <option> Karnataka </option>
-                                                       <option> Kazakh </option>
-                                                       <option> Keralite </option>
-                                                       <option> Korean </option>
-                                                       <option> Kurdish </option>
-                                                       <option> Laotian </option>
-                                                       <option> Latvian </option>
-                                                       <option> Lithuanian </option>
-                                                       <option> Louisiana Creole </option>
-                                                       <option> Maharashtrian </option>
-                                                       <option> Mangalorean </option>
-                                                       <option> Malay </option>
-                                                       <option> Malaysian Chinese cuisine </option>
-                                                       <option> Malaysian Indian cuisine </option>
-                                                       <option> Mediterranean cuisine </option>
-                                                       <option> Mexican </option>
-                                                       <option> Mordovian </option>
-                                                       <option> Mughal </option>
-                                                       <option> Native American </option>
-                                                       <option> Nepalese </option>
-                                                       <option> New Mexican </option>
-                                                       <option> Odia </option>
-                                                       <option> Parsi </option>
-                                                       <option> Pashtun </option>
-                                                       <option> Polish </option>
-                                                       <option> Pennsylvania Dutch </option>
-                                                       <option> Pakistani </option>
-                                                       <option> Peranakan </option>
-                                                       <option> Persian </option>
-                                                       <option> Peruvian </option>
-                                                       <option> Portuguese </option>
-                                                       <option> Punjabi </option>
-                                                       <option> Rajasthani </option>
-                                                       <option> Romanian </option>
-                                                       <option> Russian </option>
-                                                       <option> Sami </option>
-                                                       <option> Serbian </option>
-                                                       <option> Sindhi </option>
-                                                       <option> Slovak </option>
-                                                       <option> Slovenian </option>
-                                                       <option> Somali </option>
-                                                       <option> South Indian </option>
-                                                       <option> Sri Lankan </option>
-                                                       <option> Tatar </option>
-                                                       <option> Thai </option>
-                                                       <option> Turkish </option>
-                                                       <option> Tamil </option>
-                                                       <option> Udupi </option>
-                                                       <option> Ukrainian </option>
-                                                       <option> Yamal </option>
-                                                       <option> Zanzibari </option>
-                                               </select>
-                                           </div>
-                                   
-
-                </div>
-                <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-success">Update</button>
+<div class="modal fade" id="A{{r._id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                        <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Delete recipe</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                </button>
+                        </div>
+                        <div class="modal-body">
+                                Are you really sure you want to delete "{{r['recipe-name']}}" recipe?
+                                This action can not be undone.
+                        </div>
+                        <form method="POST">
+                                <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        <!-- Activation point of "Delete db querie" in run.py -->
+                                        <button type="submit" class="btn btn-danger" name='delete' value='{{r._id  }}'>Yes,
+                                                delete it</button>
+                                </div>
+                        </form>
                 </div>
         </div>
 </div>
+
+<!-- Cuisine -->
+
+<div class="modal fade" id="cCuisine{{r._id }}" tabindex="-1" role="dialog" aria-labelledby="cCuisine" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                        <div class="modal-header">
+                                <h5 class="modal-title" id="">Edit Cuisine</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                </button>
+                        </div>
+                        <div class="modal-body">
+                                <form method="POST">
+                                        <div class="form-group col-md-6">
+                                                <label for="cuisine">Cuisine (ctrl for multi select)</label>
+                                                <select id="cuisine" name="cuisine" class="form-control" class="multiselect-ui form-control"
+                                                        multiple="multiple">
+                                                        <option> Ainu </option>
+                                                        <option> Albanian </option>
+                                                        <option> Argentina </option>
+                                                        <option> Andhra </option>
+                                                        <option> Anglo-Indian </option>
+                                                        <option> Arab </option>
+                                                        <option> Armenian </option>
+                                                        <option> Assyrian </option>
+                                                        <option> Awadhi </option>
+                                                        <option> Azerbaijani </option>
+                                                        <option> Balochi </option>
+                                                        <option> Belarusian </option>
+                                                        <option> Bengali </option>
+                                                        <option> Berber </option>
+                                                        <option> Buddhist </option>
+                                                        <option> Bulgarian </option>
+                                                        <option> Cajun </option>
+                                                        <option> Chechen </option>
+                                                        <option> Chinese cuisine </option>
+                                                        <option> Chinese Islamic </option>
+                                                        <option> Circassian </option>
+                                                        <option> Crimean Tatar </option>
+                                                        <option> Danish </option>
+                                                        <option> Estonian </option>
+                                                        <option> French </option>
+                                                        <option> Filipino </option>
+                                                        <option> Georgian </option>
+                                                        <option> Goan </option>
+                                                        <option> Goan Catholic </option>
+                                                        <option> Greek </option>
+                                                        <option> Hyderabad </option>
+                                                        <option> Indian cuisine </option>
+                                                        <option> Indian Chinese </option>
+                                                        <option> Indian Singaporean cuisine </option>
+                                                        <option> Indonesian </option>
+                                                        <option> Inuit </option>
+                                                        <option> Italian American </option>
+                                                        <option> Italian cuisine </option>
+                                                        <option> Japanese </option>
+                                                        <option> Jewish </option>
+                                                        <option> Karnataka </option>
+                                                        <option> Kazakh </option>
+                                                        <option> Keralite </option>
+                                                        <option> Korean </option>
+                                                        <option> Kurdish </option>
+                                                        <option> Laotian </option>
+                                                        <option> Latvian </option>
+                                                        <option> Lithuanian </option>
+                                                        <option> Louisiana Creole </option>
+                                                        <option> Maharashtrian </option>
+                                                        <option> Mangalorean </option>
+                                                        <option> Malay </option>
+                                                        <option> Malaysian Chinese cuisine </option>
+                                                        <option> Malaysian Indian cuisine </option>
+                                                        <option> Mediterranean cuisine </option>
+                                                        <option> Mexican </option>
+                                                        <option> Mordovian </option>
+                                                        <option> Mughal </option>
+                                                        <option> Native American </option>
+                                                        <option> Nepalese </option>
+                                                        <option> New Mexican </option>
+                                                        <option> Odia </option>
+                                                        <option> Parsi </option>
+                                                        <option> Pashtun </option>
+                                                        <option> Polish </option>
+                                                        <option> Pennsylvania Dutch </option>
+                                                        <option> Pakistani </option>
+                                                        <option> Peranakan </option>
+                                                        <option> Persian </option>
+                                                        <option> Peruvian </option>
+                                                        <option> Portuguese </option>
+                                                        <option> Punjabi </option>
+                                                        <option> Rajasthani </option>
+                                                        <option> Romanian </option>
+                                                        <option> Russian </option>
+                                                        <option> Sami </option>
+                                                        <option> Serbian </option>
+                                                        <option> Sindhi </option>
+                                                        <option> Slovak </option>
+                                                        <option> Slovenian </option>
+                                                        <option> Somali </option>
+                                                        <option> South Indian </option>
+                                                        <option> Sri Lankan </option>
+                                                        <option> Tatar </option>
+                                                        <option> Thai </option>
+                                                        <option> Turkish </option>
+                                                        <option> Tamil </option>
+                                                        <option> Udupi </option>
+                                                        <option> Ukrainian </option>
+                                                        <option> Yamal </option>
+                                                        <option> Zanzibari </option>
+                                                </select>
+                                        </div>
+                        </div>
+                        <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <!-- Activation point of "Update db queries-> Cuisine" in run.py -->
+                                <button type="submit" class="btn btn-success" name='cuisine' value='{{r._id  }}'>Update</button>
+                        </div>
+                        </form>
+                </div>
+        </div>
 </div>
 
 <!-- Type -->
-<div class="modal fade" id="cType" tabindex="-1" role="dialog" aria-labelledby="cType"
-aria-hidden="true">
-<div class="modal-dialog" role="document">
-        <div class="modal-content">
-                <div class="modal-header">
-                        <h5 class="modal-title" id="cType">Edit Type </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                        </button>
-                </div>
-                <div class="modal-body">
-                        <label for="cooking-time">Recipe Type</label>
-                        <select id="recipe-type" name="recipe-type" type="text" class="form-control">
-                                <option value="Starter">Starters</option>
-                                <option value="Main course">Main courses</option>
-                                <option value="Desserts">Desserts</option>
-                                <option value="Juices">Juices</option>
-                        </select>
-                </div>
-                <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-success">Update</button>
+
+<div class="modal fade" id="cType{{r._id }}" tabindex="-1" role="dialog" aria-labelledby="cType" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                        <div class="modal-header">
+                                <h5 class="modal-title" id="cType">Edit Type </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                </button>
+                        </div>
+                        <form method="POST">
+                        <div class="modal-body">
+                                <label for="cooking-time">Recipe Type</label>
+                                <select id="recipe-type" name="recipe-type" type="text" class="form-control">
+                                        <option value="Starter">Starters</option>
+                                        <option value="Main course">Main courses</option>
+                                        <option value="Desserts">Desserts</option>
+                                        <option value="Juices">Juices</option>
+                                </select>
+                        </div>
+                        <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <!-- Activation point of "Update db queries-> Type" in run.py -->
+                                <button type="submit" class="btn btn-success" name='type' value='{{r._id  }}' >Update</button>
+                        </div>
+                </form>
                 </div>
         </div>
-</div>
 </div>
 
 <!-- Time -->
 
-<div class="modal fade" id="cTime" tabindex="-1" role="dialog" aria-labelledby="cTime"
-aria-hidden="true">
-<div class="modal-dialog" role="document">
-        <div class="modal-content">
-                <div class="modal-header">
-                        <h5 class="modal-title" id="cType">Edit Type </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                        </button>
-                </div>
-                <div class="modal-body">
-                 
-                        <label for="cooking-time">Cooking time </label>
-                <select id="cooking-time" name="cooking-time" type="text" class="form-control"placeholder="Recipe name">
-                    <option value="15">15 min </option>
-                    <option value="30">30 min</option>
-                    <option value="45">45 min</option>
-                    <option value="60">1 hour </option>
-                    <option value="75">1 hour and 15 minutes </option>
-                    <option value="90">1 hour and 30 minutes  </option>
-                    <option value="120">2 hours </option>
-                </select>
+<div class="modal fade" id="cTime{{r._id }}" tabindex="-1" role="dialog" aria-labelledby="cTime" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                        <div class="modal-header">
+                                <h5 class="modal-title" id="cType">Edit Type </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                </button>
+                        </div>
+                        <form method="POST">
+                        <div class="modal-body">
 
-                </div>
-                <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-success">Update</button>
+                                <label for="cooking-time">Cooking time </label>
+                                <select id="cooking-time" name="cooking-time" type="text" class="form-control"
+                                        placeholder="Recipe name">
+                                        <option value="15">15 min </option>
+                                        <option value="30">30 min</option>
+                                        <option value="45">45 min</option>
+                                        <option value="60">1 hour </option>
+                                        <option value="75">1 hour and 15 minutes </option>
+                                        <option value="90">1 hour and 30 minutes </option>
+                                        <option value="120">2 hours </option>
+                                </select>
+
+                        </div>
+
+                        <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <!-- Activation point of "Update db queries-> Time" in run.py -->
+                                <button type="submit" class="btn btn-success" name='time' value='{{r._id  }}'>Update</button>
+                        </div>
+                </form>
                 </div>
         </div>
-</div>
 </div>
 
 <!-- Name-->
 
-<div class="modal fade" id="cName" tabindex="-1" role="dialog" aria-labelledby="cName"
-aria-hidden="true">
-<div class="modal-dialog" role="document">
-        <div class="modal-content">
-                <div class="modal-header">
-                        <h5 class="modal-title" id="cType">Edit Namej </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                        </button>
-                </div>
-                <div class="modal-body">
-                 
-                        <input id="recipe" name="recipe-name" type="text" class="form-control" placeholder="Recipe name">
+<div class="modal fade" id="cName{{r._id }}" tabindex="-1" role="dialog" aria-labelledby="cName" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                        <div class="modal-header">
+                                <h5 class="modal-title" id="cType">Edit Name </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                </button>
+                        </div>
+                        <form method="POST">
+                        <div class="modal-body">
 
-                </div>
-                <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-success">Update</button>
+                                <input id="recipe" name="recipe-name" type="text" class="form-control" placeholder="Recipe name">
+
+                        </div>
+                        <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <!-- Activation point of "Update db queries-> Name" in run.py -->
+                                <button type="submit" class="btn btn-success" name='name' value='{{r._id  }}'>Update</button>
+                        </div>
+                        </form>
                 </div>
         </div>
-</div>
 </div>
 
 <!-- Ingredients -->
 
-<div class="modal fade" id="cIngredients" tabindex="-1" role="dialog" aria-labelledby="cIngredients"
-aria-hidden="true">
-<div class="modal-dialog" role="document">
-        <div class="modal-content">
-                <div class="modal-header">
-                        <h5 class="modal-title" id="cType">Edit Ingredients </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                        </button>
-                </div>
-                <div class="modal-body">
-                 
-                        <label for="ingredients">Ingredients</label>
-                        <input type="text" class="form-control" id="ing" name="ing" placeholder="Write your ingredients separated by comma">
+<div class="modal fade" id="cIngredients{{r._id }}" tabindex="-1" role="dialog" aria-labelledby="cIngredients"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                        <div class="modal-header">
+                                <h5 class="modal-title" id="cType">Edit Ingredients </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                                        <span aria-hidden="true">&times;</span>
+                                </button>
+                        </div>
+                        <form method="POST">
+                        <div class="modal-body">
 
-                </div>
-                <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-success">Update</button>
+                                <label for="ingredients">Ingredients</label>
+                                <input type="text" class="form-control" id="ing" name="ing" value="{%for ing in r['ingredients'] %}{{ing}} , {%endfor%}  " placeholder="Write your ingredients separated by comma" >
+
+                        </div>
+                        <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <!-- Activation point of "Update db queries-> Ingredients" in run.py -->
+                                <button type="submit" class="btn btn-success" name='ingredients' value='{{r._id  }}'>Update</button>
+                        </div>
+                </form>
                 </div>
         </div>
-</div>
 </div>
 
 
 <!-- Description-->
 
-<div class="modal fade" id="cDescription" tabindex="-1" role="dialog" aria-labelledby="cDescription"
-aria-hidden="true">
-<div class="modal-dialog" role="document">
-        <div class="modal-content">
-                <div class="modal-header">
-                        <h5 class="modal-title" id="cDescription">Edit Description </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                        </button>
-                </div>
-                <div class="modal-body">
-                 
-                        <label for="recipe-description">Recipe Description</label>
-        <textarea type="text" class="form-control" id="recipe-description" name="recipe-description" placeholder="Describe your recipe here" class="md-textarea form-control" rows="3"></textarea>
+<div class="modal fade" id="cDescription{{r._id }}" tabindex="-1" role="dialog" aria-labelledby="cDescription"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                        <div class="modal-header">
+                                <h5 class="modal-title" id="cDescription">Edit Description </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                </button>
+                        </div>
+                        <form method="POST">
+                        <div class="modal-body">
 
-                </div>
-                <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-success">Update</button>
+                                <label for="recipe-description">Recipe Description</label>
+                                <textarea type="text" class="form-control" id="recipe-description" name="recipe-description"
+                                        placeholder="Describe your recipe here" class="md-textarea form-control" rows="3"></textarea>
+
+                        </div>
+                        <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-success" name='description' value='{{r._id  }}' >Update</button>
+                        </div>
+                        </form>
                 </div>
         </div>
-</div>
 </div>
 
 
 <!-- Image -->
 
-<div class="modal fade" id="cPhoto" tabindex="-1" role="dialog" aria-labelledby="cPhoto"
-aria-hidden="true">
-<div class="modal-dialog" role="document">
-        <div class="modal-content">
-                <div class="modal-header">
-                        <h5 class="modal-title" id="cDescription">Edit Image </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                        </button>
-                </div>
-                <div class="modal-body">
-                        <input type="textarea" class="form-control" id="image-url" name="image-url" placeholder="http://your-url">
-                </div>
-                <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-success">Update</button>
+<div class="modal fade" id="cPhoto{{r._id }}" tabindex="-1" role="dialog" aria-labelledby="cPhoto" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                        <div class="modal-header">
+                                <h5 class="modal-title" id="cDescription">Edit Image </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                </button>
+                        </div>
+                        <form method="POST">
+                                <div class="modal-body">
+                                        <input type="textarea" class="form-control" id="image-url" name="image-url"
+                                                placeholder="http://your-url">
+                                </div>
+                                <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        <!-- Activation point of "Update db queries-> Photo" in run.py -->
+                                        <button type="submit" class="btn btn-success" name='idphoto' value='{{r._id  }}'>Update</button>
+                                </div>
+                        </form>
                 </div>
         </div>
-</div>
 </div>
 
 
 <!-- Allergens -->
 
-<div class="modal fade" id="cAlergens" tabindex="-1" role="dialog" aria-labelledby="cAlergens"
-aria-hidden="true">
-<div class="modal-dialog" role="document">
-        <div class="modal-content">
-                <div class="modal-header">
-                        <h5 class="modal-title" id="cDescription">Edit Allergens </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                        </button>
-                </div>
-                <div class="modal-body">
-                 
-                        <label for="alergnens">Alergens (ctrl for multi select)</label>
-                        <select id="alergens" name="alergens" class="form-control" class="multiselect-ui form-control" multiple="multiple">
-                            <option> dairy </option>
-                            <option> eggs </option>
-                            <option> crustacean </option>
-                            <option> tree nuts </option>
-                            <option> peanuts </option>
-                            <option> wheat </option>
-                            <option> soybeans </option>
-                            <option> celery </option>
-                            <option> mustard </option>
-                            <option> sesame </option>
-                            <option> lupin </option>
-                            <option> molluscs </option>
-                            <option> fish </option>
-                            <option> sulphites </option>
-                        </select>
+<div class="modal fade" id="cAlergens{{r._id }}" tabindex="-1" role="dialog" aria-labelledby="cAlergens" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                        <div class="modal-header">
+                                <h5 class="modal-title" id="cDescription">Edit Allergens </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                </button>
+                        </div>
+                        <div class="modal-body">
+                                <form method="POST">
+                                        <label for="alergnens">Alergens (ctrl for multi select)</label>
+                                        <select id="alergens" name="alergens" class="form-control" class="multiselect-ui form-control"
+                                                multiple="multiple">
+                                                <option> dairy </option>
+                                                <option> eggs </option>
+                                                <option> crustacean </option>
+                                                <option> tree nuts </option>
+                                                <option> peanuts </option>
+                                                <option> wheat </option>
+                                                <option> soybeans </option>
+                                                <option> celery </option>
+                                                <option> mustard </option>
+                                                <option> sesame </option>
+                                                <option> lupin </option>
+                                                <option> molluscs </option>
+                                                <option> fish </option>
+                                                <option> sulphites </option>
+                                        </select>
 
-                </div>
-                <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-success">Update</button>
+                        </div>
+
+                        <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <!-- Activation point of "Update db queries-> Ingredients" in run.py -->
+                                <button type="submit" class="btn btn-success" name='alergens' value='{{r._id  }}'>Update</button>
+                        </div>
+                        </form>
                 </div>
         </div>
-</div>
 </div>

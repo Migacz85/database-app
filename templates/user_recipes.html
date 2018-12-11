@@ -1,173 +1,157 @@
 {% extends 'main.html' %}
-
-
 {% block content%}
 
-<!-- <h2> Our users recepies: </h2> -->
-<!-- FILTER FOR RECIPES -->
+{% if recipes==[] %}
+<H2 class="text-left"> You dont have any recipes yet, what do you think about to <button type="button" class="btn btn-warning">  <a href="/add_recipe" >add one</a> </button> ? </H2>
 
-<!-- DISPLAY RECIPES -->
-
-<style>
-        h4 {
-      color:  black;
-      
-}
-
-</style>
-
+{% else %}
 <H2 class="text-left"> Here are your recipes: </H2>
+
+{% endif %}
+
 <br>
-
-
 {% for r in recipes %}
 <div id="accordion">
+
+        <!-- Foldable title of recipe -->
         <div class="card">
                 <div class="card-header btn btn-link" id="headingOne" data-toggle="collapse" data-target="#A{{r._id}}"
                         aria-expanded="true" aria-controls="collapseOne">
-                        <!-- {{r._id}} -->
+                        {{r._id}} 
                         <h5> {{r['recipe-name']}} </h5>
                         <div class='settings'>
-
-
                                 <button class="btn btn-secondary btn-sm" value="{{r._id }}" name="delete">Edit</button>
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal">
+                                
+                                <!-- Delete button trigger modal -->
+                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#A{{r._id }}">
                                         Delete
                                 </button>
-
                         </div>
                         </button>
-
                 </div>
         </div>
         {% include 'modals.html' %}
+        <!-- Content of the edited recipe -->
 
-        <div id="A{{r._id}}" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">
+        <div id="A{{r._id}}" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="card-body-color">
-
                         <div class="card text-center">
                                 <div class="card-header " data-toggle="tooltip" data-placement="top" title="Clik on element you want to edit">
                                         <div class="row">
+                                                
                                                 <div class="col">
-                                                                <div   data-toggle="tooltip" data-placement="bottom" title="Click to edit Cuisine">
-                                                        <button type="button" class="invisible-btn" data-toggle="modal"
-                                                                data-target="#cCuisine" >
-
-
-                                                                Cuisine:
-                                                                <!-- Good r['cuisine'][0] -->
-
-                                                                {%for element in r['cuisine']%}
-                                                                <span class="badge badge-info"> {{element}} </span>
-                                                                {%endfor%}
-                                                        </button></div>
+                                                        <div data-toggle="tooltip" data-placement="bottom" title="Click to edit Cuisine">
+                                                                <!-- Triger button for modal Cuisine -> modals.html -> cuisine  -->
+                                                                <button type="button" class="invisible-btn" data-toggle="modal" data-target="#cCuisine{{r._id }}">
+                                                                        Cuisine:
+                                                                        
+                                                                        {%for element in r['cuisine']%}
+                                                                        <span class="badge badge-info"> {{element}}
+                                                                        </span>
+                                                                        {%endfor%}
+                                                                </button>
+                                                        </div>
                                                 </div>
-
+                                                
                                                 <div class="col">
-                                                                <div   data-toggle="tooltip" data-placement="bottom" title="Click to edit type">
-                                                        <button class="invisible-btn"  data-toggle="modal"  data-target="#cType " >
-                                                                Recipe Type:
-                                                                {{r['recipe-type']}}
-                                                        </button></div>
+                                                        <div data-toggle="tooltip" data-placement="bottom" title="Click to edit type">
+                                                                <!-- Triger button for modal Cuisine -> modals.html  -->
+                                                                <button class="invisible-btn" data-toggle="modal"
+                                                                        data-target="#cType{{r._id }} ">
+                                                                        Recipe Type:
+                                                                        {{r['recipe-type']}}
+                                                                </button>
+                                                        </div>
                                                 </div>
+                                                
                                                 <div class="col">
-                                                                <div   data-toggle="tooltip" data-placement="bottom" title="Click to edit cooking time">
-                                                        <button class="invisible-btn" data-toggle="modal"  data-target="#cTime">
-                                                                Cooking time:
-                                                                <span class="badge badge-info"> {{r['cooking-time']}}</span>
-                                                        </button></div>
+                                                        <div data-toggle="tooltip" data-placement="bottom" title="Click to edit cooking time">
+                                                                <!-- Triger button for modal Cuisine -> modals.html  -->
+                                                                <button class="invisible-btn" data-toggle="modal"
+                                                                        data-target="#cTime{{r._id }}">
+                                                                        Cooking time:
+                                                                        <span class="badge badge-info">
+                                                                                {{r['cooking-time']}}</span>
+                                                                </button>
+                                                        </div>
                                                 </div>
                                         </div>
                                 </div>
                                 <div class="card-body">
-                                                <div   data-toggle="tooltip" data-placement="bottom" title="Click to edit recipe name">
-                                        <button class="invisible-btn"  data-toggle="modal" data-target="#cName">
-                                                Recipe name: </br>
-                                                <h5 class="card-title">{{r['recipe-name']}}</h5>
-                                        </button></div>
+                                        <div data-toggle="tooltip" data-placement="bottom" title="Click to edit recipe name">
+                                                <!-- Triger button for modal Cuisine -> modals.html  -->
+                                                <button class="invisible-btn" data-toggle="modal" data-target="#cName{{r._id }}">
+                                                        Recipe name: </br>
+                                                        <h5 class="card-title">{{r['recipe-name']}}</h5>
+                                                </button></div>
                                         </br>
                                         </br>
-                                        <div   data-toggle="tooltip" data-placement="bottom" title="Click to edit new ingredients">
-                                        <button class="invisible-btn" data-toggle="modal" data-target="#cIngredients">
-                                                Ingredients: <br>
-                                                {% for ingriedient in r['ingredients'] %}
-                                                <i>{{ ingriedient}} </i> </br>
-                                                {% endfor%}
-                                        </button></div>
+                                        <div data-toggle="tooltip" data-placement="bottom" title="Click to edit new ingredients">
+                                                <!-- Triger button for modal Cuisine -> modals.html  -->
+                                                <button class="invisible-btn" data-toggle="modal" data-target="#cIngredients{{r._id }}">
+                                                        Ingredients: <br>
+                                                        {% for ingriedient in r['ingredients'] %}
+                                                        <i>{{ ingriedient}} </i> </br>
+                                                        {% endfor%}
+                                                </button>
+                                        </div>
                                         <br>
                                         <br>
 
                                         <div class="row mx-auto text-center">
                                                 <div class="col-sm-12 col-md-6  ">
-                                                                <div   data-toggle="tooltip" data-placement="bottom" title="Click to edit description">
-                                                        <button class="invisible-btn"  data-toggle="modal" data-target="#cDescription">
-                                                                Description:
-                                                                <p class="card-text text-muted">{{r['recipe-description']}}
-                                                                </p>
-                                                        </button></div>
+                                                        <div data-toggle="tooltip" data-placement="bottom" title="Click to edit description">
+                                                                <!-- Triger button for modal Cuisine -> modals.html  -->
+                                                                <button class="invisible-btn" data-toggle="modal"
+                                                                        data-target="#cDescription{{r._id }}">
+                                                                        Description:
+                                                                        <p class="card-text text-muted">{{r['recipe-description']}}
+                                                                        </p>
+                                                                </button>
+                                                        </div>
                                                         </br>
                                                 </div>
-                                             
-                                                <div class="col-sm-12 col-md-6 mx-auto text-center">   
-                                                                <div   data-toggle="tooltip" data-placement="bottom" title="Click to change photo">
-                                                        <button class="invisible-btn"  data-toggle="modal" data-target="#cPhoto">
-                                                        <img class="card-img-top" src="{{r['image-url']}}" alt="Card image cap">
-                                                </div></div>
+
+                                                <div class="col-sm-12 col-md-6 mx-auto text-center">
+                                                        <div data-toggle="tooltip" data-placement="bottom" title="Click to change photo">
+                                                                <button class="invisible-btn" data-toggle="modal"
+                                                                        data-target="#cPhoto{{r._id }}">
+                                                                        <img class="card-img-top" src="{{r['image-url']}}"
+                                                                                alt="Card image cap">
+                                                        </div>
+                                                </div>
                                                 </button>
                                         </div>
-
-
                                 </div>
                                 <div class="card-footer text-muted">
-
                                         <div class="row">
                                                 <div class="col">
-                                                                <div   data-toggle="tooltip" data-placement="bottom" title="Click to edit Allergens">
-                                                                <button class="invisible-btn"  data-toggle="modal" data-target="#cAlergens">
-                                                        <b>Allergens: </b>
-                                                        {%for element in r['alergens']%}
-                                                        <span class="badge badge-warning"> {{element}} </span>
-                                                        {%endfor%}
-                                                        </button></div>
+                                                        <div data-toggle="tooltip" data-placement="bottom" title="Click to edit Allergens">
+                                                                <!-- Triger button for modal Cuisine -> modals.html  -->
+                                                                <button class="invisible-btn" data-toggle="modal"
+                                                                        data-target="#cAlergens{{r._id }}">
+                                                                        <b>Allergens: </b>
+                                                                        {%for element in r['alergens']%}
+                                                                        <span class="badge badge-warning"> {{element}}
+                                                                        </span>
+                                                                        {%endfor%}
+                                                                </button></div>
                                                 </div>
                                                 <div class="col">
                                                         <b> Author: </b>{{r['author']}}
                                                 </div>
                                         </div>
-
-
-
                                 </div>
                         </div>
-
-
-
-
-
-
-
                 </div>
         </div>
-
         <br>
+        {% endfor %}
+
+        <!-- For activating modals -->
         <script>
                 $('.collapse').collapse()
         </script>
-        <!-- Acces to all dynamicaly created variables -->
-        <!-- 
-{{r['recipe-name']}} *
-{{r['cooking-time']}} *
-{{r['cuisine']}} *
-{{r['alergens']}} 
-{{r['recipe-description']}} *
-{{r['image-url']}} *
-{{r['ingredients']}} *
-{{r['author']}} -->
-
-
-        {% endfor %}
-
-
+</div>        
 
         {% endblock content%}
