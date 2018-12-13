@@ -34,6 +34,9 @@ a {
   color: #4495b7
 }
 
+form {
+  display:inline;
+}
 #logo {
   
 

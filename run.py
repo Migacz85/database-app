@@ -3,6 +3,9 @@ from flask import Flask, render_template, request, flash, json, session, redirec
 from flask_pymongo import PyMongo
 import bcrypt
 from bson.objectid import ObjectId
+from time import strftime
+import datetime
+
 # [i for i in dbm.neo_nodes.find({"_id": ObjectId(obj_id_to_find)})]
 
 app = Flask(__name__)
@@ -10,6 +13,7 @@ app.secret_key = 'mysecret'
 app.config['MONGO_DBNAME']='recipifydb'
 app.config['MONGO_URI']='mongodb://migacz:1migacz@ds113482.mlab.com:13482/recipifydb'
 mongo = PyMongo(app)
+
 
 # Main page show all recipes from all users:
 @app.route('/', methods=["POST", "GET"])
@@ -23,7 +27,7 @@ def index():
         
     dbrecipes = mongo.db.recipes
     dbresponse=[]
-    recipes  = dbrecipes.find()
+    recipes  = dbrecipes.find({"published": "publish"})
 
     for recipe in recipes:
         dbresponse.append(recipe) 
@@ -46,7 +50,7 @@ def index():
         if recipe_type == ['']:
             recipe_type = ["Main course", "Starter", "Desserts", "Juices"]
 
-        recipes  = dbrecipes.find({"$and": [{"alergens": {"$nin": option3 }}, {"recipe-type": {"$in": recipe_type }}, {"cooking-time": {"$lte": int(option2[0]) }}  ] })
+        recipes  = dbrecipes.find({"$and": [{"alergens": {"$nin": option3 }}, {"published": "publish"}, {"recipe-type": {"$in": recipe_type }}, {"cooking-time": {"$lte": int(option2[0]) }}  ] })
 
         for recipe in recipes:
             dbresponse.append(recipe)
@@ -71,7 +75,8 @@ def user_recipes():
 
     show_tooltips = 1
     dbrecipes = mongo.db.recipes
-    recipes  = dbrecipes.find({"author": session['username']})
+    recipes  = dbrecipes.find({"author": session['username']}).sort('date',-1)
+
     
     if request.method == 'POST':
         show_tooltips = 0
@@ -120,8 +125,12 @@ def user_recipes():
             iddesc= request.form.getlist('description')[0]
             dbrecipes.update_one( {"_id": ObjectId( iddesc) } ,{ "$set": {"recipe-description": desc } } )
            # print(rname,idname)
-      
-
+        # Time
+        if request.form.getlist('publish')!=[]:
+            rid = request.form.getlist('publish')[0]
+            rstage= request.form.getlist('stage')[0]
+            dbrecipes.update_one( {"_id": ObjectId( rid) } ,{ "$set": {"published": rstage } } )      
+            print(rid,rstage)
     dbresponse=[]
 
     for recipe in recipes:
@@ -210,6 +219,8 @@ def add_recipe():
     # 'author': session['username']
     # })
 
+    d = datetime.datetime.strptime("2017-10-13T10:53:53.000Z", "%Y-%m-%dT%H:%M:%S.000Z")
+
     recipes=mongo.db.recipes
     recipes.insert({
     'likes': 0,
@@ -220,9 +231,15 @@ def add_recipe():
     'alergens': [],
     'recipe-description': "",
     'image-url' : "https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fkielkowski-szkolka.pl%2Fobrazki%2Fobrazek_503_1.jpg&f=1",
-    'ingredients' : [], # Convert string to list where , is separator
-    'author': session['username']
+    'ingredients' : [], # Convert string to list where "," is separator
+    'author': session['username'],
+    'date': strftime("%d/%m/%Y %H:%M"),
+    'published': "draft"
+    
+    
     })
+
+
 
     return redirect(url_for('user_recipes'))
 

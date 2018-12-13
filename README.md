@@ -115,6 +115,7 @@ Pictures used in this site was used from these links:
 
 https://www.pexels.com/photo/burger-and-vegetables-placed-on-brown-wood-surface-1565982/
 https://ubisafe.org/image/chef-vector-logos/1115933.html
+https://favicon.io/emoji-favicons/fork-and-knife-with-plate/
 
 Resources helpful to build this site:
 

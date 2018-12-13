@@ -19,14 +19,31 @@
                         aria-expanded="true" aria-controls="collapseOne">
                         
                         <h5> {{r['recipe-name']}} </h5>
+                        <form method="POST">
                         <div class='settings'>
-                                <button class="btn btn-secondary btn-sm" value="{{r._id }}" name="delete">Edit</button>
                                 
-                                <!-- Delete button trigger modal -->
-                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#A{{r._id }}">
-                                        Delete
-                                </button>
+                                  <!-- Delete button trigger modal -->
+                                  <button  type="button"  class="btn btn-danger btn-sm float-right" data-toggle="modal" data-target="#A{{r._id }}">
+                                                Delete
+                                        </button>
+                                        
+                                {% if r['published']=='publish' %}
+                                <div class="float-right" data-toggle="tooltip" data-placement="top" title="This recepie is published, that mean you and other users can see it on main page. Click the button again to change it do draft.">
+                                <button action="submit" class="btn btn-success btn-sm" value="{{r._id }}" name="publish"> Published!</button>
+                                <input type="hidden" name="stage" value="draft"> </span>
+                                <br>
+                                </div>
+                                {% else %}
+                                <div class="float-right" data-toggle="tooltip" data-placement="top" title="This recepie is draft mode, that mean only you can see it. Click the button again to change it to published.">
+                                <input type="hidden" name="stage" value="publish">
+                                <button action="submit" class="btn btn-secondary btn-sm" value="{{r._id }}" name="publish">  Draft</button>
+                                <br>
+                                </div>
+                                {% endif %}
+                        
+                              
                         </div>
+                </form>        
                         </button>
                 </div>
         </div>
@@ -101,12 +118,12 @@
                                         <br>
 
                                         <div class="row mx-auto text-center">
-                                                <div class="col-sm-12  ">
+                                                <div class="col-sm-12 col-md-6  ">
                                                         <div data-toggle="tooltip" data-placement="bottom" title="Click to edit description">
                                                                 <!-- Triger button for modal Cuisine -> modals.html  -->
                                                                 <button class="invisible-btn" data-toggle="modal"
                                                                         data-target="#cDescription{{r._id }}">
-                                                                        Preparation:
+                                                                        Description:
                                                                         <p class="card-text text-muted">{{r['recipe-description']}}
                                                                         </p>
                                                                 </button>
@@ -114,11 +131,11 @@
                                                         </br>
                                                 </div>
 
-                                                <div class="col-sm-12 ">
+                                                <div class="col-sm-12 col-md-6 mx-auto text-center">
                                                         <div data-toggle="tooltip" data-placement="right" title="Click to change photo">
                                                                 <button class="invisible-btn" data-toggle="modal"
                                                                         data-target="#cPhoto{{r._id }}">
-                                                                        <img class="card-img-top float-right img-thumbnail" src="{{r['image-url']}}"
+                                                                        <img class="card-img-top" src="{{r['image-url']}}"
                                                                                 alt="Card image cap">
                                                         </div>
                                                 </div>
