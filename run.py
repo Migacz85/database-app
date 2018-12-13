@@ -19,6 +19,7 @@ def index():
 
     if 'username' in session:
         user='Cheff: '+session['username']
+    
         
     dbrecipes = mongo.db.recipes
     dbresponse=[]
@@ -65,12 +66,15 @@ def user_recipes():
     user='You are not logged'
     if 'username' in session:
         user='Cheff: '+session['username']
+    else: 
+       return redirect(url_for('index'))
 
+    show_tooltips = 1
     dbrecipes = mongo.db.recipes
     recipes  = dbrecipes.find({"author": session['username']})
     
     if request.method == 'POST':
-
+        show_tooltips = 0
         ### Delete db querie:
         if request.form.getlist('delete')!=[]:
             dbrecipes.remove( {"_id": ObjectId(request.form.getlist('delete')[0])})
@@ -125,7 +129,8 @@ def user_recipes():
 
     return render_template(
         "user_recipes.html",
-        recipes=dbresponse, 
+        recipes=dbresponse,
+        show_tooltips=show_tooltips, 
         user=user)
 
 
@@ -190,23 +195,38 @@ def add_recipe():
     else:
         return redirect(url_for('index'))  # Only for registerred users
 
-    if request.method == 'POST': 
-        recipes=mongo.db.recipes
-        recipes.insert({
-        'likes': 0,
-        'recipe-name' : request.form['recipe-name'] , 
-        'recipe-type' : request.form['recipe-type'] , 
-        'cooking-time': int( request.form['cooking-time'] ) , # Always change to int if its need to be int ...
-        'cuisine': request.form.getlist('cuisine') ,
-        'alergens': request.form.getlist('alergens'),
-        'recipe-description': request.form['recipe-description'],
-        'image-url' : request.form['image-url'],
-        'ingredients' : request.form['ing'].split(","), # Convert string to list where , is separator
-        'author': session['username']
-        })
+    # if request.method == 'POST': 
+    # recipes=mongo.db.recipes
+    # recipes.insert({
+    # 'likes': 0,
+    # 'recipe-name' : "My new recipe" , #request.form['recipe-name'] 
+    # 'recipe-type' : request.form['recipe-type'] , 
+    # 'cooking-time': int( request.form['cooking-time'] ) , # Always change to int if its need to be int ...
+    # 'cuisine': request.form.getlist('cuisine') ,
+    # 'alergens': request.form.getlist('alergens'),
+    # 'recipe-description': request.form['recipe-description'],
+    # 'image-url' : request.form['image-url'],
+    # 'ingredients' : request.form['ing'].split(","), # Convert string to list where , is separator
+    # 'author': session['username']
+    # })
 
-        return redirect(url_for('user_recipes'))
-    
+    recipes=mongo.db.recipes
+    recipes.insert({
+    'likes': 0,
+    'recipe-name' : "My new recipe" , #request.form['recipe-name'] 
+    'recipe-type' : "" , 
+    'cooking-time': 15 , # Always change to int if its need to be int ...
+    'cuisine': [] ,
+    'alergens': [],
+    'recipe-description': "",
+    'image-url' : "https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fkielkowski-szkolka.pl%2Fobrazki%2Fobrazek_503_1.jpg&f=1",
+    'ingredients' : [], # Convert string to list where , is separator
+    'author': session['username']
+    })
+
+    return redirect(url_for('user_recipes'))
+
+
         # Here is a easy acces to all variables from form:
         # request.form['recipe-name']
         # request.form['cooking-time']
@@ -217,7 +237,7 @@ def add_recipe():
         # request.form['ing']
         # session['username']
     
-    return render_template("add_recipe.html", user=user) 
+    #return render_template("add_recipe.html", user=user) 
     
 @app.route('/stats', methods=["GET", "POST"])
 def stats():

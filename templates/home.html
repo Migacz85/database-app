@@ -94,14 +94,17 @@
     <br>
 
     <div class="row">
-        <div class="col-sm-12 col-md-6">        
-                <p class="card-text text-muted">{{r['recipe-description']}} </p>
+        <div class="col-sm-12 ">        
+                Preparation:
+                <p class="card-text text-muted text-justify">{{r['recipe-description']}} </p>
+                
+                <img class="img-wrapped " src="{{r['image-url']}}" alt="Card image cap">
                 <br>
         </div>
-        <div class="col-sm-12 col-md-6">
-                <img class="card-img-top" src="{{r['image-url']}}" alt="Card image cap">
+        <!-- <div class="col-sm-12 col-md-6">
+                <img class="card-img-top pull-left" src="{{r['image-url']}}" alt="Card image cap">
         </div>
-        
+         -->
     </div>
 <br>
     <i class="like far fa-thumbs-up"></i>

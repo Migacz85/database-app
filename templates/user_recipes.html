@@ -17,7 +17,7 @@
         <div class="card">
                 <div class="card-header btn btn-link" id="headingOne" data-toggle="collapse" data-target="#A{{r._id}}"
                         aria-expanded="true" aria-controls="collapseOne">
-                        {{r._id}} 
+                        
                         <h5> {{r['recipe-name']}} </h5>
                         <div class='settings'>
                                 <button class="btn btn-secondary btn-sm" value="{{r._id }}" name="delete">Edit</button>
@@ -31,12 +31,14 @@
                 </div>
         </div>
         {% include 'modals.html' %}
+
+     
         <!-- Content of the edited recipe -->
 
         <div id="A{{r._id}}" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="card-body-color">
                         <div class="card text-center">
-                                <div class="card-header " data-toggle="tooltip" data-placement="top" title="Clik on element you want to edit">
+                                <div class="card-header " data-placement="top" >
                                         <div class="row">
                                                 
                                                 <div class="col">
@@ -65,7 +67,7 @@
                                                 </div>
                                                 
                                                 <div class="col">
-                                                        <div data-toggle="tooltip" data-placement="bottom" title="Click to edit cooking time">
+                                                        <div data-toggle="tooltip" data-placement="top" title="Click to edit cooking time">
                                                                 <!-- Triger button for modal Cuisine -> modals.html  -->
                                                                 <button class="invisible-btn" data-toggle="modal"
                                                                         data-target="#cTime{{r._id }}">
@@ -78,7 +80,7 @@
                                         </div>
                                 </div>
                                 <div class="card-body">
-                                        <div data-toggle="tooltip" data-placement="bottom" title="Click to edit recipe name">
+                                        <div data-toggle="tooltip" data-placement="right" title="Click to edit recipe name">
                                                 <!-- Triger button for modal Cuisine -> modals.html  -->
                                                 <button class="invisible-btn" data-toggle="modal" data-target="#cName{{r._id }}">
                                                         Recipe name: </br>
@@ -86,7 +88,7 @@
                                                 </button></div>
                                         </br>
                                         </br>
-                                        <div data-toggle="tooltip" data-placement="bottom" title="Click to edit new ingredients">
+                                        <div data-toggle="tooltip" data-placement="right" title="Click to edit new ingredients">
                                                 <!-- Triger button for modal Cuisine -> modals.html  -->
                                                 <button class="invisible-btn" data-toggle="modal" data-target="#cIngredients{{r._id }}">
                                                         Ingredients: <br>
@@ -99,12 +101,12 @@
                                         <br>
 
                                         <div class="row mx-auto text-center">
-                                                <div class="col-sm-12 col-md-6  ">
+                                                <div class="col-sm-12  ">
                                                         <div data-toggle="tooltip" data-placement="bottom" title="Click to edit description">
                                                                 <!-- Triger button for modal Cuisine -> modals.html  -->
                                                                 <button class="invisible-btn" data-toggle="modal"
                                                                         data-target="#cDescription{{r._id }}">
-                                                                        Description:
+                                                                        Preparation:
                                                                         <p class="card-text text-muted">{{r['recipe-description']}}
                                                                         </p>
                                                                 </button>
@@ -112,11 +114,11 @@
                                                         </br>
                                                 </div>
 
-                                                <div class="col-sm-12 col-md-6 mx-auto text-center">
-                                                        <div data-toggle="tooltip" data-placement="bottom" title="Click to change photo">
+                                                <div class="col-sm-12 ">
+                                                        <div data-toggle="tooltip" data-placement="right" title="Click to change photo">
                                                                 <button class="invisible-btn" data-toggle="modal"
                                                                         data-target="#cPhoto{{r._id }}">
-                                                                        <img class="card-img-top" src="{{r['image-url']}}"
+                                                                        <img class="card-img-top float-right img-thumbnail" src="{{r['image-url']}}"
                                                                                 alt="Card image cap">
                                                         </div>
                                                 </div>
@@ -148,10 +150,8 @@
         <br>
         {% endfor %}
 
-        <!-- For activating modals -->
-        <script>
-                $('.collapse').collapse()
-        </script>
+      
+       
 </div>        
 
         {% endblock content%}

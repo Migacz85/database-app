@@ -1,5 +1,6 @@
 <!-- Modal Warning for delete-->
 
+
 <div class="modal fade" id="A{{r._id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -136,6 +137,9 @@
                                                 </select>
                                         </div>
                         </div>
+<script>
+ 
+</script>
                         <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                 <!-- Activation point of "Update db queries-> Cuisine" in run.py -->
@@ -257,8 +261,8 @@
                         <form method="POST">
                         <div class="modal-body">
 
-                                <label for="ingredients">Ingredients</label>
-                                <input type="text" class="form-control" id="ing" name="ing" value="{%for ing in r['ingredients'] %}{{ing}} , {%endfor%}  " placeholder="Write your ingredients separated by comma" >
+                                <label for="ingredients">Write your ingredients, separated by comma ","</label>
+                                <input type="text" class="form-control" id="ing" name="ing" value="{%for ing in r['ingredients'] %}{{ing}},{%endfor%}  " placeholder="Write your ingredients separated by comma" >
 
                         </div>
                         <div class="modal-footer">

@@ -63,7 +63,26 @@ $('#multioption2').multiselect({
 $('body > div.container-flex > div > div > div > form > div:nth-child(6) > button > span').text("Cooking Time: all")
 
 
+// $(function () {
+// //    $('[data-toggle="tooltip"], .tooltip').tooltip();
+// //    $('[data-toggle="tooltip"], .tooltip').tooltip("show");
+//     $("button").click(function () {
+//       $('[data-toggle="tooltip"], .tooltip').tooltip("hide");
+//     });
+//     $(".card-header").click(function () {
+//         $('[data-toggle="tooltip"], .tooltip').tooltip("hide");
+//       });
+//     $(".card-body").click(function () {
+//         $('[data-toggle="tooltip"], .tooltip').tooltip("hide");
+//       });
+//   });
+
 // Bootstrap
-$(function () {
-    $('[data-toggle="tooltip"]').tooltip()
-  })
+$('[data-toggle="tooltip"]').tooltip({
+    trigger : 'hover'
+})  
+
+//Hide tooltips on click when modal appear
+$('[rel="tooltip"]').on('click', function () {
+    $(this).tooltip('hide')
+})
