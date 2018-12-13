@@ -28,17 +28,17 @@
                                         </button>
                                         
                                 {% if r['published']=='publish' %}
-                                <div class="float-right" data-toggle="tooltip" data-placement="top" title="This recepie is published, that mean you and other users can see it on main page. Click the button again to change it do draft.">
+                                <!-- <div class="float-right" data-toggle="tooltip" data-placement="top" title="This recepie is published, that mean you and other users can see it on main page. Click the button again to change it do draft."> -->
                                 <button action="submit" class="btn btn-success btn-sm" value="{{r._id }}" name="publish"> Published!</button>
                                 <input type="hidden" name="stage" value="draft"> </span>
                                 <br>
-                                </div>
+                                <!-- </div> -->
                                 {% else %}
-                                <div class="float-right" data-toggle="tooltip" data-placement="top" title="This recepie is draft mode, that mean only you can see it. Click the button again to change it to published.">
+                                <!-- <div class="float-right" data-toggle="tooltip" data-placement="top" title="This recepie is draft mode, that mean only you can see it. Click the button again to change it to published."> -->
                                 <input type="hidden" name="stage" value="publish">
                                 <button action="submit" class="btn btn-secondary btn-sm" value="{{r._id }}" name="publish">  Draft</button>
                                 <br>
-                                </div>
+                                <!-- </div> -->
                                 {% endif %}
                         
                               
@@ -51,15 +51,15 @@
 
      
         <!-- Content of the edited recipe -->
-
-        <div id="A{{r._id}}" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+  
+        <div id="A{{r._id}}" class="collapse {%if loop.index==1 %} show {%endif %}" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="card-body-color">
                         <div class="card text-center">
                                 <div class="card-header " data-placement="top" >
                                         <div class="row">
                                                 
                                                 <div class="col">
-                                                        <div data-toggle="tooltip" data-placement="bottom" title="Click to edit Cuisine">
+                                                                {%if loop.index==1 %}            <div data-toggle="tooltip" data-placement="bottom" title="Click to edit Cuisine"> {%endif %}
                                                                 <!-- Triger button for modal Cuisine -> modals.html -> cuisine  -->
                                                                 <button type="button" class="invisible-btn" data-toggle="modal" data-target="#cCuisine{{r._id }}">
                                                                         Cuisine:
@@ -69,22 +69,22 @@
                                                                         </span>
                                                                         {%endfor%}
                                                                 </button>
-                                                        </div>
+                                                                {%if loop.index==1 %}      </div> {%endif %}
                                                 </div>
                                                 
                                                 <div class="col">
-                                                        <div data-toggle="tooltip" data-placement="bottom" title="Click to edit type">
+                                                                {%if loop.index==1 %}      <div data-toggle="tooltip" data-placement="bottom" title="Click to edit type"> {%endif %}
                                                                 <!-- Triger button for modal Cuisine -> modals.html  -->
                                                                 <button class="invisible-btn" data-toggle="modal"
                                                                         data-target="#cType{{r._id }} ">
                                                                         Recipe Type:
                                                                         {{r['recipe-type']}}
                                                                 </button>
-                                                        </div>
+                                                                {%if loop.index==1 %}     </div>{%endif %}
                                                 </div>
                                                 
                                                 <div class="col">
-                                                        <div data-toggle="tooltip" data-placement="top" title="Click to edit cooking time">
+                                                                {%if loop.index==1 %}       <div data-toggle="tooltip" data-placement="top" title="Click to edit cooking time"> {%endif %}
                                                                 <!-- Triger button for modal Cuisine -> modals.html  -->
                                                                 <button class="invisible-btn" data-toggle="modal"
                                                                         data-target="#cTime{{r._id }}">
@@ -92,34 +92,35 @@
                                                                         <span class="badge badge-info">
                                                                                 {{r['cooking-time']}}</span>
                                                                 </button>
-                                                        </div>
+                                                                {%if loop.index==1 %}   </div> {%endif %}
                                                 </div>
                                         </div>
                                 </div>
                                 <div class="card-body">
-                                        <div data-toggle="tooltip" data-placement="right" title="Click to edit recipe name">
+                                                {%if loop.index==1 %}          <div data-toggle="tooltip" data-placement="right" title="Click to edit recipe name"> {%endif %}
                                                 <!-- Triger button for modal Cuisine -> modals.html  -->
                                                 <button class="invisible-btn" data-toggle="modal" data-target="#cName{{r._id }}">
                                                         Recipe name: </br>
                                                         <h5 class="card-title">{{r['recipe-name']}}</h5>
-                                                </button></div>
+                                                </button>
+                                                {%if loop.index==1 %}    </div> {%endif %}
                                         </br>
                                         </br>
-                                        <div data-toggle="tooltip" data-placement="right" title="Click to edit new ingredients">
+                                        {%if loop.index==1 %}     <div data-toggle="tooltip" data-placement="bottom" title="Click to edit new ingredients">{%endif %}
                                                 <!-- Triger button for modal Cuisine -> modals.html  -->
-                                                <button class="invisible-btn" data-toggle="modal" data-target="#cIngredients{{r._id }}">
+                                                     <button class="invisible-btn" data-toggle="modal" data-target="#cIngredients{{r._id }}">
                                                         Ingredients: <br>
                                                         {% for ingriedient in r['ingredients'] %}
                                                         <i>{{ ingriedient}} </i> </br>
                                                         {% endfor%}
-                                                </button>
-                                        </div>
+                                                             </button>
+                                                        {%if loop.index==1 %}   </div> {%endif %}
                                         <br>
                                         <br>
 
                                         <div class="row mx-auto text-center">
                                                 <div class="col-sm-12 col-md-6  ">
-                                                        <div data-toggle="tooltip" data-placement="bottom" title="Click to edit description">
+                                                                {%if loop.index==1 %}          <div data-toggle="tooltip" data-placement="bottom" title="Click to edit description"> {%endif %}
                                                                 <!-- Triger button for modal Cuisine -> modals.html  -->
                                                                 <button class="invisible-btn" data-toggle="modal"
                                                                         data-target="#cDescription{{r._id }}">
@@ -127,17 +128,17 @@
                                                                         <p class="card-text text-muted">{{r['recipe-description']}}
                                                                         </p>
                                                                 </button>
-                                                        </div>
+                                                                {%if loop.index==1 %}      </div> {%endif %}
                                                         </br>
                                                 </div>
 
                                                 <div class="col-sm-12 col-md-6 mx-auto text-center">
-                                                        <div data-toggle="tooltip" data-placement="right" title="Click to change photo">
+                                                                {%if loop.index==1 %}     <div data-toggle="tooltip" data-placement="right" title="Click to change photo"> {%endif %}
                                                                 <button class="invisible-btn" data-toggle="modal"
                                                                         data-target="#cPhoto{{r._id }}">
                                                                         <img class="card-img-top" src="{{r['image-url']}}"
                                                                                 alt="Card image cap">
-                                                        </div>
+                                                                                {%if loop.index==1 %}     </div> {%endif %}
                                                 </div>
                                                 </button>
                                         </div>
@@ -145,7 +146,7 @@
                                 <div class="card-footer text-muted">
                                         <div class="row">
                                                 <div class="col">
-                                                        <div data-toggle="tooltip" data-placement="bottom" title="Click to edit Allergens">
+                                                                {%if loop.index==1 %}              <div data-toggle="tooltip" data-placement="bottom" title="Click to edit Allergens">{%endif %}
                                                                 <!-- Triger button for modal Cuisine -> modals.html  -->
                                                                 <button class="invisible-btn" data-toggle="modal"
                                                                         data-target="#cAlergens{{r._id }}">
@@ -154,7 +155,8 @@
                                                                         <span class="badge badge-warning"> {{element}}
                                                                         </span>
                                                                         {%endfor%}
-                                                                </button></div>
+                                                                </button>
+                                                                {%if loop.index==1 %}          </div> {%endif %}
                                                 </div>
                                                 <div class="col">
                                                         <b> Author: </b>{{r['author']}}

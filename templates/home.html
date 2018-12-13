@@ -1,8 +1,6 @@
-
 {% extends 'main.html' %}
 {% block content%}
-
-<!-- <h2> Our users recepies: </h2> -->
+<!-- ALL USER RECEPIES -->
  <!-- FILTER FOR RECIPES -->
 <form class="input-group mb-3" method="POST">
         <div class="input-group-prepend">
@@ -16,9 +14,7 @@
           <option {{ 'selected' if option1 == 'Desserts' else '' }} value="Desserts">Desserts</option>
           <option {{ 'selected' if option1 == 'Juices' else '' }} value="Juices">Juices</option>
         </select>
-        
         <select class="custom-select" id="multioption1" multiple="multiple" name="alergens">
-                
                 <option {% for item in option3 %}{{ 'selected' if item == 'dairy' else '' }}{% endfor %}> dairy </option>
                 <option {% for item in option3 %}{{ 'selected' if item == 'eggs' else '' }}{% endfor %}> eggs </option>
                 <option {% for item in option3 %}{{ 'selected' if item == 'crustacean' else '' }}{% endfor %}> crustacean </option>
@@ -35,8 +31,6 @@
                 <option {% for item in option3 %}{{ 'selected' if item == 'sulphites' else '' }}{% endfor %}> sulphites </option>
                 
         </select>
-
-        
         <select class="custom-select"  id="multioption2" name="cooking-time" >
                 <option {{ 'selected' if option2 == '900' else '' }} selected value="900"> all</option>
                 <option {{ 'selected' if option2 == '15' else '' }} value="15">15 min </option>
@@ -49,7 +43,6 @@
             
         </select>
 
-
         <!-- <select class="custom-select" id="multioption" multiple="multiple" name="ingredients">
                 <option > Cheese</option>
                 <option >Tomatoes</option>
@@ -59,13 +52,10 @@
                 <option value="onions">Onions</option>
         </select> -->
                 
-      
-
     </form>
 
 <!-- DISPLAY RECIPES -->
 <br>
-
 
 {% for r in recipes %} <div class="card text-center"> <div class="card-header"> <div class="row"> <div class="col">  
                        
@@ -108,7 +98,9 @@
     </div>
 <br>
     <i class="like far fa-thumbs-up"></i>
-    <i class="heart fas fa-heart fa-1x"></i>
+    <form method="POST">
+    <button button="submit"  class="invisible-btn" value="{{r._id}}" name="like">        <i class="heart fas fa-heart fa-2x"></i></button>
+    </form>
     
   </div>
   <div class="card-footer text-muted">

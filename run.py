@@ -23,10 +23,10 @@ def index():
 
     if 'username' in session:
         user='Cheff: '+session['username']
-    
-        
+
     dbrecipes = mongo.db.recipes
     dbresponse=[]
+
     recipes  = dbrecipes.find({"published": "publish"})
 
     for recipe in recipes:
@@ -37,19 +37,25 @@ def index():
     option3=[''] # Allergens none
 
     if request.method == 'POST': 
-
+           
+       
         dbresponse=[]
         cooktime=200
-        
+     #   if request.form.getlist('recipe-type')!=[''] and request.form.getlist('cooking-time')!=[''] and request.form.getlist('alergens')!=[]:
         option1 = (request.form.getlist('recipe-type'))
         option2 = (request.form.getlist('cooking-time'))
         option3 = (request.form.getlist('alergens'))
-
         recipe_type =(request.form.getlist('recipe-type'))
+        
+        print(option1, option2, option3)
 
         if recipe_type == ['']:
             recipe_type = ["Main course", "Starter", "Desserts", "Juices"]
 
+        if request.form.getlist('like')!=[]:
+            # {$inc: {"amount": -amount}}
+            print(request.form.getlist('like'))
+        
         recipes  = dbrecipes.find({"$and": [{"alergens": {"$nin": option3 }}, {"published": "publish"}, {"recipe-type": {"$in": recipe_type }}, {"cooking-time": {"$lte": int(option2[0]) }}  ] })
 
         for recipe in recipes:
@@ -127,6 +133,7 @@ def user_recipes():
            # print(rname,idname)
         # Time
         if request.form.getlist('publish')!=[]:
+
             rid = request.form.getlist('publish')[0]
             rstage= request.form.getlist('stage')[0]
             dbrecipes.update_one( {"_id": ObjectId( rid) } ,{ "$set": {"published": rstage } } )      
@@ -204,23 +211,6 @@ def add_recipe():
     else:
         return redirect(url_for('index'))  # Only for registerred users
 
-    # if request.method == 'POST': 
-    # recipes=mongo.db.recipes
-    # recipes.insert({
-    # 'likes': 0,
-    # 'recipe-name' : "My new recipe" , #request.form['recipe-name'] 
-    # 'recipe-type' : request.form['recipe-type'] , 
-    # 'cooking-time': int( request.form['cooking-time'] ) , # Always change to int if its need to be int ...
-    # 'cuisine': request.form.getlist('cuisine') ,
-    # 'alergens': request.form.getlist('alergens'),
-    # 'recipe-description': request.form['recipe-description'],
-    # 'image-url' : request.form['image-url'],
-    # 'ingredients' : request.form['ing'].split(","), # Convert string to list where , is separator
-    # 'author': session['username']
-    # })
-
-    d = datetime.datetime.strptime("2017-10-13T10:53:53.000Z", "%Y-%m-%dT%H:%M:%S.000Z")
-
     recipes=mongo.db.recipes
     recipes.insert({
     'likes': 0,
@@ -235,14 +225,9 @@ def add_recipe():
     'author': session['username'],
     'date': strftime("%d/%m/%Y %H:%M"),
     'published': "draft"
-    
-    
     })
 
-
-
     return redirect(url_for('user_recipes'))
-
 
         # Here is a easy acces to all variables from form:
         # request.form['recipe-name']
