@@ -11,49 +11,51 @@ body {
   background-size: cover;
   background-attachment: fixed
 }
-h1,h2  
-{
-  color:hsl(0, 0%, 100%);
-  
+
+h1,
+h2 {
+  color: hsl(0, 0%, 100%);
+
 }
-h3,h4{
-  color:hsl(0, 0%, 95%);
+
+h3,
+h4 {
+  color: hsl(0, 0%, 95%);
 }
+
 a:hover {
   color: #000000;
   text-decoration: none;
 }
+
 a {
   color: #000000;
   text-decoration: none;
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
 }
+
 /* Color for icons */
 .fa {
   color: #4495b7
 }
 
 form {
-  display:inline;
+  display: inline;
 }
-#logo {
-  
 
+#logo {
   object-fit: cover;
   object-position: 100% 0;
   width: 58px;
-  /* height: 137px; */
-  /* margin-top: 62px; */
 }
 
 #recipe-description {
- height:100px;
+  height: 100px;
 }
 
 body {
   background-color: rgb(46, 40, 41);
-  /* overflow: hidden; */
 }
 
 p {
@@ -62,66 +64,64 @@ p {
 
 .board {
   height: 40vh;
-  /* overflow-y: scroll; */
 }
 
+/* Highliht active page */
 .active2 {
-  color:#94ff9f !important
+  color: #94ff9f !important
 }
 
 footer {
-  position:block;
-  text-align:center;
-
-  margin-bottom:40px;
-  
-  
+  position: block;
+  text-align: center;
+  margin-bottom: 40px;
   padding: 0px;
-  /* width: 200px; */
-  /* height: 10%; */
   background-color: hsla(204, 79%, 19%, 0);
   color: white;
 }
+
 /* Trick for footer staying in place */
 .masthead {
-  min-height:80vh; 
+  min-height: 80vh;
 }
 
-.page_name2{
-  color:red;
+/* Recipify me page name */
+.page_name2 {
+  color: red;
 }
 
-.page_name{
+.page_name {
   color: white;
   font-family: 'Pacifico', cursive;
-margin-top:32px;
-text-align: center;
+  margin-top: 32px;
+  text-align: center;
 }
+
 /* For wrapping elements that's need to be edited on user-recipes site */
-.invisible-btn{
-    /* margin: 0; */
-    background-color: transparent;
-    border-color: transparent;
-    /* font-family: inherit; */
-    /* font-size: inherit; */
-    line-height: inherit
+/* user_recipes.html template */
+.invisible-btn {
+  background-color: transparent;
+  border-color: transparent;
+  line-height: inherit
 }
-/*This two classes are used for items in Your recipes site*/
-#headingOne > h5 {
-  display:inline;
+
+/*This two classes are used for items in user_recipes.html template*/
+#headingOne>h5 {
+  display: inline;
   float: left;
   color: black;
 }
-#headingOne > button {
- float:right;
- margin-right:4px;
- padding:1px;
+
+#headingOne>button {
+  float: right;
+  margin-right: 4px;
+  padding: 1px;
 }
 
 /* Wrap for buttons Edit and Delete  */
 .settings {
-  display:inline;
-  float:right;
+  display: inline;
+  float: right;
   margin-left: 10px;
 }
 
@@ -129,75 +129,98 @@ text-align: center;
 .like {
   margin-right: 5px;
   float: right;
-  color:#278888;
+  color: #278888;
 }
+
 .like:hover {
   margin-right: 5px;
   float: right;
-  color:hsl(276, 71%, 43%);
+  color: hsl(276, 71%, 43%);
 }
+
 .heart {
   float: right;
-color: #ff8c8c;
-margin-right: 5px;
+  color: #ff8c8c;
+  margin-right: 5px;
 }
+
 .heart:hover {
-  color:red;
+  color: red;
+}
+
+
+/* For firefox styles text inside search filter */
+div.btn-group > button > span {
+  color:black;
 }
 /* Bootstrap */
 
 /* Style for list of recipes */
 .cardtitle {
-  
-background-color: hsla(0, 0%, 100%, 0);
-color:white;
+
+  background-color: hsla(0, 0%, 100%, 0);
+  color: white;
 
 }
 
-
-.card-body-color{
-  padding:10px;
+.card-body-color {
+  padding: 10px;
   background-color: transparent !important;
 }
-/*  */
-body > div.container-flex > div > div > div > form > div.btn-group.show > ul > li  > a  {
-padding:0px;
-}
 
-body > div.container-flex > div > div > div > form > div.btn-group.show > ul > li  > a > label{
-  margin-left:10px;
-  margin-top:10px;
+/* Styles for Advanced search */
+
+#Advance > div.btn-group.show > ul {
+  padding: 15px;
 }
 .btn-group>.btn:first-child {
   background-color: white;
-  border-radius:0;
+  color:black;
+  /* border-radius: 0; */
 }
 
-body > div.container-flex > div > div > div > form > div.btn-group.show > ul > li> a > label {
-
-  width:227px;
-  height:35px;
+/* Navbar
+body>div.container-flex>div>div>div>form>div.btn-group.show>ul>li>a {
+  padding: 0px;
 }
 
-body > div.container-flex > div > div > div > form > div.btn-group.show > ul {
-  border-radius:0;
-  border-color:#007bff;
-  padding:0;
+body>div.container-flex>div>div>div>form>div.btn-group.show>ul>li>a>label {
+  margin-left: 10px;
+  margin-top: 10px;
 }
-body > div.container-flex > div > div > div > form > div.btn-group.show > ul > li:hover {
-background-color:#007bff; 
+
+.btn-group>.btn:first-child {
+  background-color: white;
+  border-radius: 0;
 }
+
+body>div.container-flex>div>div>div>form>div.btn-group.show>ul>li>a>label {
+
+  width: 227px;
+  height: 35px;
+}
+
+body>div.container-flex>div>div>div>form>div.btn-group.show>ul {
+  border-radius: 0;
+  border-color: #007bff;
+  padding: 0;
+}
+
+body>div.container-flex>div>div>div>form>div.btn-group.show>ul>li:hover {
+  background-color: #007bff;
+}
+
 #navbarResponsive {
-  
-  margin-right:10%;
-}
+
+  margin-right: 10%;
+} */
 
 /* Navigation links "home" "login" "signup" */
 
 .navbar-collapse {
   z-index: 1;
   top: 133px;
-  position:absolute;
+  position: absolute;
   right: 35px;
   -ms-flex-preferred-size: 100%;
   flex-basis: 100%;
@@ -208,64 +231,62 @@ background-color:#007bff;
 }
 
 
-body > a {
+body>a {
   text-align: center;
 }
 
 #mainNav {
-  
-  border-radius:10px;
+  border-radius: 10px;
 }
 
-#mainNav > div > a:nth-child(1) > div {
+#mainNav>div>a:nth-child(1)>div {
   background-color: #f7f7f7;
-  color: black !important; 
-  border-radius:10px;
+  color: black !important;
+  border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.616), 0 6px 20px 0 rgba(0, 0, 0, 0.411);
-  padding:10px;
+  padding: 10px;
 }
 
-#mainNav > div > a.navbar-brand.js-scroll-trigger.text-white > b {
+#mainNav>div>a.navbar-brand.js-scroll-trigger.text-white>b {
   margin: 40%;
   background-color: #f7f7f7;
-  color: black !important; 
-  border-radius:10px;
+  color: black !important;
+  border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.61), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  padding:10px;
-  /* text-align:center; */
+  padding: 10px;
 }
+
 /* hamburger */
-#mainNav > div > button {
-  z-index:1;
-  position:absolute;
-  top:20px;
-  right:50px;
+#mainNav>div>button {
+  z-index: 1;
+  position: absolute;
+  top: 20px;
+  right: 50px;
   background-color: #f7f7f7;
-  color: black !important; 
-  border-radius:10px;
+  color: black !important;
+  border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.623), 0 6px 20px 0 rgba(0, 0, 0, 0.603);
-  padding:10px;
-  margin-top:115;
+  padding: 10px;
+  margin-top: 115;
   /* background-color: blue; */
 }
 
-#navbarResponsive > ul {
+#navbarResponsive>ul {
   box-shadow: 2px 5px 37px black;
-  right:0px;
-  top:-140px;
+  right: 0px;
+  top: -140px;
   position: absolute;
-  min-width:100px;
+  min-width: 100px;
   width: auto;
   background-color: #f7f7f7;
-  color: black !important; 
+  color: black !important;
   padding: 10px;
   border-radius: 10px 10px 10px 10px;
-  
+
 }
 
 /* for images in recepie description -wrapp thext around them */
 .img-wrapped {
-  
   float: left;
   width: 47%;
   border-radius: 10px;
@@ -275,64 +296,72 @@ body > a {
 
 /* color of links inside hamburger */
 .navbar-light .navbar-nav .nav-link {
-  color:black;
+  color: black;
 }
 
 
 @media only screen and (max-width: 990px) {
 
   /* hamburger */
-#mainNav > div > button {
-  z-index:1;
-  position:fixed;
-  top:20px;
-  right:50px;
-  border-radius:10px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin-top:115;
-  
-}
-/* cheff picture */
-#logo {
+  #mainNav>div>button {
+    z-index: 1;
+    position: fixed;
+    top: 20px;
+    right: 50px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-top: 115;
 
-  object-fit: cover;
-  object-position: 100% 0;
-  width: 101px;
-  margin-right: 14px;
-  /* margin-top: 62px; */
+  }
+
+  /* cheff picture */
+  #logo {
+    object-fit: cover;
+    object-position: 100% 0;
+    width: 101px;
+    margin-right: 14px;
+  }
+
+  #navbarResponsive>ul {
+    padding: 10px;
+  }
+
+  /* moving navbar */
+  #navbarResponsive>ul {
+    top: 71px;
+    right: 47px;
+    position: fixed;
+    min-width: 101px;
+    width: auto;
+    padding: 10px;
+    border-radius: 10px 10px 10px 10px;
+  }
+
+  .btn-group,
+  .btn-group-vertical {
+    /* background-color: white; */
+    width: 100%;
+    padding:4px
+  }
+
+  /* for images in recepie description */
+  .img-wrapped {
+    float: none;
+    width: 85%;
+    border-radius: 16px;
+    margin: 15px;
+
+  }
+
 }
 
-#navbarResponsive > ul {
-  /* background-color: hsla(0, 0%, 9%, 0.637); */
-  padding: 10px;
+/* Phones */
+@media only screen and (max-width: 500px) { 
+  /* Push hamburger and collapsing menu really close to edges */
+  #mainNav>div>button {
+    right:16px;
+  }
+  #navbarResponsive>ul{
+    right:16px;
+  }
 }
- /* moving navbar */
-#navbarResponsive > ul {
-  top: 71px;
-  right: 47px;
-  position: fixed;
-  min-width: 101px;
-  width: auto;
-  
-  padding: 10px;
-  border-radius: 10px 10px 10px 10px;
-  /* background-color:#0e5e72; */
-}
-.btn-group, .btn-group-vertical {
-  background-color: white;
-  width:100%;
-}
-
-/* for images in recepie description */
-.img-wrapped {
-  
-  float: none;
-  width: 85%;
-  border-radius: 16px;
-  margin: 15px;
-
-}
-
- }
-
- 

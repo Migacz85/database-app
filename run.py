@@ -31,11 +31,12 @@ def index():
 
     for recipe in recipes:
         dbresponse.append(recipe) 
+    
     # Default settings for form typ    
-    option1=[''] # All types
+    option1=['all'] # All types
     option2=['900']  # Cooking time 900 min /all
-    option3=[''] # Allergens none
-
+    option3=[] # Allergens none
+    option4='' # User last
     if request.method == 'POST': 
            
        
@@ -51,11 +52,13 @@ def index():
 
         if recipe_type == ['']:
             recipe_type = ["Main course", "Starter", "Desserts", "Juices"]
+            option1=['all']
 
         if request.form.getlist('like')!=[]:
             # {$inc: {"amount": -amount}}
             print(request.form.getlist('like'))
-        
+        # {"username" : {$regex : ".*son.*"}}
+        # db.users.findOne({"username" : /.*son.*/i}); /case insentitve
         recipes  = dbrecipes.find({"$and": [{"alergens": {"$nin": option3 }}, {"published": "publish"}, {"recipe-type": {"$in": recipe_type }}, {"cooking-time": {"$lte": int(option2[0]) }}  ] })
 
         for recipe in recipes:
@@ -66,7 +69,8 @@ def index():
         recipes=dbresponse,
         option1=option1[0],   # option1,2,3 For filter to "remmember" settings
         option2=option2[0], 
-        option3=option3, 
+        option3=option3,
+        option4=option4, 
         user=user)
 
 # Show only users recipes

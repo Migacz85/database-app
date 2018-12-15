@@ -1,125 +1,157 @@
 {% extends 'main.html' %}
 {% block content%}
 <!-- ALL USER RECEPIES -->
- <!-- FILTER FOR RECIPES -->
-<form class="input-group mb-3" method="POST">
-        <div class="input-group-prepend">
-            <button type="submit" class="btn btn-info" type="button">Search</button>
-        </div>
-                <!-- { 'active2' if active_page == 'index' else '' } -->
-        <select class="custom-select" id="multioption" name="recipe-type">
-          <option {{ 'selected' if option1 == '' else '' }} value="" >Type of recipe: (all)</option>
-          <option {{ 'selected' if option1 == 'Starter' else '' }}  value="Starter">Starter</option>
-          <option {{ 'selected' if option1 == 'Main course' else '' }} value="Main course">Main course</option>
-          <option {{ 'selected' if option1 == 'Desserts' else '' }} value="Desserts">Desserts</option>
-          <option {{ 'selected' if option1 == 'Juices' else '' }} value="Juices">Juices</option>
-        </select>
-        <select class="custom-select" id="multioption1" multiple="multiple" name="alergens">
-                <option {% for item in option3 %}{{ 'selected' if item == 'dairy' else '' }}{% endfor %}> dairy </option>
-                <option {% for item in option3 %}{{ 'selected' if item == 'eggs' else '' }}{% endfor %}> eggs </option>
-                <option {% for item in option3 %}{{ 'selected' if item == 'crustacean' else '' }}{% endfor %}> crustacean </option>
-                <option {% for item in option3 %}{{ 'selected' if item == 'tree nuts' else '' }}{% endfor %}> tree nuts </option>
-                <option {% for item in option3 %}{{ 'selected' if item == 'peanuts' else '' }}{% endfor %}> peanuts </option>
-                <option {% for item in option3 %}{{ 'selected' if item == 'wheat' else '' }}{% endfor %}> wheat </option>
-                <option {% for item in option3 %}{{ 'selected' if item == 'soybeans' else '' }}{% endfor %}> soybeans </option>
-                <option {% for item in option3 %}{{ 'selected' if item == 'celery' else '' }}{% endfor %}> celery </option>
-                <option {% for item in option3 %}{{ 'selected' if item == 'mustard' else '' }}{% endfor %}> mustard </option>
-                <option {% for item in option3 %}{{ 'selected' if item == 'sesame' else '' }}{% endfor %}> sesame </option>
-                <option {% for item in option3 %}{{ 'selected' if item == 'lupin' else '' }}{% endfor %}> lupin </option>
-                <option {% for item in option3 %}{{ 'selected' if item == 'molluscs' else '' }}{% endfor %}> molluscs </option>
-                <option {% for item in option3 %}{{ 'selected' if item == 'fish' else '' }}{% endfor %}> fish </option>
-                <option {% for item in option3 %}{{ 'selected' if item == 'sulphites' else '' }}{% endfor %}> sulphites </option>
-                
-        </select>
-        <select class="custom-select"  id="multioption2" name="cooking-time" >
-                <option {{ 'selected' if option2 == '900' else '' }} selected value="900"> all</option>
-                <option {{ 'selected' if option2 == '15' else '' }} value="15">15 min </option>
-                <option {{ 'selected' if option2 == '30' else '' }} value="30">30 min</option>
-                <option {{ 'selected' if option2 == '45' else '' }} value="45">45 min</option>
-                <option {{ 'selected' if option2 == '60' else '' }} value="60">1 hour </option>
-                <option {{ 'selected' if option2 == '75' else '' }} value="75">1 h 15 m</option>
-                <option {{ 'selected' if option2 == '90' else '' }} value="90">1 h 30 m</option>
-                <option {{ 'selected' if option2 == '120' else '' }} value="120">2 hours </option>
-            
-        </select>
 
-        <!-- <select class="custom-select" id="multioption" multiple="multiple" name="ingredients">
-                <option > Cheese</option>
-                <option >Tomatoes</option>
-                <option value="mozarella">Mozzarella</option>
-                <option value="mushrooms">Mushrooms</option>
-                <option value="pepperoni">Pepperoni</option>
-                <option value="onions">Onions</option>
-        </select> -->
-                
-    </form>
+<!-- Search and filter feature -->
+<form class="input-group" method="POST">
+        <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                        <button type="submit" class="btn btn-info" type="button">Search</button>
+                </div>
+                <div>
+                        <input type="text" class="form-control" placeholder="" aria-label="search" aria-describedby="search"
+                                name='search'>
+                </div>
+                <!-- Activation button for Advanced search -->
+                <!-- Make it green when some options are selected -->
+                <a class="btn {%if option1!='all' or option2!='900' or option3!=[] %} btn-success  {%else%} btn-secondary {%endif%} "
+                        data-toggle="collapse" href="#Advance" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        +
+                </a>
+        </div>
+        <!-- Advanced Search  -->
+        <!-- ================ -->
+<div class="card">
+        <!-- If user used Advanced filter on the next reload of page show all advanced search panel for him to see that there are additional condition included in search  -->
+        
+        <div class="collapse {%if option1!='all' or option2!='900' or option3!=[] %}  show {%endif%} " id="Advance">
+                <select class="custom-select" id="multioption" name="recipe-type">
+                        <option {{ 'selected' if option1 == 'all' else '' }} value="">Type of recipe: (all)</option>
+                        <option {{ 'selected' if option1 == 'Starter' else '' }} value="Starter">Starter</option>
+                        <option {{ 'selected' if option1 == 'Main course' else '' }} value="Main course">Main course</option>
+                        <option {{ 'selected' if option1 == 'Desserts' else '' }} value="Desserts">Desserts</option>
+                        <option {{ 'selected' if option1 == 'Juices' else '' }} value="Juices">Juices</option>
+                </select>
+                <select class="custom-select" id="multioption1" multiple="multiple" name="alergens">
+                        <option {% for item in option3 %}{{ 'selected' if item=='dairy' else '' }}{% endfor %}> dairy
+                        </option>
+                        <option {% for item in option3 %}{{ 'selected' if item=='eggs' else '' }}{% endfor %}> eggs
+                        </option>
+                        <option {% for item in option3 %}{{ 'selected' if item=='crustacean' else '' }}{% endfor %}>
+                                crustacean </option>
+                        <option {% for item in option3 %}{{ 'selected' if item=='tree nuts' else '' }}{% endfor %}>
+                                tree nuts </option>
+                        <option {% for item in option3 %}{{ 'selected' if item=='peanuts' else '' }}{% endfor %}>
+                                peanuts </option>
+                        <option {% for item in option3 %}{{ 'selected' if item=='wheat' else '' }}{% endfor %}> wheat
+                        </option>
+                        <option {% for item in option3 %}{{ 'selected' if item=='soybeans' else '' }}{% endfor %}>
+                                soybeans </option>
+                        <option {% for item in option3 %}{{ 'selected' if item=='celery' else '' }}{% endfor %}> celery
+                        </option>
+                        <option {% for item in option3 %}{{ 'selected' if item=='mustard' else '' }}{% endfor %}>
+                                mustard </option>
+                        <option {% for item in option3 %}{{ 'selected' if item=='sesame' else '' }}{% endfor %}> sesame
+                        </option>
+                        <option {% for item in option3 %}{{ 'selected' if item=='lupin' else '' }}{% endfor %}> lupin
+                        </option>
+                        <option {% for item in option3 %}{{ 'selected' if item=='molluscs' else '' }}{% endfor %}>
+                                molluscs </option>
+                        <option {% for item in option3 %}{{ 'selected' if item=='fish' else '' }}{% endfor %}> fish
+                        </option>
+                        <option {% for item in option3 %}{{ 'selected' if item=='sulphites' else '' }}{% endfor %}>
+                                sulphites </option> 
+                       
+                </select>
+              
+                <select class="custom-select" id="multioption2" name="cooking-time">
+                        <option {{ 'selected' if option2 == '900' else '' }} selected value="900"> all</option>
+                        <option {{ 'selected' if option2 == '15' else '' }} value="15">15 min </option>
+                        <option {{ 'selected' if option2 == '30' else '' }} value="30">30 min</option>
+                        <option {{ 'selected' if option2 == '45' else '' }} value="45">45 min</option>
+                        <option {{ 'selected' if option2 == '60' else '' }} value="60">1 hour </option>
+                        <option {{ 'selected' if option2 == '75' else '' }} value="75">1 h 15 m</option>
+                        <option {{ 'selected' if option2 == '90' else '' }} value="90">1 h 30 m</option>
+                        <option {{ 'selected' if option2 == '120' else '' }} value="120">2 hours </option>
+
+                </select>
+        </div>
+</div>
+        <!-- ================ -->
+        <!-- Advanced Search  -->
+</form>
+
+<p class="text-white text-left"><i>I found 120 results:</i> </p>
 
 <!-- DISPLAY RECIPES -->
 <br>
 
-{% for r in recipes %} <div class="card text-center"> <div class="card-header"> <div class="row"> <div class="col">  
-                       
-                Cuisine:
-                <!-- Good r['cuisine'][0] -->
-                {%for element in r['cuisine']%}
-                <span class="badge badge-info"> {{element}} </span>
-                {%endfor%}
-        </div>
-        <div class="col">
-                {{r['recipe-type']}}
-        </div>
-        <div class="col">
-            Cooking time: <span class="badge badge-info"> {{r['cooking-time']}}</span>
-        </div>
-    </div>
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">{{r['recipe-name']}}</h5>
-    
-    Ingredients: </br>
-    {% for ingriedient in r['ingredients'] %}
-    <i>{{ ingriedient}} </i> </br>
-    {% endfor%}
-    <br>
-    <br>
+{% for r in recipes %} <div class="card text-center">
+        <div class="card-header">
+                <div class="row">
+                        <div class="col">
 
-    <div class="row">
-        <div class="col-sm-12 ">        
-                Preparation:
-                <p class="card-text text-muted text-justify">{{r['recipe-description']}} </p>
-                
-                <img class="img-wrapped " src="{{r['image-url']}}" alt="Card image cap">
-                <br>
+                                Cuisine:
+                                <!-- Good r['cuisine'][0] -->
+                                {%for element in r['cuisine']%}
+                                <span class="badge badge-info"> {{element}} </span>
+                                {%endfor%}
+                        </div>
+                        <div class="col">
+                                {{r['recipe-type']}}
+                        </div>
+                        <div class="col">
+                                Cooking time: <span class="badge badge-info"> {{r['cooking-time']}}</span>
+                        </div>
+                </div>
         </div>
-        <!-- <div class="col-sm-12 col-md-6">
+        <div class="card-body">
+                <h5 class="card-title">{{r['recipe-name']}}</h5>
+
+                Ingredients: </br>
+                {% for ingriedient in r['ingredients'] %}
+                <i>{{ ingriedient}} </i> </br>
+                {% endfor%}
+                <br>
+                <br>
+
+                <div class="row">
+                        <div class="col-sm-12 ">
+                                Preparation:
+                                <p class="card-text text-muted text-justify">{{r['recipe-description']}} </p>
+
+                                <img class="img-wrapped " src="{{r['image-url']}}" alt="Card image cap">
+                                <br>
+                        </div>
+                        <!-- <div class="col-sm-12 col-md-6">
                 <img class="card-img-top pull-left" src="{{r['image-url']}}" alt="Card image cap">
         </div>
          -->
-    </div>
-<br>
-    <i class="like far fa-thumbs-up"></i>
-    <form method="POST">
-    <button button="submit"  class="invisible-btn" value="{{r._id}}" name="like">        <i class="heart fas fa-heart fa-2x"></i></button>
-    </form>
-    
-  </div>
-  <div class="card-footer text-muted">
-        
-    <div class="row">
-        <div class="col">
-                <b>Allergens:            </b>
-                {%for element in r['alergens']%}
-                <span class="badge badge-warning"> {{element}} </span>
-                {%endfor%}
+                </div>
+                <br>
+                <i class="like far fa-thumbs-up"></i>
+                <form method="POST">
+                        <button button="submit" class="invisible-btn" value="{{r._id}}" name="like"> <i class="heart fas fa-heart fa-2x"></i></button>
+                </form>
+
         </div>
-        <div class="col">
-               <b> Author: </b>{{r['author']}}
+        <div class="card-footer text-muted">
+
+                <div class="row">
+                        <div class="col">
+                                <b>Allergens: </b>
+                                {%for element in r['alergens']%}
+                                <span class="badge badge-warning"> {{element}} </span>
+                                {%endfor%}
+                        </div>
+                        <div class="col">
+                                <b> Author: </b>{{r['author']}}
+                        </div>
+                </div>
+
+
+
         </div>
-    </div>
-    
-        
-        
- </div>
 </div>
 
 <br>
@@ -135,9 +167,5 @@
 {{r['ingredients']}} *
 {{r['author']}} -->
 
-
 {% endfor %}
-
-
-
 {% endblock content%}

@@ -13,40 +13,7 @@
 {% for r in recipes %}
 <div id="accordion">
 
-        <!-- Foldable title of recipe -->
-        <div class="card">
-                <div class="card-header btn btn-link" id="headingOne" data-toggle="collapse" data-target="#A{{r._id}}"
-                        aria-expanded="true" aria-controls="collapseOne">
-                        
-                        <h5> {{r['recipe-name']}} </h5>
-                        <form method="POST">
-                        <div class='settings'>
-                                
-                                  <!-- Delete button trigger modal -->
-                                  <button  type="button"  class="btn btn-danger btn-sm float-right" data-toggle="modal" data-target="#A{{r._id }}">
-                                                Delete
-                                        </button>
-                                        
-                                {% if r['published']=='publish' %}
-                                <!-- <div class="float-right" data-toggle="tooltip" data-placement="top" title="This recepie is published, that mean you and other users can see it on main page. Click the button again to change it do draft."> -->
-                                <button action="submit" class="btn btn-success btn-sm" value="{{r._id }}" name="publish"> Published!</button>
-                                <input type="hidden" name="stage" value="draft"> </span>
-                                <br>
-                                <!-- </div> -->
-                                {% else %}
-                                <!-- <div class="float-right" data-toggle="tooltip" data-placement="top" title="This recepie is draft mode, that mean only you can see it. Click the button again to change it to published."> -->
-                                <input type="hidden" name="stage" value="publish">
-                                <button action="submit" class="btn btn-secondary btn-sm" value="{{r._id }}" name="publish">  Draft</button>
-                                <br>
-                                <!-- </div> -->
-                                {% endif %}
-                        
-                              
-                        </div>
-                </form>        
-                        </button>
-                </div>
-        </div>
+      
         {% include 'modals.html' %}
 
      
@@ -166,7 +133,40 @@
                         </div>
                 </div>
         </div>
-        <br>
+          <!-- Foldable title of recipe -->
+          <div class="card">
+                        <div class="card-header btn btn-link" id="headingOne" data-toggle="collapse" data-target="#A{{r._id}}"
+                                aria-expanded="true" aria-controls="collapseOne">
+                                
+                                <h5> {{r['recipe-name']}} </h5>
+                                <form method="POST">
+                                <div class='settings'>
+                                        
+                                          <!-- Delete button trigger modal -->
+                                          <button  type="button"  class="btn btn-danger btn-sm float-right" data-toggle="modal" data-target="#A{{r._id }}">
+                                                        Delete
+                                                </button>
+                                                
+                                        {% if r['published']=='publish' %}
+                                        <!-- <div class="float-right" data-toggle="tooltip" data-placement="top" title="This recepie is published, that mean you and other users can see it on main page. Click the button again to change it do draft."> -->
+                                        <button action="submit" class="btn btn-success btn-sm" value="{{r._id }}" name="publish"> Published!</button>
+                                        <input type="hidden" name="stage" value="draft"> </span>
+                                        <br>
+                                        <!-- </div> -->
+                                        {% else %}
+                                        <!-- <div class="float-right" data-toggle="tooltip" data-placement="top" title="This recepie is draft mode, that mean only you can see it. Click the button again to change it to published."> -->
+                                        <input type="hidden" name="stage" value="publish">
+                                        <button action="submit" class="btn btn-secondary btn-sm" value="{{r._id }}" name="publish">  Draft</button>
+                                        <br>
+                                        <!-- </div> -->
+                                        {% endif %}
+                                
+                                      
+                                </div>
+                        </form>        
+                                </button>
+                        </div>
+                </div>
         {% endfor %}
 
       
