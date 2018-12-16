@@ -13,7 +13,7 @@ $('#multioption').multiselect({
                     if ($("#multioption").val()=="" )
                     {
                         $('#Advance > div:nth-child(2) > button > span').css('color',off)
-                     return "Cooking time [all]"
+                     return "Type of recipe [all]"
                     } else {
                         $('#Advance > div:nth-child(2) > button > span').css('color',on)
                     }

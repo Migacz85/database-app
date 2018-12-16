@@ -100,9 +100,11 @@
                                                 </div>
 
                                                 <div class="col-sm-12 col-md-6 mx-auto text-center">
+                                                                
                                                                 {%if loop.index==1 %}     <div data-toggle="tooltip" data-placement="right" title="Click to change photo"> {%endif %}
                                                                 <button class="invisible-btn" data-toggle="modal"
                                                                         data-target="#cPhoto{{r._id }}">
+                                                                        Photo:
                                                                         <img class="card-img-top" src="{{r['image-url']}}"
                                                                                 alt="Card image cap">
                                                                                 {%if loop.index==1 %}     </div> {%endif %}
@@ -156,7 +158,7 @@
                                         {% else %}
                                         <!-- <div class="float-right" data-toggle="tooltip" data-placement="top" title="This recepie is draft mode, that mean only you can see it. Click the button again to change it to published."> -->
                                         <input type="hidden" name="stage" value="publish">
-                                        <button action="submit" class="btn btn-secondary btn-sm" value="{{r._id }}" name="publish">  Draft</button>
+                                        <button action="submit" class="btn btn-secondary btn-sm" value="{{r._id }}" name="publish">  Publish</button>
                                         <br>
                                         <!-- </div> -->
                                         {% endif %}
@@ -168,9 +170,27 @@
                         </div>
                 </div>
         {% endfor %}
-
-      
-       
 </div>        
+
+
+        <nav aria-label="" class="mt-5">
+                <ul class="pagination">
+                  <li class="page-item disabled">
+                    <span class="page-link">Previous</span>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item active">
+                    <span class="page-link">
+                      2
+                      <span class="sr-only">(current)</span>
+                    </span>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                  </li>
+                </ul>
+              </nav>
+
 
         {% endblock content%}

@@ -8,9 +8,12 @@
                 <div class="input-group-prepend">
                         <button type="submit" class="btn btn-info" type="button">Search</button>
                 </div>
-                <div>
+                <div>   <div data-toggle="tooltip" data-placement="top" title="Example: 'chicken -masala' will return recipes with word chicken and without masala word"> 
                         <input type="text" class="form-control" placeholder="" aria-label="search" aria-describedby="search"
-                                name='search'>
+                                name='search' value="{{option5[0]}}" > 
+                                
+                                
+                                </div>
                 </div>
                 <!-- Activation button for Advanced search -->
                 <!-- Make it green when some options are selected -->
@@ -81,7 +84,7 @@
         <!-- Advanced Search  -->
 </form>
 
-<p class="text-white text-left"><i>I found 120 results:</i> </p>
+<p class="text-white text-left"><i>I found {{recipes|length}} results:</i> </p>
 
 <!-- DISPLAY RECIPES -->
 <br>

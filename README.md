@@ -106,6 +106,13 @@ add IP on 0.0.0.0
 add PORT on 5000
 restart server
 ```
+## Side notes  
+### Mongodb indexes
+
+to check current indexes on databaes:
+db.recipes.getIndexes()
+
+
 
 ## Credits
 
@@ -120,6 +127,9 @@ https://favicon.io/emoji-favicons/fork-and-knife-with-plate/
 Resources helpful to build this site:
 
 https://github.com/PrettyPrinted/mongodb-user-login/blob/master/login_example.py
+
+https://api.mongodb.com/python/current/
+https://docs.mongodb.com/manual/indexes/#index-type-multikey
 
 ### Acknowledgements
 

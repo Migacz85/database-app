@@ -5,6 +5,7 @@ import bcrypt
 from bson.objectid import ObjectId
 from time import strftime
 import datetime
+from pymongo import TEXT
 
 # [i for i in dbm.neo_nodes.find({"_id": ObjectId(obj_id_to_find)})]
 
@@ -20,13 +21,24 @@ mongo = PyMongo(app)
 
 def index():
     user='You are not logged'
-
     if 'username' in session:
         user='Cheff: '+session['username']
-
-    dbrecipes = mongo.db.recipes
     dbresponse=[]
+    dbrecipes = mongo.db.recipes
+    
+     # search="burger new"
+            # {"username" : {$regex : ".*son.*"}}
+        # db.users.findOne({"username" : /.*son.*/i}); /case insentitve
+# {"published": "publish"}
+    # dbrecipes.save()
+    # dbrecipes.ensureIndex({"recipe-name":1})
+    # dbrecipes.drop_index([("recipe-description", TEXT)])
+    
+    #dbrecipes.create_index( [("recipe-description", TEXT), ("recipe-title", TEXT)], default_language='english'  )
 
+
+    dbrecipes.ensure_index([("recipe-description","text"), ("recipe-name", "text") ])
+    
     recipes  = dbrecipes.find({"published": "publish"})
 
     for recipe in recipes:
@@ -37,6 +49,7 @@ def index():
     option2=['900']  # Cooking time 900 min /all
     option3=[] # Allergens none
     option4='' # User last
+    search=''
     if request.method == 'POST': 
            
        
@@ -46,21 +59,24 @@ def index():
         option1 = (request.form.getlist('recipe-type'))
         option2 = (request.form.getlist('cooking-time'))
         option3 = (request.form.getlist('alergens'))
+        search = (request.form.getlist('search'))
         recipe_type =(request.form.getlist('recipe-type'))
         
-        print(option1, option2, option3)
+        print(search)
+        # print(option1, option2, option3)
 
         if recipe_type == ['']:
             recipe_type = ["Main course", "Starter", "Desserts", "Juices"]
             option1=['all']
 
         if request.form.getlist('like')!=[]:
-            # {$inc: {"amount": -amount}}
+            
             print(request.form.getlist('like'))
-        # {"username" : {$regex : ".*son.*"}}
-        # db.users.findOne({"username" : /.*son.*/i}); /case insentitve
-        recipes  = dbrecipes.find({"$and": [{"alergens": {"$nin": option3 }}, {"published": "publish"}, {"recipe-type": {"$in": recipe_type }}, {"cooking-time": {"$lte": int(option2[0]) }}  ] })
-
+        if search!=['']:
+            recipes  = dbrecipes.find({"$and": [{"alergens": {"$nin": option3 }}, { "$text": { "$search":  "/.*"+search[0]+".*/i" } }, {"published": "publish"} , {"recipe-type": {"$in": recipe_type }}, {"cooking-time": {"$lte": int(option2[0]) }}  ] }).sort('date',-1)
+        else:
+            recipes  = dbrecipes.find({"$and": [{"alergens": {"$nin": option3 }}, {"published": "publish"} , {"recipe-type": {"$in": recipe_type }}, {"cooking-time": {"$lte": int(option2[0]) }}  ] }).sort('date',-1)
+        
         for recipe in recipes:
             dbresponse.append(recipe)
 
@@ -71,10 +87,10 @@ def index():
         option2=option2[0], 
         option3=option3,
         option4=option4, 
+        option5=search,
         user=user)
 
-# Show only users recipes
-
+# Show only users recipes and allow user to edit them nicely
 @app.route('/user_recipes', methods=["POST", "GET"])
 def user_recipes():
     user='You are not logged'
@@ -153,7 +169,6 @@ def user_recipes():
         show_tooltips=show_tooltips, 
         user=user)
 
-
 @app.route('/login', methods=["POST", "GET"])
 def login():
     user='You are not logged'
@@ -219,12 +234,12 @@ def add_recipe():
     recipes.insert({
     'likes': 0,
     'recipe-name' : "My new recipe" , #request.form['recipe-name'] 
-    'recipe-type' : "" , 
+    'recipe-type' : "Starter" , 
     'cooking-time': 15 , # Always change to int if its need to be int ...
     'cuisine': [] ,
     'alergens': [],
-    'recipe-description': "",
-    'image-url' : "https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fkielkowski-szkolka.pl%2Fobrazki%2Fobrazek_503_1.jpg&f=1",
+    'recipe-description': "Write here how to connect ingredients to make you delicious recipe",
+    'image-url' : "",
     'ingredients' : [], # Convert string to list where "," is separator
     'author': session['username'],
     'date': strftime("%d/%m/%Y %H:%M"),
