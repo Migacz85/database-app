@@ -5,7 +5,7 @@
 <H2 class="text-left"> You dont have any recipes yet, what do you think about to <button type="button" class="btn btn-warning">  <a href="/add_recipe" >add one</a> </button> ? </H2>
 
 {% else %}
-<H2 class="text-left"> Here are your recipes: </H2>
+<H2 class="text-left"> Edit your recipes: </H2>
 
 {% endif %}
 
@@ -23,8 +23,9 @@
                 <div class="card-body-color">
                         <div class="card text-center">
                                 <div class="card-header " data-placement="top" >
+                                                <button class="badge badge float-left" id="help" > ?</button>
                                         <div class="row">
-                                                
+                                
                                                 <div class="col">
                                                                 {%if loop.index==1 %}            <div data-toggle="tooltip" data-placement="bottom" title="Click to edit Cuisine"> {%endif %}
                                                                 <!-- Triger button for modal Cuisine -> modals.html -> cuisine  -->
@@ -138,7 +139,7 @@
           <!-- Foldable title of recipe -->
           <div class="card">
                         <div class="card-header btn btn-link" id="headingOne" data-toggle="collapse" data-target="#A{{r._id}}"
-                                aria-expanded="true" aria-controls="collapseOne">
+                                aria-expanded="false" aria-controls="collapseOne">
                                 
                                 <h5> {{r['recipe-name']}} </h5>
                                 <form method="POST">
@@ -172,25 +173,63 @@
         {% endfor %}
 </div>        
 
+<!-- For mobile users floating circle button in right corner -->
 
-        <nav aria-label="" class="mt-5">
-                <ul class="pagination">
-                  <li class="page-item disabled">
-                    <span class="page-link">Previous</span>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item active">
-                    <span class="page-link">
-                      2
-                      <span class="sr-only">(current)</span>
-                    </span>
-                  </li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
-                  </li>
-                </ul>
-              </nav>
+<div id="container-floating">
+
+                <div class="nd5 nds" data-toggle="tooltip" data-placement="left" data-original-title=""></div>
+                
+                <div class="nd1 nds" data-toggle="tooltip" data-placement="left" data-original-title="">
+        
+                                <a href="{{ url_for('index') }}">
+                                                <p class="letter"> <i class="fas fa-home fa-1x"></i> </p>
+                                        </a>
+                </div>
+<!--         
+                <div class="nd1 nds" data-toggle="tooltip" data-placement="left" data-original-title=""><img class="reminder">
+        
+                        <a href="{{ url_for('add_recipe') }}">
+                                <p class="letter"> <i class="fas fa-plus fa-1x"></i> </p>
+                        </a>
+                </div> -->
+
+                <!-- <div class="nd1 nds" data-toggle="tooltip" data-placement="left" data-original-title=""><img class="reminder">
+        
+                        <a href="{{ url_for('add_recipe') }}">
+                                <p class="letter"> <i class="fas fa-plus fa-1x"></i> </p>
+                        </a>
+                </div> -->
+        
+                <div id="floating-button" data-toggle="tooltip" data-placement="left" data-original-title="Add new recipe">
+
+                           
+                        <p class="plus">+</p>
+                        
+                        <i class="fas fa-plus fa-2x edit text-white" onclick="add_recipe()"> </i>
+                </div>
+        
+        </div>
+        
+
+
+        <!-- <nav aria-label="" class="mt-5"> -->
+        <!--         <ul class="pagination"> -->
+        <!--           <li class="page-item disabled"> -->
+        <!--             <span class="page-link">Previous</span> -->
+        <!--           </li> -->
+        <!--           <li class="page-item"><a class="page-link" href="#">1</a></li> -->
+        <!--           <li class="page-item active"> -->
+        <!--             <span class="page-link"> -->
+        <!--               2 -->
+        <!--               <span class="sr-only">(current)</span> -->
+        <!--             </span> -->
+        <!--           </li> -->
+        <!--           <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+        <!--           <li class="page-item"> -->
+        <!--             <a class="page-link" href="#">Next</a> -->
+        <!--           </li> -->
+        <!--         </ul> -->
+        <!--       </nav> -->
 
 
         {% endblock content%}

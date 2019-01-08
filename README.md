@@ -1,4 +1,4 @@
-# Math quiz
+# Recipify me
 
 4 milestone project 
 
@@ -6,20 +6,28 @@
 
 ## UX
 
-## User Stories / Automated tests
+## User Stories
 
-As a user: </br>
-- I want to log in to the site so I can have access to site </br>
-- Before I'm logging in to the site I want to be informed that I am not logged in so I know in what state site is</br>
-- Before I'm logging in to the site I want to have in options: Login, Signup, Home so I know what options i have</br>
-- After I'm logging in to the site I want to have options: Home, Add Recipe, Statistics, Logout - So I can perform this actions</br>
+As a user: 
+- I want to log in to the site so I can have access to site 
+- Before I'm logging in to the site I want to be informed that I am not logged in so I know in what state site is
+- Before I'm logging in to the site I want to have in options: Login, Signup, Home so I know what options i have
+- After I'm logging in to the site I want to have options: Home, Add Recipe, Statistics, Logout - So I can perform this actions
 - When I'm visisting website (not logged) I want to see recipes others peoples so I can scroll and read them
 - When I'm visisting website (not logged and logged) I want to have option to filter recipes by type, allergens and cooking time
-- When I'm using filter and selecting items after submiting I want them to be still selected
-- When I'm using filter and selecting item, I want see instantly in choosing box that this item was selected.
+- As a user I want to have search input, so I can write a sentence or words that I'm interested in and page will return what I'm looking for
+- As a user I expect to have a "plus" button close to search input, so after clicking it I can filter search result by type of recipe, exclude those with allergens or choose range of cooking time
+- When I'm using advanced search filter and selecting items I want them to be sumbited immediatelly so I can see results instantly
+- When I'm using advanced search filter and selecting items after submiting I want them to be still selected so I don't need to pass them again after page refresh
+- When I'm using advanced search filter after selecting item, I want see instantly in choosing box that this item was selected with different color so it visualy indicate me that is turned on
+- Close to search filter I want to have star Icon that after clicking will turn yellow and show me all recepies I like so I can back to interesting content more quickly
 
-As a administrator:</br>
-- I want pages with adding recipe and stats to be available only for logged users so only user with account can create recipe</br>
+- When I'm using advanced search filter I want to have tooltips that after hovering on them will display more information what for button is so I can learn more quickly and understand better how app is behaving
+- When I'm visiting home page only 10 recipes are displayed, bellow the last one I have button load more that after clicking will load extra 10 recipes
+
+As a administrator:
+- I want pages with adding recipe and stats to be available only for logged users so only user with account can create recipe
+
 
 ## Technologies Used:
 
@@ -28,6 +36,9 @@ As a administrator:</br>
 - Javascript
 
 ## Features 
+
+- Search filter with advanced mode for searching by type of recipe, cooking time and possibility to exclude recepies with allergens. 
+
 
 ### Features left to implement
 
@@ -115,6 +126,9 @@ db.recipes.getIndexes()
 
 
 ## Credits
+
+Thanks to: 
+https://codepen.io/simoberny/pen/pJZJQY
 
 ### Media
 

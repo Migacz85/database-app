@@ -8,78 +8,96 @@
                 <div class="input-group-prepend">
                         <button type="submit" class="btn btn-info" type="button">Search</button>
                 </div>
-                <div>   <div data-toggle="tooltip" data-placement="top" title="Example: 'chicken -masala' will return recipes with word chicken and without masala word"> 
-                        <input type="text" class="form-control" placeholder="" aria-label="search" aria-describedby="search"
-                                name='search' value="{{option5[0]}}" > 
-                                
-                                
-                                </div>
+                <div class="mr-1">
+                        <div data-toggle="tooltip" data-placement="top" title="Example: 'chicken -masala' will return recipes with word chicken and without masala word">
+                                <input type="text" class="form-control " placeholder="" aria-label="search"
+                                        aria-describedby="search" name='search' value="{{option5[0]}}">
+                        </div>
                 </div>
                 <!-- Activation button for Advanced search -->
                 <!-- Make it green when some options are selected -->
-                <a class="btn {%if option1!='all' or option2!='900' or option3!=[] %} btn-success  {%else%} btn-secondary {%endif%} "
+                <div class="btn mr-1{%if option1!='all' or option2!='900' or option3!=[] %} btn-success  {%else%} btn-secondary {%endif%} "
                         data-toggle="collapse" href="#Advance" role="button" aria-expanded="false" aria-controls="collapseExample">
-                        +
-                </a>
-        </div>
+                        <i class="fas fa-plus"></i>
+                </div>
+                <a href="{%if bookmark==1%}{{url_for('bookmark_off')}}{%else %}{{url_for('bookmark_on')}}{% endif %}" class="btn mr-1{%if bookmark==1 %} btn-warning text-white  {%else%} btn-secondary {%endif%}"  data-toggle="tooltip" data-placement="top" title="Browse your bookmarks " 
+                        data-toggle="collapse"  role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <i class="fas fa-star"></i>
+        </a>
+        </div> 
         <!-- Advanced Search  -->
         <!-- ================ -->
-<div class="card">
-        <!-- If user used Advanced filter on the next reload of page show all advanced search panel for him to see that there are additional condition included in search  -->
-        
-        <div class="collapse {%if option1!='all' or option2!='900' or option3!=[] %}  show {%endif%} " id="Advance">
-                <select class="custom-select" id="multioption" name="recipe-type">
-                        <option {{ 'selected' if option1 == 'all' else '' }} value="">Type of recipe: (all)</option>
-                        <option {{ 'selected' if option1 == 'Starter' else '' }} value="Starter">Starter</option>
-                        <option {{ 'selected' if option1 == 'Main course' else '' }} value="Main course">Main course</option>
-                        <option {{ 'selected' if option1 == 'Desserts' else '' }} value="Desserts">Desserts</option>
-                        <option {{ 'selected' if option1 == 'Juices' else '' }} value="Juices">Juices</option>
-                </select>
-                <select class="custom-select" id="multioption1" multiple="multiple" name="alergens">
-                        <option {% for item in option3 %}{{ 'selected' if item=='dairy' else '' }}{% endfor %}> dairy
-                        </option>
-                        <option {% for item in option3 %}{{ 'selected' if item=='eggs' else '' }}{% endfor %}> eggs
-                        </option>
-                        <option {% for item in option3 %}{{ 'selected' if item=='crustacean' else '' }}{% endfor %}>
-                                crustacean </option>
-                        <option {% for item in option3 %}{{ 'selected' if item=='tree nuts' else '' }}{% endfor %}>
-                                tree nuts </option>
-                        <option {% for item in option3 %}{{ 'selected' if item=='peanuts' else '' }}{% endfor %}>
-                                peanuts </option>
-                        <option {% for item in option3 %}{{ 'selected' if item=='wheat' else '' }}{% endfor %}> wheat
-                        </option>
-                        <option {% for item in option3 %}{{ 'selected' if item=='soybeans' else '' }}{% endfor %}>
-                                soybeans </option>
-                        <option {% for item in option3 %}{{ 'selected' if item=='celery' else '' }}{% endfor %}> celery
-                        </option>
-                        <option {% for item in option3 %}{{ 'selected' if item=='mustard' else '' }}{% endfor %}>
-                                mustard </option>
-                        <option {% for item in option3 %}{{ 'selected' if item=='sesame' else '' }}{% endfor %}> sesame
-                        </option>
-                        <option {% for item in option3 %}{{ 'selected' if item=='lupin' else '' }}{% endfor %}> lupin
-                        </option>
-                        <option {% for item in option3 %}{{ 'selected' if item=='molluscs' else '' }}{% endfor %}>
-                                molluscs </option>
-                        <option {% for item in option3 %}{{ 'selected' if item=='fish' else '' }}{% endfor %}> fish
-                        </option>
-                        <option {% for item in option3 %}{{ 'selected' if item=='sulphites' else '' }}{% endfor %}>
-                                sulphites </option> 
-                       
-                </select>
-              
-                <select class="custom-select" id="multioption2" name="cooking-time">
-                        <option {{ 'selected' if option2 == '900' else '' }} selected value="900"> all</option>
-                        <option {{ 'selected' if option2 == '15' else '' }} value="15">15 min </option>
-                        <option {{ 'selected' if option2 == '30' else '' }} value="30">30 min</option>
-                        <option {{ 'selected' if option2 == '45' else '' }} value="45">45 min</option>
-                        <option {{ 'selected' if option2 == '60' else '' }} value="60">1 hour </option>
-                        <option {{ 'selected' if option2 == '75' else '' }} value="75">1 h 15 m</option>
-                        <option {{ 'selected' if option2 == '90' else '' }} value="90">1 h 30 m</option>
-                        <option {{ 'selected' if option2 == '120' else '' }} value="120">2 hours </option>
+        <div class="card">
+                <!-- If user used Advanced filter on the next reload of page show all advanced search panel for him to see that there are additional condition included in search  -->
 
-                </select>
+                <div class="collapse {%if option1!='all' or option2!='900' or option3!=[] %}  show {%endif%} " id="Advance">
+                        <select class="custom-select" id="multioption" name="recipe-type">
+                                <option {{ 'selected' if option1 == 'all' else '' }} value="">Type of recipe: (all)</option>
+                                <option {{ 'selected' if option1 == 'Starter' else '' }} value="Starter">Starter</option>
+                                <option {{ 'selected' if option1 == 'Main course' else '' }} value="Main course">Main
+                                        course</option>
+                                <option {{ 'selected' if option1 == 'Desserts' else '' }} value="Desserts">Desserts</option>
+                                <option {{ 'selected' if option1 == 'Juices' else '' }} value="Juices">Juices</option>
+                        </select>
+                        <select class="custom-select" id="multioption1" multiple="multiple" name="alergens">
+                                <option {% for item in option3 %}{{ 'selected' if item=='dairy' else '' }}{% endfor %}>
+                                        dairy
+                                </option>
+                                <option {% for item in option3 %}{{ 'selected' if item=='eggs' else '' }}{% endfor %}>
+                                        eggs
+                                </option>
+                                <option {% for item in option3 %}{{ 'selected' if item=='crustacean' else '' }}{%
+                                        endfor %}>
+                                        crustacean </option>
+                                <option {% for item in option3 %}{{ 'selected' if item=='tree nuts' else '' }}{% endfor
+                                        %}>
+                                        tree nuts </option>
+                                <option {% for item in option3 %}{{ 'selected' if item=='peanuts' else '' }}{% endfor
+                                        %}>
+                                        peanuts </option>
+                                <option {% for item in option3 %}{{ 'selected' if item=='wheat' else '' }}{% endfor %}>
+                                        wheat
+                                </option>
+                                <option {% for item in option3 %}{{ 'selected' if item=='soybeans' else '' }}{% endfor
+                                        %}>
+                                        soybeans </option>
+                                <option {% for item in option3 %}{{ 'selected' if item=='celery' else '' }}{% endfor %}>
+                                        celery
+                                </option>
+                                <option {% for item in option3 %}{{ 'selected' if item=='mustard' else '' }}{% endfor
+                                        %}>
+                                        mustard </option>
+                                <option {% for item in option3 %}{{ 'selected' if item=='sesame' else '' }}{% endfor %}>
+                                        sesame
+                                </option>
+                                <option {% for item in option3 %}{{ 'selected' if item=='lupin' else '' }}{% endfor %}>
+                                        lupin
+                                </option>
+                                <option {% for item in option3 %}{{ 'selected' if item=='molluscs' else '' }}{% endfor
+                                        %}>
+                                        molluscs </option>
+                                <option {% for item in option3 %}{{ 'selected' if item=='fish' else '' }}{% endfor %}>
+                                        fish
+                                </option>
+                                <option {% for item in option3 %}{{ 'selected' if item=='sulphites' else '' }}{% endfor
+                                        %}>
+                                        sulphites </option>
+
+                        </select>
+
+                        <select class="custom-select" id="multioption2" name="cooking-time">
+                                <option {{ 'selected' if option2 == '900' else '' }} selected value="900"> all</option>
+                                <option {{ 'selected' if option2 == '15' else '' }} value="15">15 min </option>
+                                <option {{ 'selected' if option2 == '30' else '' }} value="30">30 min</option>
+                                <option {{ 'selected' if option2 == '45' else '' }} value="45">45 min</option>
+                                <option {{ 'selected' if option2 == '60' else '' }} value="60">1 hour </option>
+                                <option {{ 'selected' if option2 == '75' else '' }} value="75">1 h 15 m</option>
+                                <option {{ 'selected' if option2 == '90' else '' }} value="90">1 h 30 m</option>
+                                <option {{ 'selected' if option2 == '120' else '' }} value="120">2 hours </option>
+
+                        </select>
+                </div>
         </div>
-</div>
         <!-- ================ -->
         <!-- Advanced Search  -->
 </form>
@@ -104,7 +122,7 @@
                                 {{r['recipe-type']}}
                         </div>
                         <div class="col">
-                                Cooking time: <span class="badge badge-info"> {{r['cooking-time']}}</span>
+                                Cooking time: <span class="badge badge-info">  {{r['cooking-time']}} min </span>
                         </div>
                 </div>
         </div>
@@ -128,16 +146,23 @@
                         </div>
                         <!-- <div class="col-sm-12 col-md-6">
                 <img class="card-img-top pull-left" src="{{r['image-url']}}" alt="Card image cap">
-        </div>
-         -->
+                </div>
+                -->
                 </div>
                 <br>
-                <i class="like far fa-thumbs-up"></i>
-                <form method="POST">
-                        <button button="submit" class="invisible-btn" value="{{r._id}}" name="like"> <i class="heart fas fa-heart fa-2x"></i></button>
-                </form>
 
-        </div>
+		
+			
+		</a>																			   
+		<a href="{{url_for('like', recipe_id=r._id ) }}"  class="invisible2 float-left " value="{{r._id}}" name="like"> <i class="heart fal fa-star fa-2x  {% for like in dblikes[0]['likes'] %} {%if like|string==r._id|string%} fas heart-active text-warning {%else %} {%endif%} {%endfor %}"></i></a> 
+
+	
+		
+                 <!-- <img src="http://media.idownloadblog.com/wp-content/uploads/2016/01/12-messenger-app-icon-android.jpg" style="width:110px; float:left; margin-top:-20px; margin-left:-20px; z-index:-1; " alt=""> -->
+
+        </div> 
+        <br>
+       
         <div class="card-footer text-muted">
 
                 <div class="row">
@@ -158,8 +183,8 @@
 </div>
 
 <br>
-
-<!-- Acces to all dynamicaly created variables -->
+<!-- For further development -->
+<!-- Acces to all dynamicaly created variables on this page -->
 <!-- 
 {{r['recipe-name']}} *
 {{r['cooking-time']}} *
@@ -171,4 +196,27 @@
 {{r['author']}} -->
 
 {% endfor %}
+
+<!-- For mobile users floating circle button in right corner -->
+
+<div id="container-floating">
+
+        <div class="nd5 nds" data-toggle="tooltip" data-placement="left" data-original-title="asdf"></div>
+      
+      
+
+        <div class="nd1 nds" data-toggle="tooltip" data-placement="left" data-original-title="Add new recipe">
+                <a href="{{ url_for('add_recipe') }}">
+                        <p class="letter"> <i class="fas fa-plus fa-1x"></i> </p>
+                </a>
+        </div>
+
+        <div id="floating-button" data-toggle="tooltip" data-placement="left" data-original-title="Edit recipes" onclick="">
+                <p id="plus" class="plus" >+</p>
+                <img class="edit" id="edit" onclick="edit_btn()" src="https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/1x/bt_compose2_1x.png" >
+                
+        </div>
+
+</div>
+
 {% endblock content%}

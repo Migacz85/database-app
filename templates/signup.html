@@ -4,7 +4,13 @@
     <div class="row justify-content-md-center">
         <div class="col-md-6">
             <form class="form-signin"  method=POST action="{{ url_for('signup') }}">
-                <h2 class="form-signin-heading">Sign Up</h2>
+                <h2 class="form-signin-heading">Register</h2>
+                <br>
+                <h4> If you want give a like <i class="red fas fa-heart text-danger"></i>  </h4>
+                <h4> Add your own recipe  <i class="fas fa-plus text-warning"> </i></h4>
+                <h4> Or edit existing ones <i class="fas fa-pen text-primary"> </i> </h4>
+                <br>
+                <h4>Please register here, I promise it will be quick <i class="fas fa-laugh-wink text-warning"> </i>    </h4>
                 <br>
                 <label for="inputUsername" class="sr-only">Username</label>
                 <br>
@@ -20,7 +26,7 @@
                 <label for="inputPassword" class="sr-only">Password</label>
                 <input name="password_check" type="password" id="inputPassword2" class="form-control" placeholder="Repeat password" required>
                 <br>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Register </button>
             </form>
             <br>
             {% if msg!='' %}

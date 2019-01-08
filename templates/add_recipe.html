@@ -3,7 +3,6 @@
 <h3 class="text-uppercase">Add your recipe </h3>
 <hr />
 <form class="text-white" method="POST">
-
     <div class="row">
         <div class="form-group col-md-4">
             <label for="recipe">Recipe Name</label>
@@ -175,7 +174,7 @@ function stopRKey(evt) {
   var evt = (evt) ? evt : ((event) ? event : null); 
   var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null); 
   if ((evt.keyCode == 13) && (node.type=="text"))  {return false;} 
-} 
+
 
 document.onkeypress = stopRKey; 
 

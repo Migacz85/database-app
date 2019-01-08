@@ -7,7 +7,6 @@ body {
   background: linear-gradient(to bottom, rgba(22, 22, 22, 0.1) 0%, rgba(22, 22, 22, 0.5) 75%, #161616 100%), url('../img/photo.jpeg');
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: scroll;
   background-size: cover;
   background-attachment: fixed
 }
@@ -99,7 +98,16 @@ footer {
 
 /* For wrapping elements that's need to be edited on user-recipes site */
 /* user_recipes.html template */
+.invisible2 {
+  background-color: transparent;
+  border-color: transparent;
+  line-height: inherit
+}
+
+
 .invisible-btn {
+  border-style: dotted;
+  border-color: #cdcdd8 !important;
   background-color: transparent;
   border-color: transparent;
   line-height: inherit
@@ -132,6 +140,7 @@ footer {
   color: #278888;
 }
 
+
 .like:hover {
   margin-right: 5px;
   float: right;
@@ -140,12 +149,15 @@ footer {
 
 .heart {
   float: right;
-  color: #ff8c8c;
+  color: hsl(0, 82%, 85%);
   margin-right: 5px;
+}
+.heart-active {
+  color:#db4437!important;
 }
 
 .heart:hover {
-  color: red;
+  color: #f85f5f;
 }
 
 
@@ -156,16 +168,36 @@ div.btn-group > button > span {
 /* Bootstrap */
 
 /* Style for list of recipes */
-.cardtitle {
 
+/* .btn-link[aria-expanded="true"]{
+  background-color: #e1e2e2;
+} */
+
+/* .btn-link[aria-expanded="false"]{
+  background-color: #535353;
+} */
+/* colapsed */
+.card-header.btn.btn-link.collapsed {
+  /* background-color: rgb(154, 154, 206); */
+}
+
+
+.cardtitle {
   background-color: hsla(0, 0%, 100%, 0);
   color: white;
+}
+.card-header { 
+  padding:5px; 
+}
 
+
+.card {
+  margin-bottom:6px;
 }
 
 .card-body-color {
-  padding: 10px;
-  background-color: transparent !important;
+  padding: 10px 10px 0px 10px;
+  /* background-color: transparent !important; */
 }
 
 /* Styles for Advanced search */
@@ -229,6 +261,7 @@ body>div.container-flex>div>div>div>form>div.btn-group.show>ul>li:hover {
   -ms-flex-align: center;
   align-items: center;
 }
+
 
 
 body>a {
@@ -299,7 +332,12 @@ body>a {
   color: black;
 }
 
+/* For proper rendering in firefox */
 
+button {
+  color:black;
+  background-color: lightgray;
+}
 @media only screen and (max-width: 990px) {
 
   /* hamburger */
