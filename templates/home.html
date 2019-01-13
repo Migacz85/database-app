@@ -103,8 +103,13 @@
 </form>
 
 <p class="text-white text-left"><i>I found {{recipes|length}} results:</i> </p>
+{% if bookmark==1 and recipes|length==0 %} 
 
+<h4>You don't have any bookmarks yet. Click on star icon <i class="fal fa-star"></i> when browsing recipes to save them here.</h4>
+                        
+{%endif %}
 <!-- DISPLAY RECIPES -->
+
 <br>
 
 {% for r in recipes %} <div class="card text-center">
@@ -139,9 +144,9 @@
                 <div class="row">
                         <div class="col-sm-12 ">
                                 Preparation:
+                                <img class="img-wrapped " src="{{r['image-url']}}" alt="Card image cap">
                                 <p class="card-text text-muted text-justify">{{r['recipe-description']}} </p>
 
-                                <img class="img-wrapped " src="{{r['image-url']}}" alt="Card image cap">
                                 <br>
                         </div>
                         <!-- <div class="col-sm-12 col-md-6">
@@ -153,7 +158,7 @@
 
 		
 			
-		</a>																			   
+		<!-- </a>																			    -->
 		<a href="{{url_for('like', recipe_id=r._id ) }}"  class="invisible2 float-left " value="{{r._id}}" name="like"> <i class="heart fal fa-star fa-2x  {% for like in dblikes[0]['likes'] %} {%if like|string==r._id|string%} fas heart-active text-warning {%else %} {%endif%} {%endfor %}"></i></a> 
 
 	

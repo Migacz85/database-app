@@ -7,7 +7,7 @@ from bson.objectid import ObjectId
 from time import strftime
 import datetime
 from pymongo import TEXT
-
+import pygal
 # [i for i in dbm.neo_nodes.find({"_id": ObjectId(obj_id_to_find)})]
 
 from os import path
@@ -16,22 +16,12 @@ app = Flask(__name__)
 app.secret_key = 'mysecret'
 app.config['MONGO_DBNAME']='recipifydb'
 app.config['MONGO_URI']='mongodb://migacz:1migacz@ds113482.mlab.com:13482/recipifydb'
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 mongo = PyMongo(app)
 
 app.config.update(TEMPLATES_AUTO_RELOAD=True)
 app.jinja_env.auto_reload = True
 app.config['TEMPLATES_AUTO_RELOAD'] = True
-
-# extra_dirs = ['/home/migacz/Coding/www/4Project/templates',]
-# extra_files = extra_dirs[:]
-# for extra_dir in extra_dirs:
-#     for dirname, dirs, files in os.walk(extra_dir):
-#         for filename in files:
-#             filename = path.join(dirname, filename)
-#             if path.isfile(filename):
-#                extra_files.append(filename)
-# # port = int(os.environ.get("PORT", 5000))
-# # app.run(host='0.0.0.0', port=port, extra_files=extra_files, debug= True)  
 
 # Main page show all recipes from all users:
 @app.route('/', methods=["POST", "GET"])
@@ -54,7 +44,7 @@ def index():
             dblikes.append(item)
     dbrecipes = mongo.db.recipes
     dbusers = mongo.db.users
-    dbrecipes.ensure_index([("recipe-description","text"), ("recipe-name", "text") ])
+    dbrecipes.create_index([("recipe-description","text"), ("recipe-name", "text") ])
 
     # Display all published recipes 
     if bookmark==0:
@@ -63,7 +53,6 @@ def index():
         id_likes = dbusers.find_one({"name" : session['username']}, {"likes":1, "_id":0})["likes"]
         # recipes = dbrecipes.find({"$and": [{"alergens": {"$nin": option3 }}, {"published": "publish"} , {"recipe-type": {"$in": recipe_type }}, {"_id": {"$in": id_likes }},{"cooking-time": {"$lte": int(option2[0]) }}  ] })
         recipes = dbrecipes.find({"$and": [   {"_id": {"$in": id_likes }} ] })
-        print(id_likes)
 
     dbresponse=[]
     for recipe in recipes:
@@ -78,7 +67,6 @@ def index():
     
     if request.method == 'POST': 
         cooktime=200
-        print("POST:")
         option1 = (request.form.getlist('recipe-type'))
         option2 = (request.form.getlist('cooking-time'))
         option3 = (request.form.getlist('alergens'))
@@ -97,9 +85,9 @@ def index():
             # Display all heart bookmarked recipes
             id_likes = dbusers.find_one({"name" : session['username']}, {"likes":1, "_id":0})["likes"]
             if search==['']:
-                recipes = dbrecipes.find({"$and": [{"alergens": {"$nin": option3 }}, {"published": "publish"} , {"recipe-type": {"$in": recipe_type }}, {"_id": {"$in": id_likes }},{"cooking-time": {"$lt": int(option2[0]) }}  ] })
+                recipes = dbrecipes.find({"$and": [{"alergens": {"$nin": option3 }}, {"published": "publish"} , {"recipe-type": {"$in": recipe_type }}, {"_id": {"$in": id_likes }},{"cooking-time": {"$lte": int(option2[0]) }}  ] })
             else:  
-                recipes = dbrecipes.find({"$and": [{"cooking-time": {"$lt": int(option2[0]) }},{"alergens": {"$nin": option3 }}, {"published": "publish"} , {"recipe-type": {"$in": recipe_type }}, {"_id": {"$in": id_likes }}, { "$text": { "$search":  "/.*"+search[0]+".*/i" } } ] })
+                recipes = dbrecipes.find({"$and": [{"cooking-time": {"$lte": int(option2[0]) }},{"alergens": {"$nin": option3 }}, {"published": "publish"} , {"recipe-type": {"$in": recipe_type }}, {"_id": {"$in": id_likes }}, { "$text": { "$search":  "/.*"+search[0]+".*/i" } } ] })
         dbresponse=[]
         for recipe in recipes:
             dbresponse.append(recipe)
@@ -175,7 +163,6 @@ def user_recipes():
             desc = request.form.getlist('recipe-description')[0]
             iddesc= request.form.getlist('description')[0]
             dbrecipes.update_one( {"_id": ObjectId( iddesc) } ,{ "$set": {"recipe-description": desc } } )
-           # print(rname,idname)
         # Time
         if request.form.getlist('publish')!=[]:
 
@@ -308,7 +295,7 @@ def add_recipe():
     'alergens': [],
     'recipe-description': "Write here how to connect ingredients to make you delicious recipe",
     'image-url' : "",
-    'ingredients' : [], # Convert string to list where "," is separator
+    'ingredients' : [], # This data further in code will be convertet to string to list where "," is separator
     'author': session['username'],
     'date': strftime("%d/%m/%Y %H:%M"),
     'published': "draft"
@@ -316,17 +303,6 @@ def add_recipe():
 
     return redirect(url_for('user_recipes'))
 
-        # Here is a easy acces to all variables from form:
-        # request.form['recipe-name']
-        # request.form['cooking-time']
-        # str(request.form.getlist('cuisine'))
-        # str(request.form.getlist('alergens'))
-        # request.form['recipe-description']
-        # request.form['image-url']
-        # request.form['ing']
-        # session['username']
-    #return render_template("add_recipe.html", user=user) 
-    
 @app.route('/stats', methods=["GET", "POST"])
 def stats():
     user='You are not logged'
@@ -334,6 +310,40 @@ def stats():
         user='Cheff: '+session['username']
     else:
         return redirect(url_for('index')) # Only for registerred users
+
+    #Collect data from mongo to variables
+    dbrecipes = mongo.db.recipes
+
+    published  = dbrecipes.count_documents({"$and": [ {"published": "publish"}]})
+    draft  = dbrecipes.count_documents({"$and": [ {"published": "draft"}]})
+    all_recipes = dbrecipes.count_documents({})
+    main_course = dbrecipes.count_documents({"$and": [ {"published": "publish", "recipe-type":"Main course" }]})
+    starter = dbrecipes.count_documents({"$and": [ {"published": "publish", "recipe-type":"Starter" }]})
+    dessert = dbrecipes.count_documents({"$and": [ {"published": "publish", "recipe-type":"Desserts" }]})
+    juices = dbrecipes.count_documents({"$and": [ {"published": "publish", "recipe-type":"Juices" }]})
+    
+    # Draw draft vs publish chart
+    line_chart = pygal.HorizontalBar()
+    line_chart.title = 'Published recipes vs Draft recipes'
+    line_chart.add('Published', published)
+    line_chart.add('Draft', draft )
+    line_chart.render_to_file('static/img/draft-publish.svg')
+
+    # Draw recipe types % using half bars 
+    gauge = pygal.SolidGauge(
+        half_pie=True, inner_radius=0.70,
+        style=pygal.style.styles['default'](value_font_size=10))
+    percent_formatter = lambda x: '{:.10g}%'.format(x)
+    dollar_formatter = lambda x: '{:.10g}$'.format(x)
+    gauge.value_formatter = percent_formatter
+    gauge.title = 'Percentage of published recipes by type on site'
+    gauge.add('Published', [{'value':  round( (published/all_recipes)*100, 2) , 'max_value':100}])
+    gauge.add('Draft', [{'value': round((draft/all_recipes)*100,2) , 'max_value': 100}])
+    gauge.add('Main Course', [{'value': round((main_course/all_recipes)*100,2) , 'max_value': 100}])
+    gauge.add('Starters', [{'value': round((starter/all_recipes)*100,2) , 'max_value': 100}])
+    gauge.add('Desserts', [{'value': round((dessert/all_recipes)*100,2) , 'max_value': 100}])
+    gauge.add('Juices', [{'value': round((juices/all_recipes)*100,2) , 'max_value': 100}])
+    gauge.render_to_file('static/img/half.svg') 
 
     return render_template("stats.html", user=user)
     

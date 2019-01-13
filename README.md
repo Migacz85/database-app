@@ -21,9 +21,11 @@ As a user:
 - When I'm using advanced search filter and selecting items after submiting I want them to be still selected so I don't need to pass them again after page refresh
 - When I'm using advanced search filter after selecting item, I want see instantly in choosing box that this item was selected with different color so it visualy indicate me that is turned on
 - Close to search filter I want to have star Icon that after clicking will turn yellow and show me all recepies I like so I can back to interesting content more quickly
+- When I'm clicking on bookmark icon and I don't have any bookmarks I want to see information with explanation that clicking in star on the recipe will bookmark it so I can learn how to use app faster
 
 - When I'm using advanced search filter I want to have tooltips that after hovering on them will display more information what for button is so I can learn more quickly and understand better how app is behaving
 - When I'm visiting home page only 10 recipes are displayed, bellow the last one I have button load more that after clicking will load extra 10 recipes
+- When I'm clicking (not logged) on bookmark icon I want to see page that will inform me that I need to be logged on the page to gain possibility to use that and other features so I will know exactly in what stage I am using the app
 
 As a administrator:
 - I want pages with adding recipe and stats to be available only for logged users so only user with account can create recipe
@@ -131,9 +133,9 @@ Thanks to:
 https://codepen.io/simoberny/pen/pJZJQY
 
 ### Media
-
+Example recipes where taken from following site:
+https://www.pyrexuk.com
 Pictures used in this site was used from these links:
-
 https://www.pexels.com/photo/burger-and-vegetables-placed-on-brown-wood-surface-1565982/
 https://ubisafe.org/image/chef-vector-logos/1115933.html
 https://favicon.io/emoji-favicons/fork-and-knife-with-plate/

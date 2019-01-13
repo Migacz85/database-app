@@ -140,7 +140,6 @@ footer {
   color: #278888;
 }
 
-
 .like:hover {
   margin-right: 5px;
   float: right;
@@ -159,7 +158,6 @@ footer {
 .heart:hover {
   color: #f85f5f;
 }
-
 
 /* For firefox styles text inside search filter */
 div.btn-group > button > span {
