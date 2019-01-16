@@ -35,6 +35,7 @@ a {
 }
 
 /* Color for icons */
+.fa { font-family: 'FontAwesome' !important; }
 .fa {
   color: #4495b7
 }
