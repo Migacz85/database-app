@@ -68,12 +68,12 @@
                                                 {%if loop.index==1 %}          <div data-toggle="tooltip" data-placement="right" title="Click to edit recipe name"> {%endif %}
                                                 <!-- Triger button for modal Cuisine -> modals.html  -->
                                                 <button class="invisible-btn" data-toggle="modal" data-target="#cName{{r._id }}">
-                                                        Recipe name: </br>
+                                                        Recipe name: <br>
                                                         <h5 class="card-title">{{r['recipe-name']}}</h5>
                                                 </button>
                                                 {%if loop.index==1 %}    </div> {%endif %}
-                                        </br>
-                                        </br>
+                                        <br>
+                                        <br>
                                         {%if loop.index==1 %}     <div data-toggle="tooltip" data-placement="bottom" title="Click to edit new ingredients">{%endif %}
                                                 <!-- Triger button for modal Cuisine -> modals.html  -->
                                                      <button class="invisible-btn" data-toggle="modal" data-target="#cIngredients{{r._id }}">
@@ -167,7 +167,6 @@
                                       
                                 </div>
                         </form>        
-                                </button>
                         </div>
                 </div>
         {% endfor %}

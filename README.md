@@ -1,13 +1,13 @@
 # Recipify me
 **Desktop**
-![Preview1](http://localhost/img2.png) 
+![Preview1](https://github.com/Migacz85/database-app/blob/master/img2.png?raw=true) 
 **Tablet**
-![Preview1](http://localhost/img1.png) 
+![Preview1](https://github.com/Migacz85/database-app/blob/master/img1.png?raw=true) 
 **Phone** <br>
-![Preview1](http://localhost/img3.png) 
+![Preview1](https://github.com/Migacz85/database-app/blob/master/img3.png?raw=true) 
 
 
-Recipify me is a website that is giving users possibility to share their recipes. User can register and quickly add a recipe, browse throught recipes from different usersand for example bookmark them. Site was created in mobile first approach and then gradually expanded to desktop users. You can expect good experience while using it on mobile. In project you will find also well coded search bar that is helping users to search in recepies with simmilar experience to using google search. Please bear in mind that this particular project is only a demonstration app, however you will have a good idea how potentialy fully product could look like. 
+Recipify me is a website that is giving users possibility to share their recipes. User can register and quickly add a recipe, browse through recipes from different users and for example bookmark them. Site was created in mobile first approach and then gradually expanded to desktop users. You can expect good experience while using it on mobile. In project you will find also well coded search bar that is helping users to search in recipes with similar experience to using google search. Please bear in mind that this particular project is only a demonstration app, however you will have a good idea how potentially fully product could look like. 
 
 The best way to see the application in action is to visit this link:
 
@@ -17,36 +17,36 @@ https://dbap.herokuapp.com/
 
 ## User Experience 
 
-While developing UI in this project I was trying all the time to look from perspective of the new user that is coming to the site. The goal is to create a brillinat UX   
-because nice and positive reaction to the app from users can result in users staying with the app longer. This can increase possiblity that using it will change in to habit more easyly, with the help of further various marketing actions and techniques.
+While developing UI in this project I was trying all the time to look from perspective of the new user that is coming to the site. The goal is to create a brilliant UX   
+because nice and positive reaction to the app from users can result in users staying with the app longer. This can increase possibility that using it will change in to habit more easily, with the help of further various marketing actions and techniques.
 
-I belive that is also critical to at least understand what kind of audience we are targeting before we start building the app.
-In what enviroment they gonna use the app
+I believe that is also critical to at least understand what kind of audience we are targeting before we start building the app.
+In what environment they gonna use the app
 
-Based on this thought proccess above I made few assumptions while developing this project:
+Based on this thought process above I made few assumptions while developing this project:
 
 - Let the process of learning new app to be easy.  
 - If there is some button with functionality, I want to give small indication, reminder what exactly the functionality is doing or how its working. 
-- Design need to be consistient and easy to read.
-- App need to be colorfull, nice too look, it need to make in user a good feeling.
+- Design need to be consistent and easy to read.
+- App need to be colorful, nice too look, it need to make in user a good feeling.
 - While using the app user need to think "I want to stay with this app", "I like it", "I want to see more".
 - App itself need to be easy to use and fun. 
 
 ## User Stories
 
 As a user: 
-- I want to log in to the site so I can perform more advacend tasks 
+- I want to log in to the site so I can perform more advanced tasks 
 - Before logging in to the site I want to be informed that I am not logged in so I know in what state site is
-- Before logging in to the site I want to have in options: Login, Signup, Home so looking on this limited options will give me indication that I can signup 
+- Before logging in to the site I want to have in options: Login, Sign up, Home so looking on this limited options will give me indication that I can sign up 
 - After logging in to the site I want to have options: Home, Add Recipe, Statistics, Logout - So I can perform this actions
-- When visisting website (not logged) I want to see recipes others peoples so I can scroll and read them
-- When visisting website (not logged and logged) I want to have option to filter recipes by type, allergens and cooking time
+- When visiting website (not logged) I want to see recipes others peoples so I can scroll and read them
+- When visiting website (not logged and logged) I want to have option to filter recipes by type, allergens and cooking time
 - I want to have search input, so I can write a sentence or words that I'm interested in and page will return what I'm looking for
 - I expect to have a "plus" button close to search input, so after clicking at it I can filter search result by type of recipe, exclude those with allergens or choose range of cooking time
-- When using advanced search filter and selecting items I want them to be sumbited immediatelly so I can see results instantly
-- When using advanced search filter and selecting items after submiting I want them to be still selected so I don't need to pass them again after page refresh
-- When using advanced search filter after selecting item, I want see instantly in choosing box that this item was selected with different color so it visualy indicate me that is turned on
-- Close to search filter I want to have star Icon that after clicking will turn yellow and show me all recepies I like so I can back to interesting content more quickly
+- When using advanced search filter and selecting items I want them to be submitted immediately so I can see results instantly
+- When using advanced search filter and selecting items after submitting I want them to be still selected so I don't need to pass them again after page refresh
+- When using advanced search filter after selecting item, I want see instantly in choosing box that this item was selected with different color so it visually indicate me that is turned on
+- Close to search filter I want to have star Icon that after clicking will turn yellow and show me all recipes I like so I can back to interesting content more quickly
 - When clicking on bookmark icon in filter when I don't have any bookmarks I want to see information with explanation that clicking in star on the recipe will bookmark it so I can learn how to use app faster
 - When using advanced search filter I want to have tooltips that after hovering them will display more information about button so I can learn more quickly and understand better how app is behaving
 - When clicking (not logged) on bookmark (or any other functionality that need to be logged) icon I want to see page that will inform me that I need to be logged on the page to gain possibility to use that and other features so I will know exactly in what stage I am using the app and what action I should perform
@@ -62,51 +62,61 @@ Users stories that were not implemented in this project:
 ## Technologies Used:
 
 - Python with Flask<br>
-The main logic and responsivnes of app located in run.py file.
+The main logic and responsive of app located in run.py file.
 https://www.python.org/
 
-- Pygal
+- Pygal <br>
 A python charting library used for statistics of the site.
 http://pygal.org/
 
-- Jquery was used to:
-Code advanced foldable search bar options
+- Jquery was used to: <br>
+Code advanced fold able search bar options
 https://jquery.com/
 
-- Bootstrap
+- Bootstrap <br>
 Mainly used in this project for css classes and grid system.
 http://getbootstrap.com/
 HTML 5
 
-- CSS 3
+- CSS 3 <br>
 Used for more flexibility to control look of the webpage. 
 
-- Google Font
+- Google Font <br>
 Logo and rest of the website
 https://fonts.google.com/
 
-- Icons: 
+- Icons:  <br>
 Font Awesome
 For giving the user visual indication and better understanding of actions he can make.
 https://fontawesome.com/
 
 ## Features 
 
-- Registering and login in the site
-- Search filter with advanced mode for searching by type of recipe, cooking time and possibility to exclude recepies with allergens. 
+- Simple registering and login in the site
+- Search filter with advanced mode for searching by type of recipe, cooking time and possibility to exclude recipes with allergens. 
+- Search input is scanning recipe description and title for occurrence of specified words:
+  - chicken juice -Writing this two words will find recipes that have chicken Or juice inside
+  - chicken -juice -This sentence will provide results with chicken and recipes with word juice  will be not displayed
+  - "carrot cake" - Will find exactly matching word inside quotes
 - Search filter itself have also possibility to scan in recipes that user gave a star
 - Starring a recipe
 - Easy creation and edit of the recipe
+- Draft/Publish mode of recipe
+  - If user will not finish his recipe he can leave it in "draft" state
+  - After recipe is done user can publish it on main page.
 - Directly updating recipe in to database one by one, instead of whole form. 
+-
 - (mobile users) Implementation of floating button near thumb for easy: navigation, adding recipe/editing recipe.
+
+![Alt Text](https://github.com/Migacz85/database-app/blob/master/recipe-creation.gif?raw=true) 
 
 #### Features left to be implement in future development:
 
-- Pagination or infinite scroll
-- User page with ability to change profile picture and additional information, name, mail, age etc.
-- Logging to website using google or facebook account.
 - Individual link to each recipe with possibility to give comments.
 - Ability to share a recipe by messenger, twitter. 
+- Pagination or infinite scroll
+- User page with ability to change profile picture and additional information, name, mail, age etc.
+- Logging to website using google or Facebook account.
 - Uploading images of recipe by making pictures (for mobile users)
 
 ## Testing
@@ -114,7 +124,7 @@ https://fontawesome.com/
 Manual testing:
 
 #### Advanced filter (type): 
-(avaliable after clicking the plus button) 
+(available after clicking the plus button) 
 1. Click the plus button.
 2. Select N item from recipe type. Where N is starter, main course, etc
 3. Click Search <br>
@@ -124,33 +134,33 @@ Manual testing:
  To see only recipes that have this word included in title or description of the recipe and are in specified N type 
 
 
-#### Advanced filter (alergens):  
-(avaliable after clicking the plus button) 
+#### Advanced filter (allergens):  
+(available after clicking the plus button) 
 1. Click the plus button.
-2. Select N item from recipe alergen selecor. Where N is list of allergens
+2. Select N item from recipe allergens selector. Where N is list of allergens
 3. Click Search <br>
 **Result:** See only recipes that don't have this N allergens
 4. Write in search a word  <br>
 **Expect:** 
  To see only recipes that have this word included in title or description of the recipe and don't have allergens inside. 
 #### Advanced filter (cooking time):  
-(avaliable after clicking the plus button) 
+(available after clicking the plus button) 
 1. Click the plus button.
-2. Select N item from cooking time selecor. Where N is cooking time in minutes
+2. Select N item from cooking time selector. Where N is cooking time in minutes
 3. Click Search <br>
 **Result:** See only recipes that cooking time is equal or less than specified time. 
 4. Write in search a word  <br>
 **Expect:** 
  To see only recipes that have this word included in title or description of the recipe with specified cooking time
 
-Above test gaving 9 different combinations of possible tests. Same nine possibilites are in case when searching in bookmarks. 
+Above test gave 9 different combinations of possible tests. Same nine possibilities are in case when searching in bookmarks. 
 
 
 ## Bugs
 
 - From time to time 
 pymongo.errors.AutoReconnect: ds113482.mlab.com:13482: [Errno 104] Connection reset by peer.
-- When using a search bar words like "how" "to" or simillar sometimes are not found in recipe description or recipe title. This can be because of how indexation of $text variable in mongodb was setup. Is possible that better setup of tokenization is required here.
+- When using a search bar words like "how" "to" or similar are not found in recipe description or recipe title. This can be because of how indexation of $text variable in mongodb was setup. Is possible that better setup of tokenization is required here.
 - One time I observed in google chrome when adding new recipe that in left corner there was tooltip, that should not be there.
 
 
@@ -230,4 +240,4 @@ Resources helpful to build this site:
 * https://github.com/PrettyPrinted/mongodb-user-login/blob/master/login_example.py
 * https://api.mongodb.com/python/current/
 * https://docs.mongodb.com/manual/indexes/#index-type-multikey
-* https://codepen.io/simoberny/pen/pJZJQY
+ https://codepen.io/simoberny/pen/pJZJQY

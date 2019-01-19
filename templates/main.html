@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -54,39 +53,39 @@
                                 <li class="nav-item">
 
                                     <a class="nav-link js-scroll-trigger  {{ 'active2' if active_page == 'index' else '' }}"
-                                        href="{{ url_for('index') }}" href="{{ url_for('index') }}">Home</a>
+                                        href="{{ url_for('index') }}">Home</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link js-scroll-trigger {{ 'active2' if active_page == 'index' else '' }}"
-                                        href="{{ url_for('login') }}" href="{{ url_for('login') }}">Login</a>
+                                        href="{{ url_for('login') }}">Login</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link js-scroll-trigger {{ 'active2' if active_page == 'index' else '' }}"
-                                        href="{{ url_for('signup') }}" href="{{ url_for('login') }}">Register</a>
+                                        href="{{ url_for('login') }}">Register</a>
                                 </li>
                                 {% else %}
                                 <li class="nav-item">
 
                                     <a class="nav-link js-scroll-trigger  {{ 'active2' if active_page == 'index' else '' }}"
-                                        href="{{ url_for('index') }}" href="{{ url_for('index') }}">Home</a>
+                                        href="{{ url_for('index') }}">Home</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link js-scroll-trigger  {{ 'active2' if active_page == 'index' else '' }}"
-                                        href="{{ url_for('add_recipe') }}" href="{{ url_for('index') }}"> Add Recipe <i
+                                        href="{{ url_for('index') }}"> Add Recipe <i
                                             class="fa fa-plus-circle" aria-hidden="true" title="Add recipe"></i> </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link js-scroll-trigger  {{ 'active2' if active_page == 'index' else '' }}"
-                                        href="{{ url_for('user_recipes') }}" href="{{ url_for('user_recipes') }}">Edit
+                                        href="{{ url_for('user_recipes') }}">Edit
                                         Recipes</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link js-scroll-trigger  {{ 'active2' if active_page == 'index' else '' }}"
-                                        href="{{ url_for('stats') }}" href="{{ url_for('stats') }}">Statistics</a>
+                                        href="{{ url_for('stats') }}">Statistics</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link js-scroll-trigger  {{ 'active2' if active_page == 'index' else '' }}"
-                                        href="{{ url_for('logout') }}" href="{{ url_for('logout') }}">Logout</a>
+                                        href="{{ url_for('logout') }}">Logout</a>
                                 </li>
                                 {% endif %}
 
@@ -101,8 +100,8 @@
         <div class="masthead">
             <div class="container">
                 <div class="mx-auto text-center">
-                    </br>
-                    </br>
+                    <br>
+                    <br>
                     {% block content%}
                     {% endblock content%}
                 </div>
@@ -138,9 +137,6 @@
     <!-- {% if show_tooltips==1 %}
     <script src="/static/js/show_tooltips.js"></script>
     {% endif %} -->
-
-
-    </script>
 </body>
 
 </html>

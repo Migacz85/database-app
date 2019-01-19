@@ -6,7 +6,7 @@
 <form class="input-group" method="POST">
         <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                        <button type="submit" class="btn btn-info" type="button">Search</button>
+                        <button type="submit" class="btn btn-info" >Search</button>
                 </div>
                 <div class="mr-1">
                         <div data-toggle="tooltip" data-placement="top" title="Example: 'chicken -masala' will return recipes with word chicken and without masala word">
@@ -25,6 +25,7 @@
                         <i class="fas fa-star"></i>
         </a>
         </div> 
+        <!-- ================ -->
         <!-- Advanced Search  -->
         <!-- ================ -->
         <div class="card">
@@ -33,8 +34,8 @@
                 <div class="collapse {%if option1!='all' or option2!='900' or option3!=[] %}  show {%endif%} " id="Advance">
                         <select class="custom-select" id="multioption" name="recipe-type">
                                 <option {{ 'selected' if option1 == 'all' else '' }} value="">Type of recipe: (all)</option>
-                                <option {{ 'selected' if option1 == 'Starter' else '' }} value="Starter">Starter</option>
-                                <option {{ 'selected' if option1 == 'Main course' else '' }} value="Main course">Main
+v                               <option {{ 'selected' if option1 == 'Starter' else '' }} value="Starter">Starter</option>
+                                <vption {{ 'selected' if option1 == 'Main course' else '' }} value="Main course">Main
                                         course</option>
                                 <option {{ 'selected' if option1 == 'Desserts' else '' }} value="Desserts">Desserts</option>
                                 <option {{ 'selected' if option1 == 'Juices' else '' }} value="Juices">Juices</option>
@@ -105,7 +106,7 @@
 <p class="text-white text-left"><i>I found {{recipes|length}} results:</i> </p>
 {% if bookmark==1 and recipes|length==0 %} 
 
-<h4>You don't have any bookmarks yet. Click on star icon <i class="fal fa-star"></i> when browsing recipes to save them here.</h4>
+<h4>You don't have any bookmarks yet. Click on star icon <i class="fas fa-star"></i> when browsing recipes to save them here.</h4>
                         
 {%endif %}
 <!-- DISPLAY RECIPES -->
@@ -134,9 +135,9 @@
         <div class="card-body">
                 <h5 class="card-title">{{r['recipe-name']}}</h5>
 
-                Ingredients: </br>
+                Ingredients: <br>
                 {% for ingriedient in r['ingredients'] %}
-                <i>{{ ingriedient}} </i> </br>
+                <i>{{ ingriedient}} </i> <br>
                 {% endfor%}
                 <br>
                 <br>
@@ -159,7 +160,7 @@
 		
 			
 		<!-- </a>																			    -->
-		<a href="{{url_for('like', recipe_id=r._id ) }}"  class="invisible2 float-left " value="{{r._id}}" name="like"> <i class="heart fal fa-star fa-2x  {% for like in dblikes[0]['likes'] %} {%if like|string==r._id|string%} fas heart-active text-warning {%else %} {%endif%} {%endfor %}"></i></a> 
+		<a href="{{url_for('like', recipe_id=r._id ) }}"  class="invisible2 float-left " value="{{r._id}}" name="like"> <i class="heart fas fa-star fa-2x  {% for like in dblikes[0]['likes'] %} {%if like|string==r._id|string%} fas heart-active text-warning {%else %} {%endif%} {%endfor %}"></i></a> 
 
 	
 		
