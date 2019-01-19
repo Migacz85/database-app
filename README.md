@@ -1,13 +1,17 @@
 # Recipify me
-**Desktop**
-![Preview1](https://github.com/Migacz85/database-app/blob/master/img2.png?raw=true) 
-**Tablet**
-![Preview1](https://github.com/Migacz85/database-app/blob/master/img1.png?raw=true) 
-**Phone** <br>
-![Preview1](https://github.com/Migacz85/database-app/blob/master/img3.png?raw=true) 
+**Desktop** <br>
 
+<img src="https://github.com/Migacz85/database-app/blob/master/img2.png?raw=true" /> <br>
 
-Recipify me is a website that is giving users possibility to share their recipes. User can register and quickly add a recipe, browse through recipes from different users and for example bookmark them. Site was created in mobile first approach and then gradually expanded to desktop users. You can expect good experience while using it on mobile. In project you will find also well coded search bar that is helping users to search in recipes with similar experience to using google search. Please bear in mind that this particular project is only a demonstration app, however you will have a good idea how potentially fully product could look like. 
+**Tablet/Phone**<br>
+
+<img src="https://github.com/Migacz85/database-app/blob/master/img3.png?raw=true" style="float: right" width="300" />
+<img src="https://github.com/Migacz85/database-app/blob/master/img1.png?raw=true" style="float: left;" width="300" />
+
+<div style="clear:both;"> </div>
+<br>
+  
+<b>Recipify</b> me is a website that is giving users possibility to share their recipes. User can register and quickly add a recipe, browse through recipes from different users and for example bookmark them. Site was created in mobile first approach and then gradually expanded to desktop users. You can expect good experience while using it on mobile. In project you will find also well coded search bar that is helping users to search in recipes with similar experience to using google search. Please bear in mind that this particular project is only a demonstration app, however you will have a good idea how potentially fully product could look like. 
 
 The best way to see the application in action is to visit this link:
 
@@ -61,11 +65,12 @@ Users stories that were not implemented in this project:
 
 ## Technologies Used:
 
-- Python with Flask<br>
+<b>- Python with Flask </b><br> 
 The main logic and responsive of app located in run.py file.
 https://www.python.org/
 
 - Pygal <br>
+
 A python charting library used for statistics of the site.
 http://pygal.org/
 
@@ -105,11 +110,10 @@ https://fontawesome.com/
   - If user will not finish his recipe he can leave it in "draft" state
   - After recipe is done user can publish it on main page.
 - Directly updating recipe in to database one by one, instead of whole form. 
--
 - (mobile users) Implementation of floating button near thumb for easy: navigation, adding recipe/editing recipe.
 
-![Alt Text](https://github.com/Migacz85/database-app/blob/master/recipe-creation.gif?raw=true) 
 
+<img src="https://github.com/Migacz85/database-app/blob/master/recipe-creation.gif?raw=true" width="400" />
 #### Features left to be implement in future development:
 
 - Individual link to each recipe with possibility to give comments.
