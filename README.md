@@ -17,7 +17,7 @@ The best way to see the application in action is to visit this link:
 
 https://dbap.herokuapp.com/
 
-### Development
+# Development
 
 ## User Experience 
 
@@ -65,15 +65,15 @@ Users stories that were not implemented in this project:
 
 ## Technologies Used:
 
-<b>- Python with Flask </b><br> 
+- Python with Flask  <br>
 The main logic and responsive of app located in run.py file.
 https://www.python.org/
 
-- Pygal <br>
+- Pygal   <br>
 A python charting library used for statistics of the site.
 http://pygal.org/
 
-- MongoDB
+- MongoDB  <br>
 Database for storing all website information
 https://www.mongodb.com/
 
@@ -115,7 +115,7 @@ https://fontawesome.com/
 - Directly updating recipe in to database one by one, instead of whole form. 
 - (mobile users) Implementation of floating button near thumb for easy: navigation, adding recipe/editing recipe.
 
-
+<b>Recipe creation:</br></b>
 <img src="https://github.com/Migacz85/database-app/blob/master/recipe-creation.gif?raw=true" width="400" />
 
 ### Features left to be implement in future development:
