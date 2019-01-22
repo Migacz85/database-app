@@ -74,6 +74,10 @@ https://www.python.org/
 A python charting library used for statistics of the site.
 http://pygal.org/
 
+- MongoDB
+Database for storing all website information
+https://www.mongodb.com/
+
 - Jquery was used to: <br>
 Code advanced fold able search bar options
 https://jquery.com/
@@ -120,53 +124,159 @@ https://fontawesome.com/
 - Ability to share a recipe by messenger, twitter. 
 - Pagination or infinite scroll
 - User page with ability to change profile picture and additional information, name, mail, age etc.
+- When using advanced search filter after selecting item, I want see instantly in choosing box that this item was selected with different color so it visually indicate me that is turned on
+- Close to search filter I want to have star Icon that after clicking will turn yellow and show me all recipes I like so I can back to interesting content more quickly
+- When clicking on bookmark icon in filter when I don't have any bookmarks I want to see information with explanation that clicking in star on the recipe will bookmark it so I can learn how to use app faster
+- When using advanced search filter I want to have tooltips that after hovering them will display more information about button so I can learn more quickly and understand better how app is behaving
+- When clicking (not logged) on bookmark (or any other functionality that need to be logged) icon I want to see page that will inform me that I need to be logged on the page to gain possibility to use that and other features so I will know exactly in what stage I am using the app and what action I should perform
+
+As a administrator:
+- I want pages with adding recipe and stats to be available only for logged users so only user with account can create recipe
+
+Users stories that were not implemented in this project:
+
+- When visiting home page only 10 recipes are displayed, bellow the last one I have button load more that after clicking will load extra 10 recipes
+
+
+## Technologies Used:
+
+- Python with Flask <br> 
+The main logic and responsive of app located in run.py file.
+https://www.python.org/
+
+- Pygal <br>
+
+A python charting library used for statistics of the site.
+http://pygal.org/
+
+- MongoDB
+Database for storing all website information
+https://www.mongodb.com/
+
+- Jquery was used to: <br>
+Code advanced fold able search bar options
+https://jquery.com/
+
+- Bootstrap <br>
+Mainly used in this project for css classes and grid system.
+http://getbootstrap.com/
+HTML 5
+
+- CSS 3 <br>
+Used for more flexibility to control look of the webpage. 
+
+- Google Font <br>
+Logo and rest of the website
+https://fonts.google.com/
+
+- Icons:  <br>
+Font Awesome
+For giving the user visual indication and better understanding of actions he can make.
+https://fontawesome.com/
+
+## Features 
+
+- Simple registering and login in the site
+- Search filter with advanced mode for searching by type of recipe, cooking time and possibility to exclude recipes with allergens. 
+- Search input is scanning recipe description and title for occurrence of specified words:
+  - chicken juice -Writing this two words will find recipes that have chicken Or juice inside
+  - chicken -juice -This sentence will provide results with chicken and recipes with word juice  will be not displayed
+  - "carrot cake" - Will find exactly matching word inside quotes
+- Search filter itself have also possibility to scan in recipes that user gave a star
+- Starring a recipe
+- Easy creation and edit of the recipe
+- Draft/Publish mode of recipe
+  - If user will not finish his recipe he can leave it in "draft" state
+  - After recipe is done user can publish it on main page.
+- Directly updating recipe in to database one by one, instead of whole form. 
+- (mobile users) Implementation of floating button near thumb for easy: navigation, adding recipe/editing recipe.
+
+<b>Creation of the recipe: </b>
+<img src="https://github.com/Migacz85/database-app/blob/master/recipe-creation.gif?raw=true" width="400" />
+#### Features left to be implement in future development:
+
+- Individual link to each recipe with possibility to give comments.
+- Ability to share a recipe by messenger, twitter. 
+- Pagination or infinite scroll
+- User page with ability to change profile picture and additional information, name, mail, age etc.
 - Logging to website using google or Facebook account.
 - Uploading images of recipe by making pictures (for mobile users)
-
-## Testing
-
-Manual testing:
-
-#### Advanced filter (type): 
-(available after clicking the plus button) 
-1. Click the plus button.
-2. Select N item from recipe type. Where N is starter, main course, etc
-3. Click Search <br>
-**Result:** See only recipes that are only of specified N type
-4. Write in search a word  <br>
-**Expect:** 
- To see only recipes that have this word included in title or description of the recipe and are in specified N type 
-
-
-#### Advanced filter (allergens):  
-(available after clicking the plus button) 
-1. Click the plus button.
-2. Select N item from recipe allergens selector. Where N is list of allergens
-3. Click Search <br>
-**Result:** See only recipes that don't have this N allergens
-4. Write in search a word  <br>
-**Expect:** 
- To see only recipes that have this word included in title or description of the recipe and don't have allergens inside. 
-#### Advanced filter (cooking time):  
-(available after clicking the plus button) 
-1. Click the plus button.
-2. Select N item from cooking time selector. Where N is cooking time in minutes
-3. Click Search <br>
-**Result:** See only recipes that cooking time is equal or less than specified time. 
-4. Write in search a word  <br>
-**Expect:** 
- To see only recipes that have this word included in title or description of the recipe with specified cooking time
-
-Above test gave 9 different combinations of possible tests. Same nine possibilities are in case when searching in bookmarks. 
-
-
-## Bugs
-
-- From time to time 
-pymongo.errors.AutoReconnect: ds113482.mlab.com:13482: [Errno 104] Connection reset by peer.
-- When using a search bar words like "how" "to" or similar are not found in recipe description or recipe title. This can be because of how indexation of $text variable in mongodb was setup. Is possible that better setup of tokenization is required here.
 - One time I observed in google chrome when adding new recipe that in left corner there was tooltip, that should not be there.
 
+## Database schema
+
+Example schema for user recipe:
+:
+```
+{
+    "_id": {
+        "$oid": "5c39f50009f81548e50be44f"
+    },
+    "likes": 0,
+    "recipe-name": "Carrot soup with coconut milk and orange",
+    "recipe-type": "Starter",
+    "cooking-time": 45,
+    "cuisine": [
+        "Native American"
+    ],
+    "alergens": [],
+    "recipe-description": "For the soup :\r\n\r\n1. Peel the carrots and cut them into slices.\r\n\r\n2. Pour them in a saucepan and cover them with water. Add salt.\r\n\r\n3. Bring to boil and let it simmer for 45 minutes. The carrots must be tender.\r\n\r\n4. Pour the carrots in a blender (without the cooking water).\r\n\r\n5. Add the juice of the fresh-squeezed oranges, the coconut milk and start mixing.\r\n\r\n6. Add gradually a bit of cooking water until a beautiful consistency is obtained.\r\n\r\n \r\n\r\nFor the coriander coulis :\r\n\r\n1. Wash the coriander and put it in the saucepan.\r\n\r\n2. Cover it with water. Add salt.\r\n\r\n3. Bring to a boil for 10 minutes.\r\n\r\n4. Take the herbs and put them into a small blender.\r\n\r\n5. Pour some water and a bit of olive oil and mix until a coulis is obtained.\r\n\r\n6. Serve the soup and add a bit of this coulis above.",
+    "image-url": "https://www.pyrexuk.com/media/catalog/product/cache/9/image/9df78eab33525d08d6e5fb8d27136e95/i/m/img_4966_copie_3.jpg",
+    "ingredients": [
+        "1 kg carrots ",
+        "\t2 oranges ",
+        "\t20 cl coconut milk",
+        " \tSalt",
+        " pepper  ",
+        "  \u2010\t35g fresh coriander",
+        "\tA bit of olive oil",
+        " salt"
+    ],
+    "author": "Migacz",
+    "date": "12/01/2019 14:09",
+    "published": "publish"
+}
+```
+
+Example schema for user: 
+
+```
+{
+    "_id": {
+        "$oid": "5c3a011f09f81548e50be454"
+    },
+    "name": "John",
+    "password": "<Binary Data>",
+    "likes": [
+        {
+            "$oid": "5c39f50009f81548e50be44f"
+        },
+        {
+            "$oid": "5c39fc1309f81548e50be451"
+        }
+    ]
+}
+```
+Index on database: (for $search variable)
+
+```
+{
+    "v": 2,
+    "key": {
+        "_fts": "text",
+        "_ftsx": 1
+    },
+    "name": "recipe-description_text_recipe-name_text",
+    "ns": "recipifydb.recipes",
+    "weights": {
+        "recipe-description": 1,
+        "recipe-name": 1
+    },
+    "default_language": "english",
+    "language_override": "language",
+    "textIndexVersion": 3
+}
+```
 
 ## Installation
 
@@ -176,14 +286,13 @@ First clone the project:
 git clone https://github.com/Migacz85/flask-app.git
 ```
 
-### Creating new environments for python3: 
+heroku config:set PASS='1migacz' --app dbap
 
 To start developing the project you need to run this commands:
 
 ```
 python -m venv venv   //initialize new environment.
 source venv/bin/activate //enter to the new environment.
-sudo pip3 install -r requirements.txt // install dependencies from files.
 python run.py // this will run the flask server.
 deactivate // If you will want to go out from the env you can close virtual env using this command.
 ```
@@ -205,6 +314,13 @@ KILLING PROCCESSES ON PORTS:
 lsof -i tcp:8080
 kill -9 <PID>
 ```
+## Security steps 
+To keep password in environment variable:
+```
+heroku run bash -a dbap
+heroku config:set PASS='your-secret-password' --app name_of_app
+```
+
 ## Deployment steps on heroku or other platforms:
 
 ```

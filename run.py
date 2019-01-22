@@ -12,10 +12,13 @@ import pygal
 
 from os import path
 
+# Store password in env variable for security reasons
+password=os.getenv('PASS')
+
 app = Flask(__name__)
 app.secret_key = 'mysecret'
 app.config['MONGO_DBNAME']='recipifydb'
-app.config['MONGO_URI']='mongodb://migacz:1migacz@ds113482.mlab.com:13482/recipifydb'
+app.config['MONGO_URI']='mongodb://migacz:'+ password+'@ds113482.mlab.com:13482/recipifydb'
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 mongo = PyMongo(app)
 
