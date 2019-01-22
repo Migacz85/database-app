@@ -212,11 +212,7 @@ First clone the project:
 ```
 git clone https://github.com/Migacz85/flask-app.git
 ```
-
-heroku config:set PASS='1migacz' --app dbap
-
 To start developing the project you need to run this commands:
-
 ```
 python -m venv venv   //initialize new environment.
 source venv/bin/activate //enter to the new environment.
