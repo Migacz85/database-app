@@ -70,7 +70,6 @@ The main logic and responsive of app located in run.py file.
 https://www.python.org/
 
 - Pygal <br>
-
 A python charting library used for statistics of the site.
 http://pygal.org/
 
@@ -118,7 +117,8 @@ https://fontawesome.com/
 
 
 <img src="https://github.com/Migacz85/database-app/blob/master/recipe-creation.gif?raw=true" width="400" />
-#### Features left to be implement in future development:
+
+### Features left to be implement in future development:
 
 - Individual link to each recipe with possibility to give comments.
 - Ability to share a recipe by messenger, twitter. 
@@ -129,79 +129,6 @@ https://fontawesome.com/
 - When clicking on bookmark icon in filter when I don't have any bookmarks I want to see information with explanation that clicking in star on the recipe will bookmark it so I can learn how to use app faster
 - When using advanced search filter I want to have tooltips that after hovering them will display more information about button so I can learn more quickly and understand better how app is behaving
 - When clicking (not logged) on bookmark (or any other functionality that need to be logged) icon I want to see page that will inform me that I need to be logged on the page to gain possibility to use that and other features so I will know exactly in what stage I am using the app and what action I should perform
-
-As a administrator:
-- I want pages with adding recipe and stats to be available only for logged users so only user with account can create recipe
-
-Users stories that were not implemented in this project:
-
-- When visiting home page only 10 recipes are displayed, bellow the last one I have button load more that after clicking will load extra 10 recipes
-
-
-## Technologies Used:
-
-- Python with Flask <br> 
-The main logic and responsive of app located in run.py file.
-https://www.python.org/
-
-- Pygal <br>
-
-A python charting library used for statistics of the site.
-http://pygal.org/
-
-- MongoDB
-Database for storing all website information
-https://www.mongodb.com/
-
-- Jquery was used to: <br>
-Code advanced fold able search bar options
-https://jquery.com/
-
-- Bootstrap <br>
-Mainly used in this project for css classes and grid system.
-http://getbootstrap.com/
-HTML 5
-
-- CSS 3 <br>
-Used for more flexibility to control look of the webpage. 
-
-- Google Font <br>
-Logo and rest of the website
-https://fonts.google.com/
-
-- Icons:  <br>
-Font Awesome
-For giving the user visual indication and better understanding of actions he can make.
-https://fontawesome.com/
-
-## Features 
-
-- Simple registering and login in the site
-- Search filter with advanced mode for searching by type of recipe, cooking time and possibility to exclude recipes with allergens. 
-- Search input is scanning recipe description and title for occurrence of specified words:
-  - chicken juice -Writing this two words will find recipes that have chicken Or juice inside
-  - chicken -juice -This sentence will provide results with chicken and recipes with word juice  will be not displayed
-  - "carrot cake" - Will find exactly matching word inside quotes
-- Search filter itself have also possibility to scan in recipes that user gave a star
-- Starring a recipe
-- Easy creation and edit of the recipe
-- Draft/Publish mode of recipe
-  - If user will not finish his recipe he can leave it in "draft" state
-  - After recipe is done user can publish it on main page.
-- Directly updating recipe in to database one by one, instead of whole form. 
-- (mobile users) Implementation of floating button near thumb for easy: navigation, adding recipe/editing recipe.
-
-<b>Creation of the recipe: </b>
-<img src="https://github.com/Migacz85/database-app/blob/master/recipe-creation.gif?raw=true" width="400" />
-#### Features left to be implement in future development:
-
-- Individual link to each recipe with possibility to give comments.
-- Ability to share a recipe by messenger, twitter. 
-- Pagination or infinite scroll
-- User page with ability to change profile picture and additional information, name, mail, age etc.
-- Logging to website using google or Facebook account.
-- Uploading images of recipe by making pictures (for mobile users)
-- One time I observed in google chrome when adding new recipe that in left corner there was tooltip, that should not be there.
 
 ## Database schema
 
