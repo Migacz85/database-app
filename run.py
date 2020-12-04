@@ -14,9 +14,8 @@ from os import path
 
 # Store password in env variable for security reasons
 password=os.getenv('PASS')
-password='1migacz'
-
 app = Flask(__name__)
+
 app.secret_key = 'mysecret'
 app.config['MONGO_DBNAME']='recipifydb'
 app.config['MONGO_URI']='mongodb+srv://migacz:'+ password+'@recipifydb.owati.mongodb.net/recipifydb?retryWrites=true&w=majority'
