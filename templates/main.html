@@ -72,7 +72,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link js-scroll-trigger  {{ 'active2' if active_page == 'index' else '' }}"
-                                        href="{{ url_for('index') }}"> Add Recipe <i
+                                        href="{{ url_for('add_recipe') }}"> Add Recipe <i
                                             class="fa fa-plus-circle" aria-hidden="true" title="Add recipe"></i> </a>
                                 </li>
                                 <li class="nav-item">
@@ -111,12 +111,6 @@
         </div>
     </div>
     <br>
-
-
-
-
-
-
 
     <footer>
         <p class="page_name" href="{{ url_for('index') }}"> ⓒ Recipify <span class="page_name2"> me </span></p> <span
