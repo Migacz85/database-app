@@ -18,7 +18,7 @@ password=os.getenv('PASS')
 app = Flask(__name__)
 app.secret_key = 'mysecret'
 app.config['MONGO_DBNAME']='recipifydb'
-app.config['MONGO_URI']='mongodb://migacz:'+ password+'@ds113482.mlab.com:13482/recipifydb'
+app.config['MONGO_URI']='mongodb+srv://migacz:'+ password+'@recipifydb.owati.mongodb.net/recipifydb?retryWrites=true&w=majority'
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 mongo = PyMongo(app)
 
@@ -35,10 +35,10 @@ def index():
     user='You are not logged'
     if 'username' in session:
         # Fix to BUG1 - not sure is it the best way to make unnessesry redirect. The good think it will happen only once at login.
-        if 'bookmark' not in session: 
+        if 'bookmark' not in session:
             return redirect(url_for('bookmark_off'))
-        
-        user='Cheff: '+session['username'] 
+
+        user='Cheff: '+session['username']
         bookmark=session['bookmark'] # BUG1 - how you can compare to session var if it is created in different links?
         # Find users bookmars/likes
         dblikes=[]
@@ -49,26 +49,26 @@ def index():
     dbusers = mongo.db.users
     dbrecipes.create_index([("recipe-description","text"), ("recipe-name", "text") ])
 
-    # Display all published recipes 
+    # Display all published recipes
     if bookmark==0:
         recipes  = dbrecipes.find({"published": "publish"})
-    else: 
+    else:
         id_likes = dbusers.find_one({"name" : session['username']}, {"likes":1, "_id":0})["likes"]
         # recipes = dbrecipes.find({"$and": [{"alergens": {"$nin": option3 }}, {"published": "publish"} , {"recipe-type": {"$in": recipe_type }}, {"_id": {"$in": id_likes }},{"cooking-time": {"$lte": int(option2[0]) }}  ] })
         recipes = dbrecipes.find({"$and": [   {"_id": {"$in": id_likes }} ] })
 
     dbresponse=[]
     for recipe in recipes:
-        dbresponse.append(recipe) 
+        dbresponse.append(recipe)
 
-    # Default settings for form typ    
+    # Default settings for form typ
     option1=['all'] # All types
     option2=['900']  # Cooking time 900 min /all
     option3=[] # Allergens none
     option4='' # User last
     search=''
-    
-    if request.method == 'POST': 
+
+    if request.method == 'POST':
         cooktime=200
         option1 = (request.form.getlist('recipe-type'))
         option2 = (request.form.getlist('cooking-time'))
@@ -78,7 +78,7 @@ def index():
         if recipe_type == ['']:
             recipe_type = ["Main course", "Starter", "Desserts", "Juices"]
             option1=['all']
-       
+
         if bookmark==0:
             if search!=['']:
                 recipes  = dbrecipes.find({"$and": [{"alergens": {"$nin": option3 }}, { "$text": { "$search":  "/.*"+search[0]+".*/i" } }, {"published": "publish"} , {"recipe-type": {"$in": recipe_type }}, {"cooking-time": {"$lte": int(option2[0]) }}  ] }).sort('date',-1)
@@ -89,7 +89,7 @@ def index():
             id_likes = dbusers.find_one({"name" : session['username']}, {"likes":1, "_id":0})["likes"]
             if search==['']:
                 recipes = dbrecipes.find({"$and": [{"alergens": {"$nin": option3 }}, {"published": "publish"} , {"recipe-type": {"$in": recipe_type }}, {"_id": {"$in": id_likes }},{"cooking-time": {"$lte": int(option2[0]) }}  ] })
-            else:  
+            else:
                 recipes = dbrecipes.find({"$and": [{"cooking-time": {"$lte": int(option2[0]) }},{"alergens": {"$nin": option3 }}, {"published": "publish"} , {"recipe-type": {"$in": recipe_type }}, {"_id": {"$in": id_likes }}, { "$text": { "$search":  "/.*"+search[0]+".*/i" } } ] })
         dbresponse=[]
         for recipe in recipes:
@@ -100,9 +100,9 @@ def index():
         dblikes=dblikes,
         bookmark=bookmark,
         option1=option1[0],   # option1,2,3 For filter to "remmember" settings
-        option2=option2[0], 
+        option2=option2[0],
         option3=option3,
-        option4=option4, 
+        option4=option4,
         option5=search,
         user=user,)
 
@@ -112,20 +112,20 @@ def user_recipes():
     user='You are not logged'
     if 'username' in session:
         user='Cheff: '+session['username']
-    else: 
+    else:
        return redirect(url_for('signup'))
-    
+
     show_tooltips = 1
     dbrecipes = mongo.db.recipes
-    recipes  = dbrecipes.find({"author": session['username']}).sort('date',-1) 
-       
+    recipes  = dbrecipes.find({"author": session['username']}).sort('date',-1)
+
     if request.method == 'POST':
         show_tooltips = 0
         ### Delete db querie:
         if request.form.getlist('delete')!=[]:
             dbrecipes.remove( {"_id": ObjectId(request.form.getlist('delete')[0])})
         ### Update db queries:
-        # Cuisine 
+        # Cuisine
         idrecipe = request.form.getlist('cuisine')[-1:]
         cuisinelist= request.form.getlist('cuisine')[0:len(request.form.getlist('cuisine'))-1]
         if request.form.getlist('cuisine')!=[]:
@@ -139,13 +139,13 @@ def user_recipes():
         if request.form.getlist('image-url')!=[]:
             photo = request.form.getlist('image-url')[0]
             idphoto= request.form.getlist('idphoto')[0]
-            
+
             dbrecipes.update( {"_id": ObjectId( idphoto) } ,{ "$set": {"image-url": photo} } )
         # Type
         if request.form.getlist('type')!=[]:
             rtype = request.form.getlist('recipe-type')[0]
             idtype= request.form.getlist('type')[0]
-            dbrecipes.update_one( {"_id": ObjectId( idtype) } ,{ "$set": {"recipe-type": rtype } } )            
+            dbrecipes.update_one( {"_id": ObjectId( idtype) } ,{ "$set": {"recipe-type": rtype } } )
         # Time
         if request.form.getlist('time')!=[]:
             rtime = request.form.getlist('cooking-time')[0]
@@ -171,7 +171,7 @@ def user_recipes():
 
             rid = request.form.getlist('publish')[0]
             rstage= request.form.getlist('stage')[0]
-            dbrecipes.update_one( {"_id": ObjectId( rid) } ,{ "$set": {"published": rstage } } )      
+            dbrecipes.update_one( {"_id": ObjectId( rid) } ,{ "$set": {"published": rstage } } )
 
     dbresponse=[]
     for recipe in recipes:
@@ -180,13 +180,13 @@ def user_recipes():
     return render_template(
         "user_recipes.html",
         recipes=dbresponse,
-        show_tooltips=show_tooltips, 
+        show_tooltips=show_tooltips,
         user=user)
 
 # Individual page for recipe
 @app.route('/view_recipe/<recipe_id>')
 def recipe(recipe_id):
-    
+
     return render_template('one_recipe.html')
 
 # Store bookmark give a like
@@ -209,10 +209,10 @@ def like(recipe_id):
     else:
         likes.remove(ObjectId(recipe_id))
         dbusers.update( {"name": session['username']  } ,{ "$set": {"likes": likes} }     )
-    
+
 
     return redirect(url_for('index'))
-    
+
 @app.route('/login', methods=["POST", "GET"])
 def login():
     user='You are not logged'
@@ -229,8 +229,8 @@ def login():
                 session['username'] = request.form['username']
                 return redirect(url_for('index'))
 
-        msg='Invalid username/password combination' 
-    
+        msg='Invalid username/password combination'
+
     return render_template('login.html', user=user, msg=msg)
 @app.route('/signup', methods=["POST", "GET"])
 def signup():
@@ -242,20 +242,20 @@ def signup():
     if request.method == 'POST':
         users = mongo.db.users
         existing_user = users.find_one({'name' : request.form['username']})
-    
+
         if existing_user is None:
             if request.form['password_check']==request.form['password'] and request.form['password'] is not None:
                 if not len(request.form['password'])<5:
-                    hashpass = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt()) 
+                    hashpass = bcrypt.hashpw(request.form['password'].encode('utf-8'), bcrypt.gensalt())
                     users.insert_one({'name' : request.form['username'], 'password' : hashpass, 'likes' : []})
                     session['username'] = request.form['username']
-                    return redirect(url_for('index'))            
+                    return redirect(url_for('index'))
                 else:
                     msg='Password is to short try at least 5 chars'
-            else: 
+            else:
                 msg = 'Passwords dose not match'
-        else: 
-            msg='That username already exists!'  
+        else:
+            msg='That username already exists!'
 
     return render_template('signup.html', user=user, msg=msg)
 
@@ -270,7 +270,7 @@ def bookmark_on():
     if 'username' not in session:
         return redirect(url_for('index'))
     session['bookmark']=1
-    
+
     return redirect(url_for('index'))
 
 @app.route('/bookmark_off')
@@ -291,8 +291,8 @@ def add_recipe():
     recipes=mongo.db.recipes
     recipes.insert({
     'likes': 0,
-    'recipe-name' : "My new recipe" , #request.form['recipe-name'] 
-    'recipe-type' : "Starter" , 
+    'recipe-name' : "My new recipe" , #request.form['recipe-name']
+    'recipe-type' : "Starter" ,
     'cooking-time': 15 , # Always change to int if its need to be int ...
     'cuisine': [] ,
     'alergens': [],
@@ -324,7 +324,7 @@ def stats():
     starter = dbrecipes.count_documents({"$and": [ {"published": "publish", "recipe-type":"Starter" }]})
     dessert = dbrecipes.count_documents({"$and": [ {"published": "publish", "recipe-type":"Desserts" }]})
     juices = dbrecipes.count_documents({"$and": [ {"published": "publish", "recipe-type":"Juices" }]})
-    
+
     # Draw draft vs publish chart
     line_chart = pygal.HorizontalBar()
     line_chart.title = 'Published recipes vs Draft recipes'
@@ -332,7 +332,7 @@ def stats():
     line_chart.add('Draft', draft )
     line_chart.render_to_file('static/img/draft-publish.svg')
 
-    # Draw recipe types % using half bars 
+    # Draw recipe types % using half bars
     gauge = pygal.SolidGauge(
         half_pie=True, inner_radius=0.70,
         style=pygal.style.styles['default'](value_font_size=10))
@@ -346,15 +346,15 @@ def stats():
     gauge.add('Starters', [{'value': round((starter/all_recipes)*100,2) , 'max_value': 100}])
     gauge.add('Desserts', [{'value': round((dessert/all_recipes)*100,2) , 'max_value': 100}])
     gauge.add('Juices', [{'value': round((juices/all_recipes)*100,2) , 'max_value': 100}])
-    gauge.render_to_file('static/img/half.svg') 
+    gauge.render_to_file('static/img/half.svg')
 
     return render_template("stats.html", user=user)
-    
+
 if __name__ == '__main__':
     def before_request():
         app.jinja_env.cache = {}
     app.before_request(before_request)
-    
+
     app.jinja_env.auto_reload = True
     app.config['TEMPLATES_AUTO_RELOAD'] = True
     app.run(host=os.getenv('IP'), port=os.getenv('PORT'),  debug=True )
